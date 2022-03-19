@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">GiuaKyAndroid</string>
+    <string name="app_name">Quản lý đơn đặt hàng</string>
+    <string name="get_started">Get started</string>
+    <string name="danh_muc">Danh Mục</string>
+    <string name="san_pham">Sản phẩm</string>
+    <string name="khach_hang">Khách hàng</string>
+    <string name="don_dat_hang">Đơn đặt hàng</string>
 </resources>
