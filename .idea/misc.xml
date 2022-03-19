@@ -3,7 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Data/FileLapTrinh/Android/app/src/main/res/drawable/border.xml" value="0.157" />
+        <entry key="..\:/Data/FileLapTrinh/Android/app/src/main/res/drawable/white_border.xml" value="0.157" />
+        <entry key="..\:/Data/FileLapTrinh/Android/app/src/main/res/drawable/white_btn.xml" value="0.157" />
+        <entry key="..\:/Data/FileLapTrinh/Android/app/src/main/res/layout/activity_bat_dau.xml" value="0.152" />
         <entry key="..\:/Data/FileLapTrinh/Android/app/src/main/res/layout/activity_main.xml" value="0.10989583333333333" />
+        <entry key="..\:/Data/FileLapTrinh/Android/app/src/main/res/layout/activity_main2.xml" value="0.10989583333333333" />
+        <entry key="..\:/Data/FileLapTrinh/Android/app/src/main/res/layout/activity_menu.xml" value="0.26197916666666665" />
+        <entry key="..\:/Data/FileLapTrinh/Android/app/src/main/res/layout/activity_start.xml" value="0.16799999999999998" />
+        <entry key="..\:/Data/FileLapTrinh/Android/app/src/main/res/layout/activity_start2.xml" value="0.10989583333333333" />
+        <entry key="..\:/Data/FileLapTrinh/Android/app/src/main/res/layout/activity_start3.xml" value="0.10989583333333333" />
       </map>
     </option>
   </component>
