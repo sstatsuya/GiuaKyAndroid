@@ -37,6 +37,7 @@
             android:orientation="vertical">
 
             <LinearLayout
+                android:id="@+id/btnSanPham"
                 android:layout_width="320dp"
                 android:layout_height="60dp"
                 android:layout_gravity="center"
@@ -69,6 +70,7 @@
                 android:background="@color/primary"></View>
 
             <LinearLayout
+                android:id="@+id/btnKhachHang"
                 android:layout_width="320dp"
                 android:layout_height="60dp"
                 android:layout_gravity="center"
@@ -101,6 +103,7 @@
                 android:background="@color/primary"></View>
 
             <LinearLayout
+                android:id="@+id/btnDonDatHang"
                 android:layout_width="320dp"
                 android:layout_height="60dp"
                 android:layout_gravity="center"

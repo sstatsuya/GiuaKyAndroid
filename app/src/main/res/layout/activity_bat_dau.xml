@@ -35,7 +35,7 @@
         <Button
             android:layout_width="314dp"
             android:layout_height="65dp"
-            android:background="@drawable/white_btn"
+            android:background="@drawable/white_border"
             android:text="@string/get_started"
             android:id="@+id/btnStart"
             android:foreground="?attr/selectableItemBackground"
