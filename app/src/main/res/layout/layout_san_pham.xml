@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="160dp"
+    android:layout_height="wrap_content"
+    android:background="@drawable/white_border"
+    >
+    <ImageView
+        android:id="@+id/imgSanPham"
+        android:layout_width="144dp"
+        android:layout_height="108dp"
+        android:layout_gravity="center"
+        android:src="@drawable/sanpham"
+        />
+
+    <TextView
+        android:id="@+id/txtTenSanPham"
+        android:textColor="@color/black"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textAlignment="center"
+        android:maxLines="1"
+        android:text="@string/ten_san_pham"/>
+
+    <TextView
+        android:id="@+id/txtMaSanPham"
+        android:textColor="#999999"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textAlignment="center"
+        android:text="@string/ten_san_pham"/>
+
+</LinearLayout>
