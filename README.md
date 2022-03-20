@@ -1,4 +1,3 @@
-# GiuaKyAndroid
 # Bài giữa kỳ lập trình android
 <em><strong>
 Trước khi code cần phải kéo từ Master về <br>
