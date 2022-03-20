@@ -82,6 +82,16 @@
 
     </LinearLayout>
 
+    <GridView
+        android:numColumns="2"
+        android:id="@+id/gvSanPham"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:horizontalSpacing="16dp"
+        android:verticalSpacing="16dp"
+        android:padding="16dp"
+        />
+
 
 
 </LinearLayout>

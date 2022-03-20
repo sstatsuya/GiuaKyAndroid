@@ -5,4 +5,7 @@
     <string name="san_pham">Sản phẩm</string>
     <string name="khach_hang">Khách hàng</string>
     <string name="don_dat_hang">Đơn đặt hàng</string>
+    <string name="ten_san_pham">Tên sản phẩm</string>
+    <string name="don_gia">Đơn giá</string>
+    <string name="ma_san_pham">Mã sản phẩm</string>
 </resources>
