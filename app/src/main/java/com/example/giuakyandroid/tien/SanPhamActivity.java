@@ -1,10 +1,15 @@
 package com.example.giuakyandroid.tien;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.giuakyandroid.R;
 import com.example.giuakyandroid.tien.model.AdapterSanPham;
@@ -16,6 +21,7 @@ public class SanPhamActivity extends AppCompatActivity {
     GridView gvSanPham;
     ArrayList<SanPham> sanPhams = new ArrayList<>();
     AdapterSanPham adapterSanPham;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +36,17 @@ public class SanPhamActivity extends AppCompatActivity {
         khoiTao();
         adapterSanPham = new AdapterSanPham(this, R.layout.layout_san_pham, sanPhams);
         gvSanPham.setAdapter(adapterSanPham);
+
+//        Khi sản phẩm được click vào
+        gvSanPham.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(SanPhamActivity.this, ThongTinSanPhamActivity.class);
+                SanPham sanPham = sanPhams.get(position);
+                intent.putExtra("sanPham", sanPham);
+                startActivityForResult(intent, 1);
+            }
+        });
     }
 
     private void setControl() {
@@ -44,9 +61,28 @@ public class SanPhamActivity extends AppCompatActivity {
         sanPhams.add(sanPham1);
         sanPhams.add(sanPham2);
         sanPhams.add(sanPham3);
-        sanPhams.add(sanPham4);sanPhams.add(sanPham1);
+        sanPhams.add(sanPham4);
+        sanPhams.add(sanPham1);
         sanPhams.add(sanPham2);
         sanPhams.add(sanPham3);
         sanPhams.add(sanPham4);
+    }
+
+    //lỗi chỗ này kệ nó
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        SanPham sanPham = (SanPham) data.getSerializableExtra("sanPham");
+        if (requestCode == 1) {
+            if (resultCode == 1) {
+                Toast.makeText(this, "Thêm", Toast.LENGTH_SHORT).show();
+            }
+
+        } else if (requestCode == 2) {
+            if (resultCode == 2) {
+                Toast.makeText(this, "Sửa", Toast.LENGTH_SHORT).show();
+            } else if (resultCode == 1) {
+                Toast.makeText(this, "Xóa", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 }

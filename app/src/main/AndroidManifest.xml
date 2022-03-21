@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GiuaKyAndroid">
         <activity
+            android:name=".tien.ThongTinSanPhamActivity"
+            android:exported="false" />
+        <activity
             android:name="pthach.Test"
             android:exported="false" />
         <activity

@@ -8,4 +8,8 @@
     <string name="ten_san_pham">Tên sản phẩm</string>
     <string name="don_gia">Đơn giá</string>
     <string name="ma_san_pham">Mã sản phẩm</string>
+    <string name="xuat_xu">Xuất xứ</string>
+    <string name="thong_tin_san_pham">Thông tin sản phẩm</string>
+    <string name="sua">Sửa</string>
+    <string name="xoa">Xóa</string>
 </resources>
