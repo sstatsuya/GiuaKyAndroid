@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:gravity="center_vertical"
+    android:layout_height="120dp">
+
+    <ImageView
+        android:layout_width="96dp"
+        android:layout_height="match_parent"
+        android:src="@drawable/avatar"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingLeft="10dp"
+        android:weightSum="5.5"
+        >
+        <TextView
+            android:id="@+id/tv_Name"
+            android:layout_weight="1.5"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:gravity="center_vertical"
+            android:text="Họ tên:"
+            android:textSize="14dp"
+            android:textColor="@color/black"
+            />
+        <TextView
+            android:id="@+id/tv_Phone"
+            android:layout_weight="1.5"
+            android:layout_width="match_parent"
+            android:gravity="center_vertical"
+            android:layout_height="0dp"
+            android:text="SĐT:"
+            android:textSize="14dp"
+            android:textColor="@color/black"
+            />
+        <TextView
+            android:id="@+id/tv_Address"
+            android:layout_weight="2.5"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:paddingTop="5dp"
+            android:text="Địa chỉ:"
+            android:textSize="14dp"
+            android:textColor="@color/black"
+            />
+
+    </LinearLayout>
+
+
+</LinearLayout>
