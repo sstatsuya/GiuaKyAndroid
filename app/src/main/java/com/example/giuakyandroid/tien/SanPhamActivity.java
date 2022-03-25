@@ -8,7 +8,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.giuakyandroid.R;
@@ -21,6 +23,7 @@ public class SanPhamActivity extends AppCompatActivity {
     GridView gvSanPham;
     ArrayList<SanPham> sanPhams = new ArrayList<>();
     AdapterSanPham adapterSanPham;
+    LinearLayout btnThemSanPham;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,10 +50,20 @@ public class SanPhamActivity extends AppCompatActivity {
                 startActivityForResult(intent, 1);
             }
         });
+
+//        Khi bấm nút thêm sản phẩm
+        btnThemSanPham.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SanPhamActivity.this, ThemSanPhamActivity.class);
+                startActivityForResult(intent, 1);
+            }
+        });
     }
 
     private void setControl() {
         gvSanPham = findViewById(R.id.gvSanPham);
+        btnThemSanPham = findViewById(R.id.btnThemSanPham);
     }
 
     private void khoiTao() {
@@ -68,13 +81,19 @@ public class SanPhamActivity extends AppCompatActivity {
         sanPhams.add(sanPham4);
     }
 
-    //lỗi chỗ này kệ nó
+    private void themSanPham(SanPham sanPham){
+        sanPhams.add(sanPham);
+        adapterSanPham.notifyDataSetChanged(); //Reload adapter
+    }
+
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
         SanPham sanPham = (SanPham) data.getSerializableExtra("sanPham");
         if (requestCode == 1) {
             if (resultCode == 1) {
-                Toast.makeText(this, "Thêm", Toast.LENGTH_SHORT).show();
+                themSanPham(sanPham);
             }
 
         } else if (requestCode == 2) {
@@ -85,4 +104,5 @@ public class SanPhamActivity extends AppCompatActivity {
             }
         }
     }
+
 }
