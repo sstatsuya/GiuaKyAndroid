@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".tien.SanPhamActivity"
+    android:background="@color/primary"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+
+    android:paddingHorizontal="24dp"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="143dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="106dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:text="@string/them_san_pham"
+            android:textColor="@color/white"
+            android:textSize="48dp" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imgTSPHinh"
+        android:layout_width="304dp"
+        android:layout_height="266dp"
+        android:layout_gravity="center"
+        android:src="@drawable/empty" />
+
+    <LinearLayout
+        android:layout_width="304dp"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="6dp"
+        android:background="@drawable/white_border_2">
+        <EditText
+            android:id="@+id/txtTSPTen"
+            android:singleLine="true"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:textSize="18dp"
+            android:hint="@string/ten_san_pham"
+            android:textColorHint="@color/hint"
+            android:textColor="@color/black"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="304dp"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="6dp"
+        android:background="@drawable/white_border_2">
+        <EditText
+            android:id="@+id/txtTSPGia"
+            android:singleLine="true"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:textSize="18dp"
+            android:hint="@string/don_gia"
+            android:textColorHint="@color/hint"
+            android:textColor="@color/black"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="304dp"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="6dp"
+        android:background="@drawable/white_border_2">
+        <EditText
+            android:id="@+id/txtTSPXuatXu"
+            android:singleLine="true"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:textSize="18dp"
+            android:hint="@string/xuat_xu"
+            android:textColorHint="@color/hint"
+            android:textColor="@color/black"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="304dp"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="6dp"
+        android:orientation="horizontal"
+        android:background="@drawable/white_border_2">
+        <EditText
+            android:id="@+id/txtTSPHinh"
+            android:singleLine="true"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_height="40dp"
+            android:textSize="18dp"
+            android:hint="@string/link_hinh_anh"
+            android:textColorHint="@color/hint"
+            android:textColor="@color/black"/>
+        <Button
+            android:id="@+id/btn_xem_truoc_hinh"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/xem"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/btn_them_sp_dong_y"
+            android:layout_width="146dp"
+            android:layout_height="44dp"
+            android:layout_marginRight="32dp"
+            android:background="@drawable/nut_them_sp_dong_y"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground"
+            android:text="@string/dong_y"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="20dp"></TextView>
+
+        <TextView
+            android:id="@+id/btn_them_sp_huy"
+            android:layout_width="146dp"
+            android:layout_height="44dp"
+            android:background="@drawable/white_border"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground"
+            android:text="@string/huy"
+            android:textAlignment="center"
+            android:textColor="@color/primary"
+            android:textSize="20dp"></TextView>
+
+    </LinearLayout>
+
+
+
+
+
+
+</LinearLayout>

@@ -12,7 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GiuaKyAndroid">
         <activity
+            android:name=".tien.ThemSanPhamActivity"
+            android:windowSoftInputMode="stateAlwaysVisible"
+            android:exported="false" />
+        <activity
             android:name=".tien.ThongTinSanPhamActivity"
+            android:windowSoftInputMode="stateAlwaysVisible"
             android:exported="false" />
         <activity
             android:name="pthach.Test"
