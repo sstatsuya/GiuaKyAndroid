@@ -40,7 +40,9 @@ public class AdapterKhachHang extends ArrayAdapter<KhachHang> {
         TextView tv_Name = convertView.findViewById(R.id.tv_Name);
         TextView tv_Phone = convertView.findViewById(R.id.tv_Phone);
         TextView tv_Address = convertView.findViewById(R.id.tv_Address);
+        TextView tv_MaKH = convertView.findViewById(R.id.tv_MaKH);
         KhachHang khachHang = DS_khachHang.get(position);
+        tv_MaKH.setText("Mã KH: " + khachHang.getMaKH().trim());
         tv_Name.setText("Họ tên: " + khachHang.getName().trim());
         tv_Phone.setText("SĐT: " + khachHang.getPhone().trim());
         tv_Address.setText("Địa chỉ: " + khachHang.getAddress().trim());

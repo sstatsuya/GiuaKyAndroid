@@ -3,7 +3,8 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:gravity="center_vertical"
-    android:layout_height="120dp">
+    android:layout_height="wrap_content"
+    >
 
     <ImageView
         android:layout_width="96dp"
@@ -11,16 +12,27 @@
         android:src="@drawable/avatar"/>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="20dp"
         android:orientation="vertical"
         android:paddingLeft="10dp"
-        android:weightSum="5.5"
+        android:weightSum="7"
         >
+        <TextView
+            android:id="@+id/tv_MaKH"
+            android:layout_weight="1.5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:text="Mã KH:"
+            android:textSize="14dp"
+            android:textColor="@color/black"
+            />
         <TextView
             android:id="@+id/tv_Name"
             android:layout_weight="1.5"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:text="Họ tên:"
             android:textSize="14dp"
@@ -31,7 +43,7 @@
             android:layout_weight="1.5"
             android:layout_width="match_parent"
             android:gravity="center_vertical"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:text="SĐT:"
             android:textSize="14dp"
             android:textColor="@color/black"
@@ -40,7 +52,7 @@
             android:id="@+id/tv_Address"
             android:layout_weight="2.5"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:paddingTop="5dp"
             android:text="Địa chỉ:"
             android:textSize="14dp"
