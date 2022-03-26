@@ -71,7 +71,7 @@ public class KhachHangActivity extends AppCompatActivity {
         if(requestCode == REQUEST_TO_THEMKH && resultCode == RESULT_OK){
             KhachHang khachHang = intent.getParcelableExtra("khachhang");
             if (khachHang != null){
-                int ID_AUTO = Integer.parseInt(DS_khachHangs.get(DS_khachHangs.size() - 1). getMaKH().replace("KH",""));
+                int ID_AUTO = Integer.parseInt(DS_khachHangs.get(DS_khachHangs.size() - 1). getMaKH().replace("KH","")) + 1;
                 khachHang.setMaKH("KH" + ID_AUTO );
                 DS_khachHangs.add(khachHang);
                 adapterKhachHang.notifyDataSetChanged(); //Reload adapter
