@@ -53,7 +53,7 @@
         android:paddingTop="30dp">
 
         <EditText
-            android:id="@+id/ed_Name"
+            android:id="@+id/ed_tenKH"
             android:layout_width="330dp"
             android:layout_height="53dp"
             android:background="@drawable/white_border"
@@ -65,7 +65,7 @@
             android:textSize="16dp" />
 
         <EditText
-            android:id="@+id/ed_Phone"
+            android:id="@+id/ed_soDT_KH"
             android:layout_width="330dp"
             android:layout_height="53dp"
             android:layout_marginTop="30dp"
@@ -77,7 +77,7 @@
             android:textSize="16dp" />
 
         <EditText
-            android:id="@+id/ed_Address"
+            android:id="@+id/ed_diaChiKH"
             android:layout_width="330dp"
             android:layout_height="53dp"
             android:layout_marginTop="30dp"
@@ -96,6 +96,7 @@
             android:orientation="horizontal">
 
             <Button
+                android:id="@+id/btn_themKH"
                 android:layout_width="158dp"
                 android:layout_height="45dp"
                 android:background="@drawable/orange_border"
@@ -105,6 +106,7 @@
                 android:textSize="18dp" />
 
             <Button
+                android:id="@+id/btn_huyThemKH"
                 android:layout_width="158dp"
                 android:layout_height="45dp"
                 android:layout_marginLeft="20dp"
