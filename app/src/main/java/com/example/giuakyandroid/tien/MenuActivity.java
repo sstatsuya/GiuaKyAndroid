@@ -13,8 +13,10 @@ import android.widget.Toast;
 
 import com.example.giuakyandroid.R;
 
+import ngocthach.KhachHangActivity;
+
 public class MenuActivity extends AppCompatActivity {
-    LinearLayout btnSanPham;
+    LinearLayout btnSanPham,btnKhachHang;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,9 +35,17 @@ public class MenuActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        btnKhachHang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MenuActivity.this, KhachHangActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void setControl() {
         btnSanPham = findViewById(R.id.btnSanPham);
+        btnKhachHang = findViewById(R.id.btnKhachHang);
     }
 }

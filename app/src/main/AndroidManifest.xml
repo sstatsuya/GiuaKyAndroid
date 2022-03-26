@@ -20,6 +20,12 @@
             android:windowSoftInputMode="stateAlwaysVisible"
             android:exported="false" />
         <activity
+            android:name="ngocthach.ActivityThemKhachHang"
+            android:exported="false" />
+        <activity
+            android:name="ngocthach.KhachHangActivity"
+            android:exported="false" />
+        <activity
             android:name="pthach.Test"
             android:exported="false" />
         <activity
@@ -31,6 +37,7 @@
         <activity
             android:name=".tien.BatDauActivity"
             android:exported="true">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
