@@ -12,13 +12,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GiuaKyAndroid">
         <activity
-            android:name=".tien.ThemSanPhamActivity"
-            android:windowSoftInputMode="stateAlwaysVisible"
+            android:name="pthach.ThemDonHangActivity"
             android:exported="false" />
         <activity
+            android:name=".tien.ThemSanPhamActivity"
+            android:exported="false"
+            android:windowSoftInputMode="stateAlwaysVisible" />
+        <activity
             android:name=".tien.ThongTinSanPhamActivity"
-            android:windowSoftInputMode="stateAlwaysVisible"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="stateAlwaysVisible" />
         <activity
             android:name="ngocthach.ActivityThemKhachHang"
             android:exported="false" />
@@ -37,7 +40,6 @@
         <activity
             android:name=".tien.BatDauActivity"
             android:exported="true">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -4,3 +4,11 @@ Trước khi code cần phải kéo từ Master về <br>
 Nhớ checkout đúng branch của mình<br>
 Mỗi lần code xong thì nhớ Push lên và Pull vào Master (để đứa nào code sau thì cũng có được bản mới nhất)
 </strong></em>
+
+
+//Git
+#Begin
+git fetch
+git pull origin master
+#End
+Commit and push and merge
