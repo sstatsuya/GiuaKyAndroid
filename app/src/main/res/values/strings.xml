@@ -1,9 +1,20 @@
 <resources>
     <string name="app_name">Quản lý đơn đặt hàng</string>
     <string name="get_started">Get started</string>
+    //category
     <string name="danh_muc">Danh Mục</string>
     <string name="san_pham">Sản phẩm</string>
     <string name="khach_hang">Khách hàng</string>
+    <string name="don_hang">Đơn hàng</string>
+    //DonHang
+    <string name="tao_don_hang">Tạo đơn hàng</string>
+    <string name="chon_san_pham">Chọn sản phẩm</string>
+    <string name="them_mat_hang">Thêm mặt hàng</string>
+    <string name="danh_sach_mat_hang">Danh sách mặt hàng</string>
+    //Utility
+    <string name="them">Thêm</string>
+
+    //KhachHang
     <string name="them_khachhang">Thêm khách hàng</string>
     <string name="don_dat_hang">Đơn đặt hàng</string>
     <string name="ten_san_pham">Tên sản phẩm</string>
