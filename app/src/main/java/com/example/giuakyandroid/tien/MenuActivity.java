@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -14,9 +15,10 @@ import android.widget.Toast;
 import com.example.giuakyandroid.R;
 
 import ngocthach.KhachHangActivity;
+import pthach.ThemDonHangActivity;
 
 public class MenuActivity extends AppCompatActivity {
-    LinearLayout btnSanPham,btnKhachHang;
+    LinearLayout btnSanPham,btnKhachHang, btnDonDatHang;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,10 +44,19 @@ public class MenuActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        btnDonDatHang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MenuActivity.this, ThemDonHangActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void setControl() {
         btnSanPham = findViewById(R.id.btnSanPham);
         btnKhachHang = findViewById(R.id.btnKhachHang);
+        this.btnDonDatHang = findViewById(R.id.btnDonDatHang);
     }
 }
