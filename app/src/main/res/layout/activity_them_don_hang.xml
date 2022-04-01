@@ -29,7 +29,7 @@
             android:layout_width="40dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@drawable/Orange_Border_Button"
+            android:background="@drawable/orange_border_button"
             android:text="lưu"
             android:textColor="@color/white" />
     </LinearLayout>
@@ -52,7 +52,7 @@
             android:paddingHorizontal="12dp"
             android:text="@string/tao_don_hang"
             android:textColor="@color/primary"
-            android:textSize="48dp" />
+            android:textSize="40dp" />
 
     </LinearLayout>
 
@@ -85,7 +85,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:layout_marginHorizontal="50dp"
+        android:layout_marginHorizontal="30dp"
         android:layout_marginTop="20dp"
         android:orientation="horizontal">
 
@@ -93,15 +93,14 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="@string/danh_sach_mat_hang"
+            android:gravity="center_vertical"
             android:textColor="@color/primary"
-            android:textSize="40dp" />
+            android:textSize="30dp" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginLeft="20dp"
-            android:paddingHorizontal="15dp"
-            android:background="@drawable/Orange_Border_Button"
+            android:background="@drawable/orange_border_button"
             android:text="@string/them"
             android:textColor="@color/white"
             android:textSize="15dp" />
@@ -112,7 +111,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp">
-
 
     </ScrollView>
 
