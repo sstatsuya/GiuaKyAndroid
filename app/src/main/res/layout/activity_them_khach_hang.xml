@@ -38,9 +38,11 @@
         android:layout_weight="1.5">
 
         <ImageView
-            android:layout_width="wrap_content"
+            android:id="@+id/iv_avatarKH"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+
             android:src="@drawable/avatar" />
     </LinearLayout>
 
@@ -53,13 +55,24 @@
         android:paddingTop="30dp">
 
         <EditText
+            android:id="@+id/ed_avatarKH"
+            android:layout_width="330dp"
+            android:layout_height="53dp"
+            android:background="@drawable/white_border"
+            android:hint="Link img avatar"
+            android:paddingLeft="20dp"
+            android:textColor="@color/black"
+            android:textColorHint="#AFA7A7"
+            android:textSize="16dp" />
+
+        <EditText
             android:id="@+id/ed_tenKH"
             android:layout_width="330dp"
             android:layout_height="53dp"
             android:background="@drawable/white_border"
             android:hint="Tên Khách hàng"
             android:paddingLeft="20dp"
-
+            android:layout_marginTop="30dp"
             android:textColor="@color/black"
             android:textColorHint="#AFA7A7"
             android:textSize="16dp" />

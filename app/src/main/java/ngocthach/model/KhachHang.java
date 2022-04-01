@@ -3,40 +3,36 @@ package ngocthach.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class KhachHang implements Parcelable {
-    private String MaKH, name, phone, address;
+import java.io.Serializable;
+
+public class KhachHang implements Serializable {
+    private int id;
+    private String avatar, name, phone, address;
 
     public KhachHang() {
     }
 
-    public KhachHang(String maKH, String name, String phone, String address) {
-        this.MaKH = maKH;
+    public KhachHang(String avatar, String name, String phone, String address) {
+        this.avatar = avatar;
         this.name = name;
         this.phone = phone;
         this.address = address;
     }
 
-    protected KhachHang(Parcel in) {
-        MaKH = in.readString();
-        name = in.readString();
-        phone = in.readString();
-        address = in.readString();
+    public KhachHang(int id, String avatar, String name, String phone, String address) {
+        this.id = id;
+        this.avatar = avatar;
+        this.name = name;
+        this.phone = phone;
+        this.address = address;
     }
 
-    public static final Creator<KhachHang> CREATOR = new Creator<KhachHang>() {
-        @Override
-        public KhachHang createFromParcel(Parcel in) {
-            return new KhachHang(in);
-        }
+    public int getId() {
+        return id;
+    }
 
-        @Override
-        public KhachHang[] newArray(int size) {
-            return new KhachHang[size];
-        }
-    };
-
-    public String getMaKH() {
-        return MaKH;
+    public String getAvatar() {
+        return avatar;
     }
 
     public String getName() {
@@ -51,8 +47,12 @@ public class KhachHang implements Parcelable {
         return address;
     }
 
-    public void setMaKH(String maKH) {
-        MaKH = maKH;
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 
     public void setName(String name) {
@@ -65,18 +65,5 @@ public class KhachHang implements Parcelable {
 
     public void setAddress(String address) {
         this.address = address;
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeString(MaKH);
-        parcel.writeString(name);
-        parcel.writeString(phone);
-        parcel.writeString(address);
     }
 }
