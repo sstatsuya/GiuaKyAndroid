@@ -11,10 +11,15 @@
     <string name="chon_san_pham">Chọn sản phẩm</string>
     <string name="them_mat_hang">Thêm mặt hàng</string>
     <string name="danh_sach_mat_hang">Danh sách mặt hàng</string>
+    <string name="ngay_dat_hang">Ngày đặt hàng</string>
     //Utility
     <string name="them">Thêm</string>
 
+
+
+
     //KhachHang
+    <string name="ma_khach_hang">Mã khách hàng</string>
     <string name="them_khachhang">Thêm khách hàng</string>
     <string name="don_dat_hang">Đơn đặt hàng</string>
     <string name="ten_san_pham">Tên sản phẩm</string>
