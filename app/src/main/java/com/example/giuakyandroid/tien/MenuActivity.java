@@ -45,13 +45,6 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
 
-        btnDonDatHang.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MenuActivity.this, ThemDonHangActivity.class);
-                startActivity(intent);
-            }
-        });
     }
 
     private void setControl() {
