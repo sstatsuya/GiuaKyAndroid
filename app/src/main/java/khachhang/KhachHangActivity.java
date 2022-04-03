@@ -1,8 +1,7 @@
-package ngocthach;
+package khachhang;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -14,8 +13,8 @@ import com.example.giuakyandroid.R;
 
 import java.util.ArrayList;
 
-import ngocthach.model.DBKhachHang;
-import ngocthach.model.KhachHang;
+import khachhang.model.DBKhachHang;
+import khachhang.model.KhachHang;
 
 public class KhachHangActivity extends AppCompatActivity {
     // set cung data de lam giao dien
@@ -59,7 +58,7 @@ public class KhachHangActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent intent) {
         super.onActivityResult(requestCode, resultCode, intent);
         if(requestCode == REQUEST_TO_THEMKH && resultCode == RESULT_OK){
-            KhachHang khachHang = (KhachHang) intent.getSerializableExtra("khachhang");
+            KhachHang khachHang = (KhachHang) intent.getSerializableExtra("donhang");
             if (khachHang != null){
                 DS_khachHang.add(khachHang);
                 adapterKhachHang.notifyDataSetChanged(); //Reload adapter

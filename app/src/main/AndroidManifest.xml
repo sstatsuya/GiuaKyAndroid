@@ -12,33 +12,33 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GiuaKyAndroid">
         <activity
-            android:name="pthach.ThemDonHangActivity"
+            android:name="donhang.ThemDonHangActivity"
             android:exported="false" />
         <activity
-            android:name=".tien.ThemSanPhamActivity"
+            android:name="sanpham.ThemSanPhamActivity"
             android:exported="false"
             android:windowSoftInputMode="stateAlwaysVisible" />
         <activity
-            android:name=".tien.ThongTinSanPhamActivity"
+            android:name="sanpham.ThongTinSanPhamActivity"
             android:exported="false"
             android:windowSoftInputMode="stateAlwaysVisible" />
         <activity
-            android:name="ngocthach.ActivityThemKhachHang"
+            android:name="khachhang.ActivityThemKhachHang"
             android:exported="false" />
         <activity
-            android:name="ngocthach.KhachHangActivity"
+            android:name="khachhang.KhachHangActivity"
             android:exported="false" />
         <activity
-            android:name="pthach.Test"
+            android:name="donhang.Test"
             android:exported="false" />
         <activity
-            android:name=".tien.SanPhamActivity"
+            android:name="sanpham.SanPhamActivity"
             android:exported="false" />
         <activity
-            android:name=".tien.MenuActivity"
+            android:name="sanpham.MenuActivity"
             android:exported="false" />
         <activity
-            android:name=".tien.BatDauActivity"
+            android:name="sanpham.BatDauActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

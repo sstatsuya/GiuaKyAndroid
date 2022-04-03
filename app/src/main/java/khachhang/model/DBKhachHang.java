@@ -1,4 +1,4 @@
-package ngocthach.model;
+package khachhang.model;
 
 import android.content.Context;
 import android.database.Cursor;

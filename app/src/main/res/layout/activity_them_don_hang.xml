@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/gray_2"
     android:orientation="vertical"
-    tools:context="pthach.ThemDonHangActivity">
+    tools:context="donhang.ThemDonHangActivity">
 
     <!--    <LinearLayout-->
     <!--        android:layout_width="match_parent"-->

@@ -1,4 +1,4 @@
-package com.example.giuakyandroid.tien;
+package sanpham;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,16 +10,13 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.GridView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.giuakyandroid.R;
-import com.example.giuakyandroid.tien.model.AdapterSanPham;
-import com.example.giuakyandroid.tien.model.SanPham;
+import sanpham.model.AdapterSanPham;
+import sanpham.model.SanPham;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class SanPhamActivity extends AppCompatActivity {

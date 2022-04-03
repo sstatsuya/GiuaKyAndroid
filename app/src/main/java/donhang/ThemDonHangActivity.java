@@ -1,4 +1,4 @@
-package pthach;
+package donhang;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,11 +6,11 @@ import android.os.Bundle;
 import android.widget.ListView;
 
 import com.example.giuakyandroid.R;
-import com.example.giuakyandroid.tien.model.SanPham;
+import sanpham.model.SanPham;
 
 import java.util.ArrayList;
 
-import pthach.model.AdapterDSSanPham;
+import donhang.model.AdapterDSSanPham;
 
 public class ThemDonHangActivity extends AppCompatActivity {
 

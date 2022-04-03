@@ -1,4 +1,4 @@
-package com.example.giuakyandroid.tien;
+package sanpham;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -18,7 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.giuakyandroid.R;
-import com.example.giuakyandroid.tien.model.SanPham;
+import sanpham.model.SanPham;
 import com.squareup.picasso.Picasso;
 
 public class ThemSanPhamActivity extends AppCompatActivity {

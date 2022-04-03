@@ -1,4 +1,4 @@
-package ngocthach;
+package khachhang;
 
 import android.app.Dialog;
 import android.content.Intent;
@@ -22,8 +22,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.giuakyandroid.R;
 import com.squareup.picasso.Picasso;
 
-import ngocthach.model.DBKhachHang;
-import ngocthach.model.KhachHang;
+import khachhang.model.DBKhachHang;
+import khachhang.model.KhachHang;
 
 public class ActivityThemKhachHang extends AppCompatActivity {
     private ImageView iv_avatarKH;
@@ -101,7 +101,7 @@ public class ActivityThemKhachHang extends AppCompatActivity {
                         Intent intent = new Intent();
                         KhachHang khachHang = new KhachHang ( avatar, name, phone, address);
                         new DBKhachHang(ActivityThemKhachHang.this).InsertData(khachHang);
-                        intent.putExtra("khachhang", khachHang);
+                        intent.putExtra("donhang", khachHang);
                         setResult(RESULT_OK, intent);
                         openSuccessDialog(Gravity.CENTER, "Thêm mới khách hàng thành công!");
                     }

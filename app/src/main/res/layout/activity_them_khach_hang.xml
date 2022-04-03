@@ -7,7 +7,7 @@
     android:background="@color/primary"
     android:orientation="vertical"
     android:weightSum="6.5"
-    tools:context="ngocthach.ActivityThemKhachHang">
+    tools:context="khachhang.ActivityThemKhachHang">
 
 
     <LinearLayout

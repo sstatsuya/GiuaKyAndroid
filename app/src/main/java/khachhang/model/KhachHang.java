@@ -1,7 +1,4 @@
-package ngocthach.model;
-
-import android.os.Parcel;
-import android.os.Parcelable;
+package khachhang.model;
 
 import java.io.Serializable;
 

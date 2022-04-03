@@ -1,4 +1,4 @@
-package pthach.model;
+package donhang.model;
 
 import java.io.Serializable;
 

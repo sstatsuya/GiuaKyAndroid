@@ -1,4 +1,4 @@
-package ngocthach;
+package khachhang;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -16,7 +16,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-import ngocthach.model.KhachHang;
+import khachhang.model.KhachHang;
 
 public class AdapterKhachHang extends ArrayAdapter<KhachHang> {
     private Context context;

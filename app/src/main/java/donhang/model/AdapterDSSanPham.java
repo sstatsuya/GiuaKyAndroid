@@ -1,4 +1,4 @@
-package pthach.model;
+package donhang.model;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,15 +10,12 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.constraintlayout.widget.ConstraintSet;
-import androidx.core.app.NotificationCompat;
 
 import com.example.giuakyandroid.R;
-import com.example.giuakyandroid.tien.model.SanPham;
+import sanpham.model.SanPham;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.List;
 
 
 public class AdapterDSSanPham extends ArrayAdapter {

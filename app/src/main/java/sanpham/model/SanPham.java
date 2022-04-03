@@ -1,4 +1,4 @@
-package com.example.giuakyandroid.tien.model;
+package sanpham.model;
 
 import java.io.Serializable;
 
