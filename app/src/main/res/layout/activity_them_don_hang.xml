@@ -41,18 +41,14 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:layout_width="106dp"
-            android:layout_height="wrap_content"
+            style="@style/style_logo"
             android:src="@drawable/icon" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:paddingHorizontal="12dp"
+            style="@style/style_title"
             android:text="@string/tao_don_hang"
             android:textColor="@color/primary"
-            android:textSize="40dp" />
+            />
 
     </LinearLayout>
 
