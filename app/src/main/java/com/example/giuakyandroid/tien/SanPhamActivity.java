@@ -7,9 +7,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,6 +19,7 @@ import com.example.giuakyandroid.R;
 import com.example.giuakyandroid.tien.model.AdapterSanPham;
 import com.example.giuakyandroid.tien.model.SanPham;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class SanPhamActivity extends AppCompatActivity {
@@ -24,6 +27,8 @@ public class SanPhamActivity extends AppCompatActivity {
     ArrayList<SanPham> sanPhams = new ArrayList<>();
     AdapterSanPham adapterSanPham;
     LinearLayout btnThemSanPham;
+    LinearLayout ll_loc_sp;
+    Spinner sn_loc_sp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,11 +64,40 @@ public class SanPhamActivity extends AppCompatActivity {
                 startActivityForResult(intent, 1);
             }
         });
+
+        //Khi bấm vào loc
+        sn_loc_sp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                Object item = adapterView.getItemAtPosition(i);
+                Toast.makeText(SanPhamActivity.this, item.toString(), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
     }
 
     private void setControl() {
         gvSanPham = findViewById(R.id.gvSanPham);
         btnThemSanPham = findViewById(R.id.btnThemSanPham);
+//        ll_loc_sp = findViewById(R.id.ll_loc_sp);
+        sn_loc_sp = findViewById(R.id.sn_loc_sp);
+        khoiTaoSpinnerLoc();
+    }
+
+    private void khoiTaoSpinnerLoc() {
+        ArrayList<String> kieuLoc = new ArrayList<>();
+        kieuLoc.add("Lọc theo mã tăng dần");
+        kieuLoc.add("Lọc theo mã giảm dần");
+        kieuLoc.add("Lọc theo tên tăng dần");
+        kieuLoc.add("Lọc theo tên giảm dần");
+        ArrayAdapter arrayAdapter = new ArrayAdapter(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, kieuLoc);
+        sn_loc_sp.setAdapter(arrayAdapter);
+        sn_loc_sp.setSelection(0);
+
     }
 
     private void khoiTao() {

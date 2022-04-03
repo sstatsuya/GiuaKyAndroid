@@ -33,7 +33,7 @@
             android:layout_width="320dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
-            android:background="@drawable/white_border"
+            android:background="@drawable/white_border_background"
             android:orientation="vertical">
 
             <LinearLayout

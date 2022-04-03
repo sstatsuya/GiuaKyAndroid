@@ -12,12 +12,16 @@
         <entry key="..\:/Data/FileLapTrinh/Android/app/src/main/res/layout/activity_main.xml" value="0.10989583333333333" />
         <entry key="..\:/Data/FileLapTrinh/Android/app/src/main/res/layout/activity_menu.xml" value="0.264" />
         <entry key="..\:/Data/FileLapTrinh/Android/app/src/main/res/layout/activity_san_pham.xml" value="0.46366782006920415" />
+        <entry key="..\:/Data/FileLapTrinh/GiuaKyAndroid/app/src/main/res/drawable/add_product.xml" value="0.179" />
         <entry key="..\:/Data/FileLapTrinh/GiuaKyAndroid/app/src/main/res/drawable/bottom_border_radius.xml" value="0.1675" />
+        <entry key="..\:/Data/FileLapTrinh/GiuaKyAndroid/app/src/main/res/drawable/cirle_border.xml" value="0.179" />
+        <entry key="..\:/Data/FileLapTrinh/GiuaKyAndroid/app/src/main/res/drawable/ic_baseline_filter_alt_24.xml" value="0.179" />
         <entry key="..\:/Data/FileLapTrinh/GiuaKyAndroid/app/src/main/res/drawable/nut_confirm_dong_y.xml" value="0.1675" />
         <entry key="..\:/Data/FileLapTrinh/GiuaKyAndroid/app/src/main/res/drawable/nut_confirm_huy_bo.xml" value="0.1675" />
         <entry key="..\:/Data/FileLapTrinh/GiuaKyAndroid/app/src/main/res/drawable/nut_huy_gray.xml" value="0.1675" />
         <entry key="..\:/Data/FileLapTrinh/GiuaKyAndroid/app/src/main/res/drawable/nut_them_sp_dong_y.xml" value="0.1675" />
         <entry key="..\:/Data/FileLapTrinh/GiuaKyAndroid/app/src/main/res/drawable/nut_xoa_sp.xml" value="0.1675" />
+        <entry key="..\:/Data/FileLapTrinh/GiuaKyAndroid/app/src/main/res/drawable/spinner_background.xml" value="0.179" />
         <entry key="..\:/Data/FileLapTrinh/GiuaKyAndroid/app/src/main/res/drawable/top_border_radius.xml" value="0.1675" />
         <entry key="..\:/Data/FileLapTrinh/GiuaKyAndroid/app/src/main/res/drawable/white_border.xml" value="0.1675" />
         <entry key="..\:/Data/FileLapTrinh/GiuaKyAndroid/app/src/main/res/drawable/white_border_2.xml" value="0.1675" />
@@ -36,6 +40,7 @@
         <entry key="..\:/Data/FileLapTrinh/GiuaKyAndroid/app/src/main/res/layout/layout_item_them_mat_hang.xml" value="0.16216216216216217" />
         <entry key="..\:/Data/FileLapTrinh/GiuaKyAndroid/app/src/main/res/layout/layout_san_pham.xml" value="0.17391304347826086" />
         <entry key="..\:/Data/FileLapTrinh/GiuaKyAndroid/app/src/main/res/layout/layout_success.xml" value="0.25" />
+        <entry key="..\:/Data/FileLapTrinh/GiuaKyAndroid/app/src/main/res/layout/spinner_loc_layout.xml" value="0.1" />
         <entry key="..\:/Users/thach/AndroidStudioProjects/GiuaKyAndroid2/app/src/main/res/layout/activity_items_khachhang.xml" value="0.2" />
         <entry key="..\:/Users/thach/AndroidStudioProjects/GiuaKyAndroid2/app/src/main/res/layout/activity_khachhang.xml" value="0.1334853090172239" />
         <entry key="..\:/Users/thach/AndroidStudioProjects/GiuaKyAndroid2/app/src/main/res/layout/activity_san_pham.xml" value="0.11904761904761904" />
