@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GiuaKyAndroid">
         <activity
+            android:name="donhang.DonHangActivity"
+            android:exported="false" />
+        <activity
             android:name="donhang.ThemDonHangActivity"
             android:exported="false" />
         <activity

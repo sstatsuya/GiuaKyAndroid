@@ -24,12 +24,14 @@ import com.squareup.picasso.Picasso;
 
 import khachhang.model.DBKhachHang;
 import khachhang.model.KhachHang;
+import others.Others;
 
 public class ActivityThemKhachHang extends AppCompatActivity {
     private ImageView iv_avatarKH;
     private  Button btn_themKH, btn_huyThemKH;
     private  EditText ed_avatarKH, ed_tenKH, ed_soDT_KH, ed_diaChiKH;
     private String avatar ="", name="", phone="", address= "";
+    Others others = new Others();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -103,7 +105,7 @@ public class ActivityThemKhachHang extends AppCompatActivity {
                         new DBKhachHang(ActivityThemKhachHang.this).InsertData(khachHang);
                         intent.putExtra("donhang", khachHang);
                         setResult(RESULT_OK, intent);
-                        openSuccessDialog(Gravity.CENTER, "Thêm mới khách hàng thành công!");
+                        openSuccessDialog();
                     }
 
             }
@@ -116,33 +118,16 @@ public class ActivityThemKhachHang extends AppCompatActivity {
         });
     }
 
-    private void openSuccessDialog(int gravity, String noiDung) {
-        Dialog dialog = new Dialog(this);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.layout_success);
-        Window window = dialog.getWindow();
-        if (window == null) {
-            return;
-        }
-        window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
-        window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        WindowManager.LayoutParams windowAttributes = window.getAttributes();
-        windowAttributes.gravity = gravity;
-        window.setAttributes(windowAttributes);
-
-        TextView txtSuccessNoiDung = dialog.findViewById(R.id.txt_success_noi_dung);
-        TextView txtSucessDongY = dialog.findViewById(R.id.btn_success_dong_y);
-
-        txtSuccessNoiDung.setText(noiDung);
-        txtSucessDongY.setOnClickListener(new View.OnClickListener() {
+    private void openSuccessDialog() {
+        Dialog successDialog = others.openSuccessDialog(ActivityThemKhachHang.this, "Thêm khách hàng mới thành công");
+        successDialog.show();
+        TextView btnSuccessDongY = successDialog.findViewById(R.id.btn_success_dong_y);
+        btnSuccessDongY.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dialog.dismiss();
-                finish();
+                successDialog.dismiss();
+                onBackPressed();
             }
         });
-
-        dialog.setCanceledOnTouchOutside(false);
-        dialog.show();
     }
 }

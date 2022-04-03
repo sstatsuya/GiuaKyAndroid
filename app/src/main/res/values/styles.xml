@@ -34,4 +34,10 @@
     <style name="SpinnerFilterTheme" parent="android:Widget.Spinner">
         <item name="android:background">@drawable/spinner_background</item>
     </style>
+
+    <style name="style_clickable">
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:foreground">?attr/selectableItemBackground</item>
+    </style>
 </resources>

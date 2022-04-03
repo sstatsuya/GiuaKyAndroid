@@ -2,15 +2,16 @@ package donhang.model;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Date;
 
 public class DonHang implements Serializable {
     String maDH;
-    LocalDate ngayDatHang;
+    Date ngayDatHang;
     String maKH;
 
     public DonHang() {}
 
-    public DonHang(String maDH, LocalDate ngayDatHang, String maKH) {
+    public DonHang(String maDH, Date ngayDatHang, String maKH) {
         this.maDH = maDH;
         this.ngayDatHang = ngayDatHang;
         this.maKH = maKH;
@@ -24,11 +25,11 @@ public class DonHang implements Serializable {
         this.maDH = maDH;
     }
 
-    public LocalDate getNgayDatHang() {
+    public Date getNgayDatHang() {
         return ngayDatHang;
     }
 
-    public void setNgayDatHang(LocalDate ngayDatHang) {
+    public void setNgayDatHang(Date ngayDatHang) {
         this.ngayDatHang = ngayDatHang;
     }
 

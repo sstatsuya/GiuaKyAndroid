@@ -16,8 +16,6 @@
     <string name="them">Thêm</string>
 
 
-
-
     //KhachHang
     <string name="ma_khach_hang">Mã khách hàng</string>
     <string name="them_khachhang">Thêm khách hàng</string>
@@ -27,6 +25,7 @@
     <string name="ma_san_pham">Mã sản phẩm</string>
     <string name="xuat_xu">Xuất xứ</string>
     <string name="thong_tin_san_pham">Thông tin sản phẩm</string>
+    <string name="thong_tin">Thông tin</string>
     <string name="sua">Sửa</string>
     <string name="xoa">Xóa</string>
     <string name="canh_bao">Cảnh báo</string>
