@@ -124,7 +124,7 @@
 
         <TextView
             android:id="@+id/btn_them_sp_huy"
-            android:background="@drawable/white_border"
+            android:background="@drawable/white_border_background"
             style="@style/style_pill_button"
             android:textColor="@color/primary"
             android:text="@string/huy"

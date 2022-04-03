@@ -3,7 +3,7 @@
     android:orientation="vertical"
     android:layout_width="160dp"
     android:layout_height="wrap_content"
-    android:background="@drawable/white_border"
+    android:background="@drawable/white_border_background"
     >
     <ImageView
         android:id="@+id/imgSanPham"

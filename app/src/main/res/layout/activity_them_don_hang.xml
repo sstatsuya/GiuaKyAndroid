@@ -70,7 +70,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="60dp"
         android:layout_marginTop="20dp"
-        android:background="@drawable/white_border"
+        android:background="@drawable/white_border_background"
         android:hint="@string/ma_khach_hang" />
 
     <EditText
@@ -79,7 +79,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="60dp"
         android:layout_marginTop="20dp"
-        android:background="@drawable/white_border"
+        android:background="@drawable/white_border_background"
         android:hint="@string/ngay_dat_hang" />
 
     <LinearLayout
