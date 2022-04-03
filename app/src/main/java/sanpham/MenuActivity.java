@@ -9,6 +9,7 @@ import android.widget.LinearLayout;
 
 import com.example.giuakyandroid.R;
 
+import donhang.DonHangActivity;
 import khachhang.KhachHangActivity;
 
 public class MenuActivity extends AppCompatActivity {
@@ -35,6 +36,14 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MenuActivity.this, KhachHangActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        btnDonDatHang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MenuActivity.this, DonHangActivity.class);
                 startActivity(intent);
             }
         });

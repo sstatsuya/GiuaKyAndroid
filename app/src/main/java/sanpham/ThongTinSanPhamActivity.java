@@ -17,7 +17,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.giuakyandroid.R;
+
+import others.Others;
 import sanpham.model.SanPham;
+
 import com.squareup.picasso.Picasso;
 
 public class ThongTinSanPhamActivity extends AppCompatActivity {
@@ -27,9 +30,11 @@ public class ThongTinSanPhamActivity extends AppCompatActivity {
     TextView btnSPSua, btnSPXoa;
     LinearLayout llSuaTTSP, llTTSP;
 
-    TextView txtSTTSPMa,  btnSTTSPDongY, btnSTTSPHuy;
+    TextView txtSTTSPMa, btnSTTSPDongY, btnSTTSPHuy;
     EditText txtSTTSPTen, txtSTTSPGia, txtSTTSPXuatXu;
     ImageView imgSTTSPHinh;
+
+    Others others = new Others();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +50,7 @@ public class ThongTinSanPhamActivity extends AppCompatActivity {
         btnSPXoa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openConfirmDialog(Gravity.CENTER);
+                xoaSanPham();
             }
         });
         btnSPSua.setOnClickListener(new View.OnClickListener() {
@@ -58,7 +63,7 @@ public class ThongTinSanPhamActivity extends AppCompatActivity {
         btnSTTSPDongY.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openSuccessDialog(Gravity.CENTER, "Sửa thành công", 2);
+                suaSanPham();
             }
         });
         btnSTTSPHuy.setOnClickListener(new View.OnClickListener() {
@@ -114,79 +119,61 @@ public class ThongTinSanPhamActivity extends AppCompatActivity {
         sanPham = (SanPham) getIntent().getSerializableExtra("sanPham");
     }
 
-    private void openConfirmDialog(int gravity) {
-        Dialog dialog = new Dialog(this);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.layout_confirm);
-        Window window = dialog.getWindow();
-        if (window == null) {
-            return;
-        }
-        window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
-        window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        WindowManager.LayoutParams windowAttributes = window.getAttributes();
-        windowAttributes.gravity = gravity;
-        window.setAttributes(windowAttributes);
-
-        TextView btnConfirmDongY, btnConfirmHuyBo, txtConfirmNoiDung;
-        txtConfirmNoiDung = dialog.findViewById(R.id.txt_confirm_noi_dung);
-        btnConfirmHuyBo = dialog.findViewById(R.id.btn_confirm_huy_bo);
-        btnConfirmDongY = dialog.findViewById(R.id.btn_confirm_dong_y);
-
-        txtConfirmNoiDung.setText("Bạn có muốn xóa sản phẩm " + sanPham.getTenSP());
-
+    public void suaSanPham(){
+        Dialog confirmDialog = others.openConfirmDialog(ThongTinSanPhamActivity.this, "Bạn có muốn sửa sản phẩm này?");
+        confirmDialog.show();
+        TextView btnConfirmHuyBo = confirmDialog.findViewById(R.id.btn_confirm_huy_bo);
+        TextView btnConfirmDongY = confirmDialog.findViewById(R.id.btn_confirm_dong_y);
         btnConfirmHuyBo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dialog.dismiss();
+                confirmDialog.dismiss();
             }
         });
-
         btnConfirmDongY.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dialog.dismiss();
-                openSuccessDialog(Gravity.CENTER, "Xóa thành công", 1);
+                confirmDialog.dismiss();
+                Dialog successDialog = others.openSuccessDialog(ThongTinSanPhamActivity.this, "Sửa sản phẩm thành công");
+                successDialog.show();
+                TextView btnSuccessDongY = successDialog.findViewById(R.id.btn_success_dong_y);
+                btnSuccessDongY.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        successDialog.dismiss();
+                        btnSTTSPHuy.callOnClick();
+                    }
+                });
             }
         });
-
-
-        dialog.show();
     }
 
-    //mode:1 xem, 2: sua
-    private void openSuccessDialog(int gravity, String noiDung, int mode) {
-        Dialog dialog = new Dialog(this);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.layout_success);
-        Window window = dialog.getWindow();
-        if (window == null) {
-            return;
-        }
-        window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
-        window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        WindowManager.LayoutParams windowAttributes = window.getAttributes();
-        windowAttributes.gravity = gravity;
-        window.setAttributes(windowAttributes);
-
-        TextView txtSuccessNoiDung = dialog.findViewById(R.id.txt_success_noi_dung);
-        TextView txtSucessDongY = dialog.findViewById(R.id.btn_success_dong_y);
-
-        txtSuccessNoiDung.setText(noiDung);
-        txtSucessDongY.setOnClickListener(new View.OnClickListener() {
+    public void xoaSanPham(){
+        Dialog confirmDialog = others.openConfirmDialog(ThongTinSanPhamActivity.this, "Bạn có muốn xóa sản phẩm này?");
+        confirmDialog.show();
+        TextView btnConfirmHuyBo = confirmDialog.findViewById(R.id.btn_confirm_huy_bo);
+        TextView btnConfirmDongY = confirmDialog.findViewById(R.id.btn_confirm_dong_y);
+        btnConfirmHuyBo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dialog.dismiss();
-                if(mode==1){
-                    onBackPressed();
-                }
-                else if(mode==2){
-                    btnSTTSPHuy.callOnClick();
-                }
+                confirmDialog.dismiss();
             }
         });
-
-        dialog.setCanceledOnTouchOutside(false);
-        dialog.show();
+        btnConfirmDongY.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                confirmDialog.dismiss();
+                Dialog successDialog = others.openSuccessDialog(ThongTinSanPhamActivity.this, "Xóa sản phẩm thành công");
+                successDialog.show();
+                TextView btnSuccessDongY = successDialog.findViewById(R.id.btn_success_dong_y);
+                btnSuccessDongY.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        successDialog.dismiss();
+                        onBackPressed();
+                    }
+                });
+            }
+        });
     }
 }

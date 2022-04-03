@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="donhang.DonHangActivity"
+    android:background="@color/gray"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="143dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <ImageView
+            style="@style/style_logo"
+            android:src="@drawable/icon" />
+
+        <TextView
+            style="@style/style_title"
+            android:textColor="@color/primary"
+            android:text="@string/don_hang"
+            />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/btn_them_don_hang"
+        style="@style/style_pill_button"
+        android:background="@drawable/nut_them_don_hang"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:text="@string/tao_don_hang"></TextView>
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/lvDSDonHang"
+        android:padding="16dp"
+        />
+</LinearLayout>
