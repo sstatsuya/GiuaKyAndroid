@@ -1,0 +1,34 @@
+CREATE TABLE SANPHAM (
+    MASP    INTEGER PRIMARY KEY AUTOINCREMENT,
+    TENSP   TEXT,
+    XUATXU  TEXT,
+    DONGIA  DOUBLE,
+    HINHANH BLOB
+);
+
+CREATE TABLE KHACHHANG (
+    MAKH    INTEGER PRIMARY KEY AUTOINCREMENT,
+    TENKH   TEXT,
+    DIACHI  TEXT,
+    DIENTHOAI  DOUBLE,
+    HINHANH BLOB
+);
+
+CREATE TABLE DONHANG (
+    MADH   INTEGER PRIMARY KEY,
+    NGAYDH DATE,
+    MAKH           REFERENCES KHACHHANG (MAKH) ON DELETE CASCADE
+                                               ON UPDATE CASCADE
+                                               MATCH SIMPLE
+);
+
+CREATE TABLE THONGTINDATHANG (
+    MADH       INTEGER REFERENCES DONHANG (MADH) ON DELETE CASCADE
+                                                 ON UPDATE CASCADE
+                                                 MATCH SIMPLE,
+    MASP       INTEGER REFERENCES SANPHAM (MASP) ON DELETE CASCADE
+                                                 ON UPDATE CASCADE,
+    SOLUONGDAT INTEGER,
+    PRIMARY KEY (MADH, MASP)
+);
+
