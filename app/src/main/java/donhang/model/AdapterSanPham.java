@@ -1,8 +1,6 @@
-package sanpham.model;
+package donhang.model;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,9 +12,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.giuakyandroid.R;
-
 import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
+
+import sanpham.model.SanPham;
 
 public class AdapterSanPham extends ArrayAdapter<SanPham> {
     Context context;
@@ -39,16 +39,29 @@ public class AdapterSanPham extends ArrayAdapter<SanPham> {
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         convertView = LayoutInflater.from(context).inflate(resource, null);
-        ImageView imgSanPham = convertView.findViewById(R.id.imgSanPham);
-        TextView tenSanPham = convertView.findViewById(R.id.txtTenSanPham);
-        TextView maSanPham = convertView.findViewById(R.id.txtMaSanPham);
-        SanPham sanPham = data.get(position);
 
-        tenSanPham.setText(sanPham.getTenSP());
-        maSanPham.setText("Mã SP: "+ sanPham.getMaSP().toString());
+        ImageView ivTTSPHinh = convertView.findViewById(R.id.iv_ttdh_hinh_sp);
+        TextView tvTTSPMa = convertView.findViewById(R.id.tv_ttdh_ma_sp);
+        TextView tvTTSPTen = convertView.findViewById(R.id.tv_ttdh_ten_sp);
+//        TextView tvTTSPSoLuong = convert
+//        View.findViewById(R.id.tv_ttdh_soluong_sp);
+//        SanPham sanPham = data.get(position);
+//
+//        tvTTSPMa.setText(sanPham.getMaSP());
+//        tvTTSPTen.setText(sanPham.getTenSP());
+//        tvTTSPSoLuong.setText("Chua biet so luong");
 
-        Bitmap bitmap = BitmapFactory.decodeByteArray(sanPham.getHinh(), 0, sanPham.getHinh().length);
-        imgSanPham.setImageBitmap(bitmap);
+
+//        Picasso.get().load(sanPham.getLinkHinhAnh()).into(ivTTSPHinh);
+//
+//        imageView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(context, EditDanhLamActivity.class);
+//                intent.putExtra("danhLam", danhLam);
+//                ((MainActivity) context).startActivityForResult(intent, 2);
+//            }
+//        });
 
         return convertView;
     }

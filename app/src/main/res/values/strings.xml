@@ -25,6 +25,7 @@
     <string name="ma_san_pham">Mã sản phẩm</string>
     <string name="xuat_xu">Xuất xứ</string>
     <string name="thong_tin_san_pham">Thông tin sản phẩm</string>
+    <string name="thong_tin_don_hang">Thông tin đơn hàng</string>
     <string name="thong_tin">Thông tin</string>
     <string name="sua">Sửa</string>
     <string name="xoa">Xóa</string>
@@ -38,4 +39,6 @@
     <string name="them_san_pham">Thêm sản phẩm</string>
     <string name="link_hinh_anh">Link hình ảnh</string>
     <string name="xem">Xem</string>
+    <string name="thu_muc">Thư mục</string>
+    <string name="camera">Camera</string>
 </resources>

@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -20,6 +22,7 @@ import com.example.giuakyandroid.R;
 
 import others.Others;
 import sanpham.model.SanPham;
+import sanpham.model.dbSanPham;
 
 import com.squareup.picasso.Picasso;
 
@@ -42,11 +45,14 @@ public class ThongTinSanPhamActivity extends AppCompatActivity {
         setContentView(R.layout.activity_thong_tin_san_pham);
         getSupportActionBar().hide();
         getWindow().setStatusBarColor(getResources().getColor(R.color.gray));
+        sanPham = (SanPham) getIntent().getSerializableExtra("sanPham");
         setControl();
+        ganDuLieuVao();
         setEvent();
     }
 
     private void setEvent() {
+        dbSanPham dbSanPham = new dbSanPham(getApplicationContext());
         btnSPXoa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -82,44 +88,62 @@ public class ThongTinSanPhamActivity extends AppCompatActivity {
         finish();
     }
 
+    //    Ánh xạ
     private void setControl() {
-        getDuLieu();
+//      Trang thông tin sản phẩm
         txtTTSPMa = findViewById(R.id.txtTTSPMa);
         txtTTSPTen = findViewById(R.id.txtTTSPTen);
         txtTTSPGia = findViewById(R.id.txtTTSPGia);
         txtTTSPXuatXu = findViewById(R.id.txtTTSPXuatXu);
+        imgTTSPHinh = findViewById(R.id.imgTTSPHinh);
+        llTTSP = findViewById(R.id.ll_ttsp);
+        llSuaTTSP = findViewById(R.id.ll_suattsp);
+        btnSPSua = findViewById(R.id.btn_sua_sp);
+        btnSPXoa = findViewById(R.id.btn_xoa_sp);
 
+//        Trang sửa thông tin sản phẩm
         txtSTTSPMa = findViewById(R.id.txtSTTSPMa);
         txtSTTSPTen = findViewById(R.id.txtSTTSPTen);
         txtSTTSPGia = findViewById(R.id.txtSTTSPGia);
         txtSTTSPXuatXu = findViewById(R.id.txtSTTSPXuatXu);
+        imgSTTSPHinh = findViewById(R.id.imgSTTSPHinh);
         btnSTTSPDongY = findViewById(R.id.btn_sua_ttsp_dong_y);
         btnSTTSPHuy = findViewById(R.id.btn_sua_ttsp_huy);
-        ImageView imgSTTSPHinh = findViewById(R.id.imgSTTSPHinh);
-        Picasso.get().load(sanPham.getLinkHinhAnh()).into(imgSTTSPHinh);
-        txtSTTSPTen.setText(sanPham.getTenSP());
-        txtSTTSPGia.setText(sanPham.getDonGia().toString());
-        txtSTTSPXuatXu.setText(sanPham.getXuatXu());
-        txtSTTSPMa.setText(sanPham.getMaSP());
 
 
-        imgTTSPHinh = findViewById(R.id.imgTTSPHinh);
-        txtTTSPMa.setText(sanPham.getMaSP());
+//
+//
+    }
+
+    private void ganDuLieuVao() {
+        Bitmap bitmap = BitmapFactory.decodeByteArray(sanPham.getHinh(), 0, sanPham.getHinh().length);
+//        Thông tin sản phẩm
+        txtTTSPMa.setText(sanPham.getMaSP().toString());
         txtTTSPTen.setText(sanPham.getTenSP());
         txtTTSPXuatXu.setText(sanPham.getXuatXu());
         txtTTSPGia.setText(sanPham.getDonGia().toString());
-        Picasso.get().load(sanPham.getLinkHinhAnh()).into(imgTTSPHinh);
-        btnSPSua = findViewById(R.id.btn_sua_sp);
-        btnSPXoa = findViewById(R.id.btn_xoa_sp);
-        llTTSP = findViewById(R.id.ll_ttsp);
-        llSuaTTSP = findViewById(R.id.ll_suattsp);
+        imgTTSPHinh.setImageBitmap(bitmap);
+
+//        Sửa thông tin sản phẩm
+        txtSTTSPMa.setText(sanPham.getMaSP().toString());
+        txtSTTSPTen.setText(sanPham.getTenSP());
+        txtSTTSPGia.setText(sanPham.getDonGia().toString());
+        txtSTTSPXuatXu.setText(sanPham.getXuatXu());
+        imgSTTSPHinh.setImageBitmap(bitmap);
     }
 
-    private void getDuLieu() {
-        sanPham = (SanPham) getIntent().getSerializableExtra("sanPham");
+    private SanPham layDuLieuInput(){
+        SanPham sanPhamInput = new SanPham();
+        sanPhamInput.setMaSP(sanPham.getMaSP());
+        sanPhamInput.setTenSP(txtSTTSPTen.getText().toString());
+        sanPhamInput.setXuatXu(txtSTTSPXuatXu.getText().toString());
+        sanPhamInput.setDonGia(new Double(txtSTTSPGia.getText().toString()));
+        sanPhamInput.setHinh(sanPham.getHinh());
+        return sanPhamInput;
     }
 
-    public void suaSanPham(){
+
+    private void suaSanPham() {
         Dialog confirmDialog = others.openConfirmDialog(ThongTinSanPhamActivity.this, "Bạn có muốn sửa sản phẩm này?");
         confirmDialog.show();
         TextView btnConfirmHuyBo = confirmDialog.findViewById(R.id.btn_confirm_huy_bo);
@@ -133,6 +157,11 @@ public class ThongTinSanPhamActivity extends AppCompatActivity {
         btnConfirmDongY.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //Sua san pham
+                dbSanPham dbSanPham = new dbSanPham(getApplicationContext());
+                dbSanPham.suaDL(layDuLieuInput());
+                sanPham = layDuLieuInput();
+                ganDuLieuVao();
                 confirmDialog.dismiss();
                 Dialog successDialog = others.openSuccessDialog(ThongTinSanPhamActivity.this, "Sửa sản phẩm thành công");
                 successDialog.show();
@@ -148,7 +177,7 @@ public class ThongTinSanPhamActivity extends AppCompatActivity {
         });
     }
 
-    public void xoaSanPham(){
+    private void xoaSanPham() {
         Dialog confirmDialog = others.openConfirmDialog(ThongTinSanPhamActivity.this, "Bạn có muốn xóa sản phẩm này?");
         confirmDialog.show();
         TextView btnConfirmHuyBo = confirmDialog.findViewById(R.id.btn_confirm_huy_bo);
@@ -162,6 +191,9 @@ public class ThongTinSanPhamActivity extends AppCompatActivity {
         btnConfirmDongY.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //Xoa san pham
+                dbSanPham dbSanPham = new dbSanPham(getApplicationContext());
+                dbSanPham.xoaDL(layDuLieuInput());
                 confirmDialog.dismiss();
                 Dialog successDialog = others.openSuccessDialog(ThongTinSanPhamActivity.this, "Xóa sản phẩm thành công");
                 successDialog.show();

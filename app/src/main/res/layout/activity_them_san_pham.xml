@@ -101,10 +101,18 @@
             android:textColorHint="@color/hint"
             android:textColor="@color/black"/>
         <Button
-            android:id="@+id/btn_xem_truoc_hinh"
+            android:id="@+id/btn_them_sp_folder"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="@string/xem"
+            android:text="@string/thu_muc"
+            android:textAllCaps="false"
+            />
+        <Button
+            android:id="@+id/btn_them_sp_camera"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/camera"
+            android:textAllCaps="false"
             />
     </LinearLayout>
 

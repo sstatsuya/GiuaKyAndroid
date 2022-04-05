@@ -1,12 +1,18 @@
 package sanpham;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
@@ -18,14 +24,28 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.giuakyandroid.R;
+
+import others.Others;
 import sanpham.model.SanPham;
+import sanpham.model.dbSanPham;
+
 import com.squareup.picasso.Picasso;
+
+import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 
 public class ThemSanPhamActivity extends AppCompatActivity {
     EditText txtTSPTen, txtTSPGia, txtTSPHinh, txtTSPXuatXu;
     TextView btnTSPDongY, btnTSPHuy;
     ImageView imgTSPHinh;
-    Button btnXemTruocHinh;
+    Button btnFolder;
+    Button btnCamera;
+    boolean chonHinh = false;
+    Others others = new Others();
+
+    int REQUEST_CODE_CAMERA = 123;
+    int REQUEST_CODE_FOLDER = 124;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,19 +65,7 @@ public class ThemSanPhamActivity extends AppCompatActivity {
     }
 
     private void setEvent() {
-//        Nut xem truoc hinh bam vao
-        btnXemTruocHinh.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(txtTSPHinh.getText().toString().equals("")){
-                    Toast.makeText(ThemSanPhamActivity.this, "Link hình không được trống", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                Picasso.get()
-                        .load(txtTSPHinh.getText().toString()).into(imgTSPHinh);
-            }
-        });
-
+        dbSanPham dbSanPham = new dbSanPham(getApplicationContext());
 //        Bam nut huy
         btnTSPHuy.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,23 +78,58 @@ public class ThemSanPhamActivity extends AppCompatActivity {
         btnTSPDongY.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!checkInput()){
+                if (!checkInput()) {
                     Toast.makeText(ThemSanPhamActivity.this, "Thông tin không được trống", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                openSuccessDialog(Gravity.CENTER, "Thêm sản phẩm mới thành công");
+                dbSanPham.themDL(getDuLieuInput());
+                Dialog successDialog = others.openSuccessDialog(ThemSanPhamActivity.this, "Thêm sản phẩm thành công");
+                successDialog.show();
+                TextView btnSuccessDongY = successDialog.findViewById(R.id.btn_success_dong_y);
+                btnSuccessDongY.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        successDialog.dismiss();
+                        onBackPressed();
+                    }
+                });
+            }
+        });
+
+//        Khi bấm vào camera
+        btnCamera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivityForResult(intent, REQUEST_CODE_CAMERA);
+            }
+        });
+
+//        Nut chọn hình từ thư mục
+        btnFolder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_PICK);
+                intent.setType("image/*");
+                startActivityForResult(intent, REQUEST_CODE_FOLDER);
             }
         });
 
     }
 
-    private SanPham getDuLieu(){
+    private SanPham getDuLieuInput() {
         SanPham sanPham = new SanPham();
-        sanPham.setMaSP("tam");
         sanPham.setTenSP(txtTSPTen.getText().toString());
-        sanPham.setDonGia(Integer.parseInt(txtTSPGia.getText().toString()));
+        Double donGia = Double.parseDouble(txtTSPGia.getText().toString());
+        sanPham.setDonGia(donGia);
         sanPham.setXuatXu(txtTSPXuatXu.getText().toString());
-        sanPham.setLinkHinhAnh(txtTSPHinh.getText().toString());
+//        Lưu hình
+        BitmapDrawable bitmapDrawable = (BitmapDrawable) imgTSPHinh.getDrawable();
+        Bitmap bitmap = bitmapDrawable.getBitmap();
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
+        byte[] hinhSP = byteArrayOutputStream.toByteArray();
+        sanPham.setHinh(hinhSP);
         return sanPham;
     }
 
@@ -98,47 +141,77 @@ public class ThemSanPhamActivity extends AppCompatActivity {
         btnTSPDongY = findViewById(R.id.btn_them_sp_dong_y);
         btnTSPHuy = findViewById(R.id.btn_them_sp_huy);
         imgTSPHinh = findViewById(R.id.imgTSPHinh);
-        btnXemTruocHinh = findViewById(R.id.btn_xem_truoc_hinh);
+        btnFolder = findViewById(R.id.btn_them_sp_folder);
+        btnCamera = findViewById(R.id.btn_them_sp_camera);
     }
 
-    private void openSuccessDialog(int gravity, String noiDung) {
-        Dialog dialog = new Dialog(this);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.layout_success);
-        Window window = dialog.getWindow();
-        if (window == null) {
-            return;
-        }
-        window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
-        window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        WindowManager.LayoutParams windowAttributes = window.getAttributes();
-        windowAttributes.gravity = gravity;
-        window.setAttributes(windowAttributes);
+//    private void openSuccessDialog(int gravity, String noiDung) {
+//        Dialog dialog = new Dialog(this);
+//        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+//        dialog.setContentView(R.layout.layout_success);
+//        Window window = dialog.getWindow();
+//        if (window == null) {
+//            return;
+//        }
+//        window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
+//        window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+//        WindowManager.LayoutParams windowAttributes = window.getAttributes();
+//        windowAttributes.gravity = gravity;
+//        window.setAttributes(windowAttributes);
+//
+//        TextView txtSuccessNoiDung = dialog.findViewById(R.id.txt_success_noi_dung);
+//        TextView txtSucessDongY = dialog.findViewById(R.id.btn_success_dong_y);
+//
+//        txtSuccessNoiDung.setText(noiDung);
+//        txtSucessDongY.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent();
+//                intent.putExtra("sanPham", getDuLieu());
+//                setResult(1, intent);
+//                finish();
+//            }
+//        });
+//
+//        dialog.setCanceledOnTouchOutside(false);
+//        dialog.show();
+//    }
 
-        TextView txtSuccessNoiDung = dialog.findViewById(R.id.txt_success_noi_dung);
-        TextView txtSucessDongY = dialog.findViewById(R.id.btn_success_dong_y);
-
-        txtSuccessNoiDung.setText(noiDung);
-        txtSucessDongY.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.putExtra("sanPham", getDuLieu());
-                setResult(1, intent);
-                finish();
-            }
-        });
-
-        dialog.setCanceledOnTouchOutside(false);
-        dialog.show();
-    }
-
-//    Check input trước khi thêm sản phẩm
-    private boolean checkInput(){
-        if(txtTSPGia.getText().toString().equals(""))return false;
-        if(txtTSPTen.getText().toString().equals(""))return false;
-        if(txtTSPXuatXu.getText().toString().equals(""))return false;
-        if(txtTSPHinh.getText().toString().equals(""))return false;
+    //    Check input trước khi thêm sản phẩm
+    private boolean checkInput() {
+        if (txtTSPGia.getText().toString().equals("")) return false;
+        if (txtTSPTen.getText().toString().equals("")) return false;
+        if (txtTSPXuatXu.getText().toString().equals("")) return false;
+        if (!chonHinh) return false;
         return true;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        //Trường hợp lấy hình từ camera
+        if (requestCode == REQUEST_CODE_CAMERA) {
+            if (resultCode == RESULT_OK && data != null) {
+                chonHinh = true;
+                Bitmap bitmap = (Bitmap) data.getExtras().get("data");
+                imgTSPHinh.setImageBitmap(bitmap);
+            } else Toast.makeText(this, "Chua co hinh", Toast.LENGTH_SHORT).show();
+        }
+
+        //Trường hợp lấy hình từ folder
+        if (requestCode == REQUEST_CODE_FOLDER) {
+            if (resultCode == RESULT_OK && data != null) {
+                Uri uri = data.getData();
+                try {
+                    chonHinh = true;
+                    InputStream inputStream = getContentResolver().openInputStream(uri);
+                    Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+                    imgTSPHinh.setImageBitmap(bitmap);
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 }
