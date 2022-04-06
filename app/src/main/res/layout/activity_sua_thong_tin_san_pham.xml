@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray"
+    android:orientation="vertical"
+    tools:context="sanpham.ThongTinSanPhamActivity">
+
+    <LinearLayout
+        android:id="@+id/ll_suattsp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/gray"
+        android:orientation="vertical"
+        tools:context="sanpham.ThongTinSanPhamActivity">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="143dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                style="@style/style_logo"
+                android:src="@drawable/icon" />
+
+            <TextView
+                style="@style/style_title"
+                android:text="@string/sua_thong_tin_san_pham"
+                android:textColor="@color/primary" />
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/style_sua_ttsp_input_layout">
+            <TextView
+                style="@style/style_sua_ttsp_tieu_de"
+                android:text="@string/ma_san_pham" />
+            <TextView
+                style="@style/style_sua_ttsp_edit_text"
+                android:id="@+id/txtSTTSPMa"
+                android:text="@string/ma_san_pham"
+                android:textColor="@color/primary"/>
+        </LinearLayout>
+
+        <LinearLayout style="@style/style_sua_ttsp_input_layout">
+
+            <TextView
+                style="@style/style_sua_ttsp_tieu_de"
+                android:text="@string/ten_san_pham" />
+
+            <EditText
+                android:id="@+id/txtSTTSPTen"
+                style="@style/style_sua_ttsp_edit_text"
+                android:text="@string/ten_san_pham" />
+        </LinearLayout>
+
+        <LinearLayout style="@style/style_sua_ttsp_input_layout">
+
+            <TextView
+                style="@style/style_sua_ttsp_tieu_de"
+                android:text="@string/xuat_xu" />
+
+            <EditText
+                android:id="@+id/txtSTTSPXuatXu"
+                style="@style/style_sua_ttsp_edit_text"
+                android:text="@string/xuat_xu" />
+        </LinearLayout>
+
+        <LinearLayout style="@style/style_sua_ttsp_input_layout">
+
+            <TextView
+                style="@style/style_sua_ttsp_tieu_de"
+                android:text="@string/don_gia" />
+
+            <EditText
+                android:id="@+id/txtSTTSPGia"
+                style="@style/style_sua_ttsp_edit_text"
+                android:text="@string/don_gia" />
+        </LinearLayout>
+
+        <LinearLayout style="@style/style_sua_ttsp_input_layout">
+
+            <TextView
+                style="@style/style_sua_ttsp_tieu_de"
+                android:text="@string/hinh_anh" />
+
+            <LinearLayout
+                android:id="@+id/btn_sttsp_thu_muc"
+                android:layout_width="80dp"
+                android:layout_height="40dp"
+                android:orientation="horizontal"
+                android:background="@drawable/folder_btn_background">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/folder_icon"/>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/btn_sttsp_camera"
+                android:layout_width="80dp"
+                android:layout_height="40dp"
+                android:orientation="horizontal"
+                android:layout_marginLeft="8dp"
+                android:background="@drawable/camera_btn_background">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/camera_icon"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/iv_sttsp_hinh"
+            android:layout_width="320dp"
+            android:layout_height="220dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="24dp"
+            android:src="@drawable/empty" />
+
+        <LinearLayout
+            style="@style/style_pill_button_layout">
+
+            <TextView
+                android:id="@+id/btn_sua_ttsp_dong_y"
+                style="@style/style_pill_button"
+                android:background="@drawable/nut_confirm_dong_y"
+                android:text="@string/dong_y" />
+
+            <TextView
+                android:id="@+id/btn_sua_ttsp_huy"
+                style="@style/style_pill_button"
+                android:background="@drawable/nut_huy_gray"
+                android:text="@string/huy"
+                android:textColor="@color/black" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+</LinearLayout>

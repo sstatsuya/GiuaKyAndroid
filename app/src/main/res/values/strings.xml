@@ -38,7 +38,8 @@
     <string name="sua_thong_tin_san_pham">Sửa thông tin sản phẩm</string>
     <string name="them_san_pham">Thêm sản phẩm</string>
     <string name="link_hinh_anh">Link hình ảnh</string>
+    <string name="hinh_anh">Hình ảnh</string>
     <string name="xem">Xem</string>
-    <string name="thu_muc">Thư mục</string>
+    <string name="thu_muc">Thư mục...</string>
     <string name="camera">Camera</string>
 </resources>

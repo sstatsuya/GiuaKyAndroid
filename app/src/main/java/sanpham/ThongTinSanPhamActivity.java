@@ -1,5 +1,6 @@
 package sanpham;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Dialog;
@@ -17,6 +18,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.giuakyandroid.R;
 
@@ -31,13 +33,11 @@ public class ThongTinSanPhamActivity extends AppCompatActivity {
     TextView txtTTSPMa, txtTTSPTen, txtTTSPGia, txtTTSPXuatXu;
     ImageView imgTTSPHinh;
     TextView btnSPSua, btnSPXoa;
-    LinearLayout llSuaTTSP, llTTSP;
-
-    TextView txtSTTSPMa, btnSTTSPDongY, btnSTTSPHuy;
-    EditText txtSTTSPTen, txtSTTSPGia, txtSTTSPXuatXu;
-    ImageView imgSTTSPHinh;
+    LinearLayout llSuaTTSP;
 
     Others others = new Others();
+
+    final Integer REQUEST_CODE_SUA_TTSP = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,21 +62,9 @@ public class ThongTinSanPhamActivity extends AppCompatActivity {
         btnSPSua.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                llTTSP.setVisibility(View.GONE);
-                llSuaTTSP.setVisibility(View.VISIBLE);
-            }
-        });
-        btnSTTSPDongY.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                suaSanPham();
-            }
-        });
-        btnSTTSPHuy.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                llTTSP.setVisibility(View.VISIBLE);
-                llSuaTTSP.setVisibility(View.GONE);
+                Intent intent = new Intent(ThongTinSanPhamActivity.this, SuaThongTinSanPhamActivity.class);
+                intent.putExtra("sanPham", sanPham);
+                startActivityForResult(intent, REQUEST_CODE_SUA_TTSP);
             }
         });
     }
@@ -96,21 +84,9 @@ public class ThongTinSanPhamActivity extends AppCompatActivity {
         txtTTSPGia = findViewById(R.id.txtTTSPGia);
         txtTTSPXuatXu = findViewById(R.id.txtTTSPXuatXu);
         imgTTSPHinh = findViewById(R.id.imgTTSPHinh);
-        llTTSP = findViewById(R.id.ll_ttsp);
         llSuaTTSP = findViewById(R.id.ll_suattsp);
         btnSPSua = findViewById(R.id.btn_sua_sp);
         btnSPXoa = findViewById(R.id.btn_xoa_sp);
-
-//        Trang sửa thông tin sản phẩm
-        txtSTTSPMa = findViewById(R.id.txtSTTSPMa);
-        txtSTTSPTen = findViewById(R.id.txtSTTSPTen);
-        txtSTTSPGia = findViewById(R.id.txtSTTSPGia);
-        txtSTTSPXuatXu = findViewById(R.id.txtSTTSPXuatXu);
-        imgSTTSPHinh = findViewById(R.id.imgSTTSPHinh);
-        btnSTTSPDongY = findViewById(R.id.btn_sua_ttsp_dong_y);
-        btnSTTSPHuy = findViewById(R.id.btn_sua_ttsp_huy);
-
-
 //
 //
     }
@@ -123,59 +99,41 @@ public class ThongTinSanPhamActivity extends AppCompatActivity {
         txtTTSPXuatXu.setText(sanPham.getXuatXu());
         txtTTSPGia.setText(sanPham.getDonGia().toString());
         imgTTSPHinh.setImageBitmap(bitmap);
-
-//        Sửa thông tin sản phẩm
-        txtSTTSPMa.setText(sanPham.getMaSP().toString());
-        txtSTTSPTen.setText(sanPham.getTenSP());
-        txtSTTSPGia.setText(sanPham.getDonGia().toString());
-        txtSTTSPXuatXu.setText(sanPham.getXuatXu());
-        imgSTTSPHinh.setImageBitmap(bitmap);
     }
 
-    private SanPham layDuLieuInput(){
-        SanPham sanPhamInput = new SanPham();
-        sanPhamInput.setMaSP(sanPham.getMaSP());
-        sanPhamInput.setTenSP(txtSTTSPTen.getText().toString());
-        sanPhamInput.setXuatXu(txtSTTSPXuatXu.getText().toString());
-        sanPhamInput.setDonGia(new Double(txtSTTSPGia.getText().toString()));
-        sanPhamInput.setHinh(sanPham.getHinh());
-        return sanPhamInput;
-    }
-
-
-    private void suaSanPham() {
-        Dialog confirmDialog = others.openConfirmDialog(ThongTinSanPhamActivity.this, "Bạn có muốn sửa sản phẩm này?");
-        confirmDialog.show();
-        TextView btnConfirmHuyBo = confirmDialog.findViewById(R.id.btn_confirm_huy_bo);
-        TextView btnConfirmDongY = confirmDialog.findViewById(R.id.btn_confirm_dong_y);
-        btnConfirmHuyBo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                confirmDialog.dismiss();
-            }
-        });
-        btnConfirmDongY.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //Sua san pham
-                dbSanPham dbSanPham = new dbSanPham(getApplicationContext());
-                dbSanPham.suaDL(layDuLieuInput());
-                sanPham = layDuLieuInput();
-                ganDuLieuVao();
-                confirmDialog.dismiss();
-                Dialog successDialog = others.openSuccessDialog(ThongTinSanPhamActivity.this, "Sửa sản phẩm thành công");
-                successDialog.show();
-                TextView btnSuccessDongY = successDialog.findViewById(R.id.btn_success_dong_y);
-                btnSuccessDongY.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        successDialog.dismiss();
-                        btnSTTSPHuy.callOnClick();
-                    }
-                });
-            }
-        });
-    }
+//    private void suaSanPham() {
+//        Dialog confirmDialog = others.openConfirmDialog(ThongTinSanPhamActivity.this, "Bạn có muốn sửa sản phẩm này?");
+//        confirmDialog.show();
+//        TextView btnConfirmHuyBo = confirmDialog.findViewById(R.id.btn_confirm_huy_bo);
+//        TextView btnConfirmDongY = confirmDialog.findViewById(R.id.btn_confirm_dong_y);
+//        btnConfirmHuyBo.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                confirmDialog.dismiss();
+//            }
+//        });
+//        btnConfirmDongY.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                //Sua san pham
+//                dbSanPham dbSanPham = new dbSanPham(getApplicationContext());
+//                dbSanPham.suaDL(layDuLieuInput());
+//                sanPham = layDuLieuInput();
+//                ganDuLieuVao();
+//                confirmDialog.dismiss();
+//                Dialog successDialog = others.openSuccessDialog(ThongTinSanPhamActivity.this, "Sửa sản phẩm thành công");
+//                successDialog.show();
+//                TextView btnSuccessDongY = successDialog.findViewById(R.id.btn_success_dong_y);
+//                btnSuccessDongY.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View view) {
+//                        successDialog.dismiss();
+//                        btnSTTSPHuy.callOnClick();
+//                    }
+//                });
+//            }
+//        });
+//    }
 
     private void xoaSanPham() {
         Dialog confirmDialog = others.openConfirmDialog(ThongTinSanPhamActivity.this, "Bạn có muốn xóa sản phẩm này?");
@@ -193,7 +151,7 @@ public class ThongTinSanPhamActivity extends AppCompatActivity {
             public void onClick(View view) {
                 //Xoa san pham
                 dbSanPham dbSanPham = new dbSanPham(getApplicationContext());
-                dbSanPham.xoaDL(layDuLieuInput());
+                dbSanPham.xoaDL(sanPham);
                 confirmDialog.dismiss();
                 Dialog successDialog = others.openSuccessDialog(ThongTinSanPhamActivity.this, "Xóa sản phẩm thành công");
                 successDialog.show();
@@ -207,5 +165,17 @@ public class ThongTinSanPhamActivity extends AppCompatActivity {
                 });
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        SanPham sanPhamTraVe = (SanPham) data.getSerializableExtra("sanPham");
+        if (requestCode == REQUEST_CODE_SUA_TTSP) {
+            if (resultCode == 1) {
+                sanPham = sanPhamTraVe;
+                ganDuLieuVao();
+            }
+        }
     }
 }

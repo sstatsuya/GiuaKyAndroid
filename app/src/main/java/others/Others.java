@@ -2,15 +2,21 @@ package others;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
+import android.media.Image;
 import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.giuakyandroid.R;
+
+import java.io.ByteArrayOutputStream;
 
 public class Others {
     public Dialog openConfirmDialog(Context context, String content) {
@@ -45,5 +51,14 @@ public class Others {
         txtSuccessNoiDung.setText(noiDung);
         dialog.setCanceledOnTouchOutside(false);
         return dialog;
+    }
+
+    public byte[] luuHinh(ImageView ivHinh){
+        BitmapDrawable bitmapDrawable = (BitmapDrawable) ivHinh.getDrawable();
+        Bitmap bitmap = bitmapDrawable.getBitmap();
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
+        byte[] hinhSP = byteArrayOutputStream.toByteArray();
+        return hinhSP;
     }
 }

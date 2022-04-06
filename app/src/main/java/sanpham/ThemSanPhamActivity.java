@@ -20,6 +20,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,16 +37,15 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 
 public class ThemSanPhamActivity extends AppCompatActivity {
-    EditText txtTSPTen, txtTSPGia, txtTSPHinh, txtTSPXuatXu;
+    EditText txtTSPTen, txtTSPGia, txtTSPXuatXu;
     TextView btnTSPDongY, btnTSPHuy;
     ImageView imgTSPHinh;
-    Button btnFolder;
-    Button btnCamera;
+    LinearLayout btnFolder, btnCamera;
     boolean chonHinh = false;
     Others others = new Others();
 
-    int REQUEST_CODE_CAMERA = 123;
-    int REQUEST_CODE_FOLDER = 124;
+    final int REQUEST_CODE_CAMERA = 123;
+    final int REQUEST_CODE_FOLDER = 124;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -124,19 +124,13 @@ public class ThemSanPhamActivity extends AppCompatActivity {
         sanPham.setDonGia(donGia);
         sanPham.setXuatXu(txtTSPXuatXu.getText().toString());
 //        Lưu hình
-        BitmapDrawable bitmapDrawable = (BitmapDrawable) imgTSPHinh.getDrawable();
-        Bitmap bitmap = bitmapDrawable.getBitmap();
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
-        byte[] hinhSP = byteArrayOutputStream.toByteArray();
-        sanPham.setHinh(hinhSP);
+        sanPham.setHinh(others.luuHinh(imgTSPHinh));
         return sanPham;
     }
 
     private void setControl() {
         txtTSPTen = findViewById(R.id.txtTSPTen);
         txtTSPGia = findViewById(R.id.txtTSPGia);
-        txtTSPHinh = findViewById(R.id.txtTSPHinh);
         txtTSPXuatXu = findViewById(R.id.txtTSPXuatXu);
         btnTSPDongY = findViewById(R.id.btn_them_sp_dong_y);
         btnTSPHuy = findViewById(R.id.btn_them_sp_huy);
