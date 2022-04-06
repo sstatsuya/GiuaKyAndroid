@@ -4,7 +4,6 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -12,6 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.GiuaKyAndroid">
+        <activity
+            android:name="sanpham.SuaThongTinSanPhamActivity"
+            android:exported="false" />
         <activity
             android:name="donhang.ThongTinDonHangActivity"
             android:exported="false" />

@@ -17,22 +17,55 @@ import com.example.giuakyandroid.R;
 
 import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class AdapterSanPham extends ArrayAdapter<SanPham> {
     Context context;
     int resource;
     ArrayList<SanPham> data;
+    ArrayList<SanPham> dataBackup = new ArrayList<>();
 
     public AdapterSanPham(@NonNull Context context, int resource, @NonNull ArrayList<SanPham> data) {
         super(context, resource, data);
         this.context = context;
         this.resource = resource;
         this.data = data;
+        dataBackup.addAll(data);
     }
 
     @Override
     public int getCount() {
         return data.size();
+    }
+
+    public void locBangInput(String text){
+        data.clear();
+        text = text.toLowerCase();
+        if(text.length() == 0)data.addAll(dataBackup);
+        else{
+            for (SanPham sanPham: dataBackup){
+                if(sanPham.getTenSP().toLowerCase().contains(text)){
+                    data.add(sanPham);
+                }
+            }
+        }
+        notifyDataSetChanged();
+    }
+
+    //option : 1 ma tang dan
+    //option : 2 ma giam dan
+    public void locBangSpinner(int option) {
+        for(int i = 0; i<data.size()-1; i++){
+            if(data.get(i).getMaSP() > data.get(i+1).getMaSP()){
+                SanPham sanPhamTam = data.get(i);
+                data.set(i, data.get(i+1));
+                data.set(i+1, sanPhamTam);
+            }
+        }
+        if(option == 2){
+            Collections.reverse(data);
+        }
+        notifyDataSetChanged();
     }
 
     @NonNull

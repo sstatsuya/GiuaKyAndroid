@@ -4,13 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="sanpham.SanPhamActivity"
     android:background="@color/primary"
-    android:orientation="vertical"
     android:gravity="center_horizontal"
-
+    android:orientation="vertical"
     android:paddingHorizontal="24dp"
-    >
+
+    tools:context="sanpham.SanPhamActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -24,8 +23,7 @@
 
         <TextView
             style="@style/style_title"
-            android:text="@string/them_san_pham"
-            />
+            android:text="@string/them_san_pham" />
 
     </LinearLayout>
 
@@ -41,15 +39,16 @@
         android:layout_height="wrap_content"
         android:layout_marginVertical="6dp"
         android:background="@drawable/white_border_2">
+
         <EditText
             android:id="@+id/txtTSPTen"
-            android:singleLine="true"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:textSize="18dp"
             android:hint="@string/ten_san_pham"
+            android:singleLine="true"
+            android:textColor="@color/black"
             android:textColorHint="@color/hint"
-            android:textColor="@color/black"/>
+            android:textSize="18dp" />
     </LinearLayout>
 
     <LinearLayout
@@ -57,15 +56,16 @@
         android:layout_height="wrap_content"
         android:layout_marginVertical="6dp"
         android:background="@drawable/white_border_2">
+
         <EditText
             android:id="@+id/txtTSPGia"
-            android:singleLine="true"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:textSize="18dp"
             android:hint="@string/don_gia"
+            android:singleLine="true"
+            android:textColor="@color/black"
             android:textColorHint="@color/hint"
-            android:textColor="@color/black"/>
+            android:textSize="18dp" />
     </LinearLayout>
 
     <LinearLayout
@@ -73,75 +73,81 @@
         android:layout_height="wrap_content"
         android:layout_marginVertical="6dp"
         android:background="@drawable/white_border_2">
+
         <EditText
             android:id="@+id/txtTSPXuatXu"
-            android:singleLine="true"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:textSize="18dp"
             android:hint="@string/xuat_xu"
+            android:singleLine="true"
+            android:textColor="@color/black"
             android:textColorHint="@color/hint"
-            android:textColor="@color/black"/>
+            android:textSize="18dp" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="304dp"
         android:layout_height="wrap_content"
         android:layout_marginVertical="6dp"
-        android:orientation="horizontal"
-        android:background="@drawable/white_border_2">
-        <EditText
-            android:id="@+id/txtTSPHinh"
-            android:singleLine="true"
-            android:layout_width="match_parent"
-            android:layout_weight="1"
-            android:layout_height="40dp"
-            android:textSize="18dp"
-            android:hint="@string/link_hinh_anh"
-            android:textColorHint="@color/hint"
-            android:textColor="@color/black"/>
-        <Button
-            android:id="@+id/btn_them_sp_folder"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="@string/thu_muc"
-            android:textAllCaps="false"
-            />
-        <Button
-            android:id="@+id/btn_them_sp_camera"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="@string/camera"
-            android:textAllCaps="false"
-            />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:gravity="center"
+        android:background="@drawable/white_border_2"
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/btn_them_sp_dong_y"
-            android:background="@drawable/nut_them_sp_dong_y"
-            android:text="@string/dong_y"
-            style="@style/style_pill_button"
-            ></TextView>
+            android:id="@+id/txtTSPHinh"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:hint="@string/hinh_anh"
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:textColor="@color/black"
+            android:textColorHint="@color/hint"
+            android:textSize="18dp" />
 
-        <TextView
-            android:id="@+id/btn_them_sp_huy"
-            android:background="@drawable/white_border_background"
-            style="@style/style_pill_button"
-            android:textColor="@color/primary"
-            android:text="@string/huy"
-           ></TextView>
+        <LinearLayout
+            android:id="@+id/btn_them_sp_folder"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:background="@drawable/folder_btn_background"
+            android:orientation="horizontal">
 
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/folder_icon" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/btn_them_sp_camera"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="8dp"
+            android:background="@drawable/camera_btn_background"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/camera_icon" />
+        </LinearLayout>
     </LinearLayout>
 
 
+    <LinearLayout style="@style/style_pill_button_layout">
+        <TextView
+            android:id="@+id/btn_them_sp_dong_y"
+            style="@style/style_pill_button"
+            android:background="@drawable/nut_them_sp_dong_y"
+            android:text="@string/dong_y"></TextView>
 
+        <TextView
+            android:id="@+id/btn_them_sp_huy"
+            style="@style/style_pill_button"
+            android:background="@drawable/nut_huy_white"
+            android:text="@string/huy"
+            android:textColor="@color/primary"></TextView>
+    </LinearLayout>
 
 
 

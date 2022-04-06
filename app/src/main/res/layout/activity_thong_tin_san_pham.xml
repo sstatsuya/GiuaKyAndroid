@@ -9,265 +9,115 @@
     tools:context="sanpham.ThongTinSanPhamActivity">
 
     <LinearLayout
-        android:id="@+id/ll_ttsp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:visibility="visible">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="143dp"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <ImageView
-                style="@style/style_logo"
-                android:src="@drawable/icon" />
-
-            <TextView
-                style="@style/style_title"
-                android:textColor="@color/primary"
-                android:text="@string/thong_tin_san_pham"
-                />
-
-        </LinearLayout>
+        android:layout_height="143dp"
+        android:gravity="center"
+        android:orientation="horizontal">
 
         <ImageView
-            android:id="@+id/imgTTSPHinh"
-            android:layout_width="360dp"
-            android:layout_height="300dp"
-            android:layout_gravity="center"
-            android:src="@drawable/sanpham" />
+            style="@style/style_logo"
+            android:src="@drawable/icon" />
 
         <TextView
-            android:id="@+id/txtTTSPTen"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginVertical="12dp"
-            android:gravity="center"
-            android:text="@string/san_pham"
-            android:textColor="@color/black"
-            android:textSize="32dp" />
-
-        <TextView
-            android:id="@+id/txtTTSPGia"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:text="@string/san_pham"
-            android:textColor="@color/primary"
-            android:textSize="28dp" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="12dp"
-            android:orientation="horizontal"
-            android:paddingHorizontal="32dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/ma_san_pham"
-                android:textColor="@color/black"
-                android:textSize="22dp" />
-
-            <TextView
-                android:id="@+id/txtTTSPMa"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/ma_san_pham"
-                android:textAlignment="viewEnd"
-                android:textColor="#666666"
-                android:textSize="22dp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:orientation="horizontal"
-            android:paddingHorizontal="32dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/xuat_xu"
-                android:textColor="@color/black"
-                android:textSize="22dp" />
-
-            <TextView
-                android:id="@+id/txtTTSPXuatXu"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/ma_san_pham"
-                android:textAlignment="viewEnd"
-                android:textColor="#666666"
-                android:textSize="22dp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="36dp"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/btn_sua_sp"
-                style="@style/style_pill_button"
-                android:background="@drawable/nut_sua_sp"
-                android:text="@string/sua"></TextView>
-
-            <TextView
-                android:id="@+id/btn_xoa_sp"
-                style="@style/style_pill_button"
-                android:background="@drawable/nut_xoa_sp"
-                android:text="@string/xoa"></TextView>
-
-        </LinearLayout>
+            style="@style/style_title"
+            android:text="@string/thong_tin_san_pham"
+            android:textColor="@color/primary" />
 
     </LinearLayout>
 
+    <ImageView
+        android:id="@+id/imgTTSPHinh"
+        android:layout_width="320dp"
+        android:layout_height="240dp"
+        android:layout_gravity="center"
+        android:src="@drawable/sanpham" />
+
+    <TextView
+        android:id="@+id/txtTTSPTen"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginVertical="12dp"
+        android:gravity="center"
+        android:text="@string/san_pham"
+        android:textColor="@color/black"
+        android:textSize="32dp" />
+
+    <TextView
+        android:id="@+id/txtTTSPGia"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="@string/san_pham"
+        android:textColor="@color/primary"
+        android:textSize="28dp" />
+
     <LinearLayout
-        android:id="@+id/ll_suattsp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/gray"
-        android:orientation="vertical"
-        android:visibility="invisible"
-        tools:context="sanpham.ThongTinSanPhamActivity">
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="12dp"
+        android:orientation="horizontal"
+        android:paddingHorizontal="32dp">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="143dp"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <ImageView
-                style="@style/style_logo"
-                android:src="@drawable/icon" />
-
-            <TextView
-                style="@style/style_title"
-                android:textColor="@color/primary"
-                android:text="@string/sua_thong_tin_san_pham"
-                />
-
-        </LinearLayout>
-
-        <ImageView
-            android:id="@+id/imgSTTSPHinh"
-            android:layout_width="360dp"
-            android:layout_height="300dp"
-            android:layout_gravity="center"
-            android:src="@drawable/sanpham" />
-
-        <EditText
-            android:id="@+id/txtSTTSPTen"
-            android:layout_width="320dp"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginVertical="12dp"
-            android:gravity="center"
-            android:singleLine="true"
-            android:text="@string/san_pham"
+            android:layout_weight="1"
+            android:text="@string/ma_san_pham"
             android:textColor="@color/black"
-            android:textSize="32dp" />
+            android:textSize="22dp" />
 
-        <EditText
-            android:id="@+id/txtSTTSPGia"
-            android:layout_width="160dp"
+        <TextView
+            android:id="@+id/txtTTSPMa"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:singleLine="true"
-            android:text="@string/san_pham"
-            android:textColor="@color/primary"
-            android:textSize="18dp" />
+            android:layout_weight="1"
+            android:text="@string/ma_san_pham"
+            android:textAlignment="viewEnd"
+            android:textColor="#666666"
+            android:textSize="22dp" />
+    </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:orientation="horizontal"
+        android:paddingHorizontal="32dp">
+
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="12dp"
-            android:orientation="horizontal"
-            android:paddingHorizontal="32dp">
+            android:layout_weight="1"
+            android:text="@string/xuat_xu"
+            android:textColor="@color/black"
+            android:textSize="22dp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/ma_san_pham"
-                android:textColor="@color/black"
-                android:textSize="22dp" />
-
-            <TextView
-                android:id="@+id/txtSTTSPMa"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/ma_san_pham"
-                android:textAlignment="viewEnd"
-                android:textColor="#666666"
-                android:textSize="22dp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/txtTTSPXuatXu"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:orientation="horizontal"
-            android:paddingHorizontal="32dp">
+            android:layout_weight="1"
+            android:text="@string/ma_san_pham"
+            android:textAlignment="viewEnd"
+            android:textColor="#666666"
+            android:textSize="22dp" />
+    </LinearLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/xuat_xu"
-                android:textColor="@color/black"
-                android:textSize="22dp" />
+    <LinearLayout style="@style/style_pill_button_layout">
 
-            <EditText
-                android:id="@+id/txtSTTSPXuatXu"
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:singleLine="true"
-                android:text="@string/ma_san_pham"
-                android:textAlignment="viewEnd"
-                android:textColor="#666666"
-                android:textSize="22dp" />
-        </LinearLayout>
+        <TextView
+            android:id="@+id/btn_sua_sp"
+            style="@style/style_pill_button"
+            android:background="@drawable/nut_sua_sp"
+            android:text="@string/sua"></TextView>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="36dp"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/btn_sua_ttsp_dong_y"
-                style="@style/style_pill_button"
-                android:background="@drawable/nut_confirm_dong_y"
-                android:text="@string/dong_y" />
-
-            <TextView
-                style="@style/style_pill_button"
-                android:id="@+id/btn_sua_ttsp_huy"
-                android:background="@drawable/nut_huy_gray"
-                android:text="@string/huy"
-                android:textColor="@color/black" />
-
-        </LinearLayout>
-
+        <TextView
+            android:id="@+id/btn_xoa_sp"
+            style="@style/style_pill_button"
+            android:background="@drawable/nut_xoa_sp"
+            android:text="@string/xoa"></TextView>
 
     </LinearLayout>
 </LinearLayout>
