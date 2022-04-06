@@ -2,11 +2,18 @@ package khachhang;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
@@ -17,10 +24,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.giuakyandroid.R;
 import com.squareup.picasso.Picasso;
+
+import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 
 import khachhang.model.DBKhachHang;
 import khachhang.model.KhachHang;
@@ -28,9 +40,12 @@ import others.Others;
 
 public class ActivityThemKhachHang extends AppCompatActivity {
     private ImageView iv_avatarKH;
-    private  Button btn_themKH, btn_huyThemKH;
-    private  EditText ed_avatarKH, ed_tenKH, ed_soDT_KH, ed_diaChiKH;
-    private String avatar ="", name="", phone="", address= "";
+    private  Button btn_themKH, btn_huyThemKH, btn_ChonAnh;
+    private  EditText ed_tenKH, ed_soDT_KH, ed_diaChiKH;
+    private  TextView tv_avatarKH;
+    private String name="", phone="", address= "";
+    private byte[] avatar = null;
+    public static final int REQUEST_TO_FOLDER = 3;
     Others others = new Others();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,27 +63,28 @@ public class ActivityThemKhachHang extends AppCompatActivity {
         iv_avatarKH = findViewById(R.id.iv_avatarKH);
         btn_themKH = findViewById(R.id.btn_themKH);
         btn_huyThemKH = findViewById(R.id.btn_huyThemKH);
-        ed_avatarKH = findViewById(R.id.ed_avatarKH);
+        btn_ChonAnh = findViewById(R.id.btn_ChonAnh);
+        tv_avatarKH = findViewById(R.id.tv_avatarKH);
         ed_tenKH = findViewById(R.id.ed_tenKH);
         ed_diaChiKH = findViewById(R.id.ed_diaChiKH);
         ed_soDT_KH = findViewById(R.id.ed_soDT_KH);
     }
 
     private boolean checkInput(){
-        if (avatar.equals("")) {
+        if (avatar == null) {
             Toast.makeText(this, "Hãy chọn ảnh đại diện khách hàng!", Toast.LENGTH_SHORT).show();
             return false;
         }
-        else if (name.equals("")) {
-            Toast.makeText(this, "Tên khách hàng không được để trống!", Toast.LENGTH_SHORT).show();
+        else if (!name.matches("^[a-zA-Z\\s]+")) {
+            Toast.makeText(this, "Tên khách hàng không hợp lệ!", Toast.LENGTH_SHORT).show();
             return false;
         }
-        else if (phone.equals("")) {
-            Toast.makeText(this, "Số điện thoại không được để trống!", Toast.LENGTH_SHORT).show();
+        else if (!phone.matches("^[0]\\d{9}$")) {
+            Toast.makeText(this, "Số điện thoại không hợp lệ!", Toast.LENGTH_SHORT).show();
             return false;
         }
         else if (address.equals("")) {
-            Toast.makeText(this, "Địa chỉ không được để trống!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Địa chỉ không hợp lệ!", Toast.LENGTH_SHORT).show();
             return false;
         }
         return true;
@@ -76,35 +92,36 @@ public class ActivityThemKhachHang extends AppCompatActivity {
 
     private void setEvent() {
 
-        ed_avatarKH.addTextChangedListener(new TextWatcher() {
+        btn_ChonAnh.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-            }
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_PICK);
+                intent.setType("image/*");
+                startActivityForResult(intent, REQUEST_TO_FOLDER);
 
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-                avatar = editable.toString();
-                if(avatar != "")  Picasso.get().load(avatar).into(iv_avatarKH);
             }
         });
 
         btn_themKH.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                    avatar = ed_avatarKH.getText().toString().trim();
+                    if(!tv_avatarKH.getText().equals("")){
+                        // chuyen doi hinh tu image view sang mang byte [] de luu
+                        BitmapDrawable bitmapDrawable = (BitmapDrawable) iv_avatarKH.getDrawable();
+                        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                        Bitmap bitmap = bitmapDrawable.getBitmap();
+                        bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
+                        avatar = byteArrayOutputStream.toByteArray();
+                    }
+                    // luu cac thuoc tinh con lai cua khach hang
                     name = ed_tenKH.getText().toString().trim();
                     phone = ed_soDT_KH.getText().toString().trim();
                     address = ed_diaChiKH.getText().toString().trim();
+                    // kiem tra input trc khi them vao db
                     if (checkInput()){
                         Intent intent = new Intent();
                         KhachHang khachHang = new KhachHang ( avatar, name, phone, address);
                         new DBKhachHang(ActivityThemKhachHang.this).InsertData(khachHang);
-                        intent.putExtra("donhang", khachHang);
-                        setResult(RESULT_OK, intent);
                         openSuccessDialog();
                     }
 
@@ -116,6 +133,44 @@ public class ActivityThemKhachHang extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+
+    // result lay anh tu gallery
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == REQUEST_TO_FOLDER && resultCode == RESULT_OK && data != null){
+            Uri uri = data.getData();
+            try {
+                tv_avatarKH.setText(getPath(uri));
+                InputStream inputStream = getContentResolver().openInputStream(uri);
+                Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+                iv_avatarKH.setImageBitmap(bitmap);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+
+        }
+    }
+
+    // lay path image tu uri data
+    public String getPath(Uri uri) {
+        if( uri == null ) {
+            return null;
+        }
+        String[] projection = { MediaStore.Images.Media.DATA };
+        Cursor cursor = managedQuery(uri, projection, null, null, null);
+        if( cursor != null ){
+            int column_index = cursor
+                    .getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+            cursor.moveToFirst();
+            String path = cursor.getString(column_index);
+            cursor.close();
+            return path;
+        }
+        return uri.getPath();
     }
 
     private void openSuccessDialog() {

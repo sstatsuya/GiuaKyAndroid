@@ -1,6 +1,8 @@
 package khachhang;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,7 +47,8 @@ public class AdapterKhachHang extends ArrayAdapter<KhachHang> {
         TextView tv_Address = convertView.findViewById(R.id.tv_Address);
         TextView tv_MaKH = convertView.findViewById(R.id.tv_MaKH);
         KhachHang khachHang = DS_khachHang.get(position);
-        Picasso.get().load(khachHang.getAvatar()).into(iv_avatar);
+        Bitmap bitmap = BitmapFactory.decodeByteArray(khachHang.getAvatar(),0,khachHang.getAvatar().length);
+        iv_avatar.setImageBitmap(bitmap);
         tv_MaKH.setText("Mã KH: " + khachHang.getId() + "");
         tv_Name.setText("Họ tên: " + khachHang.getName().trim());
         tv_Phone.setText("SĐT: " + khachHang.getPhone().trim());

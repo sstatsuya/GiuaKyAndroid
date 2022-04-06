@@ -4,19 +4,21 @@ import java.io.Serializable;
 
 public class KhachHang implements Serializable {
     private int id;
-    private String avatar, name, phone, address;
+    private byte[] avatar;
+    private String name, phone, address;
 
     public KhachHang() {
+
     }
 
-    public KhachHang(String avatar, String name, String phone, String address) {
+    public KhachHang(byte[] avatar, String name, String phone, String address) {
         this.avatar = avatar;
         this.name = name;
         this.phone = phone;
         this.address = address;
     }
 
-    public KhachHang(int id, String avatar, String name, String phone, String address) {
+    public KhachHang(int id, byte[] avatar, String name, String phone, String address) {
         this.id = id;
         this.avatar = avatar;
         this.name = name;
@@ -28,7 +30,7 @@ public class KhachHang implements Serializable {
         return id;
     }
 
-    public String getAvatar() {
+    public byte[] getAvatar() {
         return avatar;
     }
 
@@ -48,7 +50,7 @@ public class KhachHang implements Serializable {
         this.id = id;
     }
 
-    public void setAvatar(String avatar) {
+    public void setAvatar(byte[] avatar) {
         this.avatar = avatar;
     }
 
@@ -62,5 +64,6 @@ public class KhachHang implements Serializable {
 
     public void setAddress(String address) {
         this.address = address;
+
     }
 }

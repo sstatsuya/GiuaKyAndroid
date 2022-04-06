@@ -22,8 +22,7 @@
 
         <TextView
             style="@style/style_title"
-            android:text="@string/them_khachhang"
-            />
+            android:text="@string/them_khachhang" />
 
     </LinearLayout>
 
@@ -49,52 +48,46 @@
         android:orientation="vertical"
         android:paddingTop="30dp">
 
-        <EditText
-            android:id="@+id/ed_avatarKH"
+        <LinearLayout
             android:layout_width="330dp"
-            android:layout_height="53dp"
-            android:background="@drawable/white_border_background"
-            android:hint="Link img avatar"
-            android:paddingLeft="20dp"
-            android:textColor="@color/black"
-            android:textColorHint="#AFA7A7"
-            android:textSize="16dp" />
+            android:layout_height="wrap_content"
+            android:background="@drawable/blackboder_whitebackground"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_avatarKH"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:hint="Source ảnh"
+                android:paddingLeft="20dp"
+                android:textColor="@color/black"
+                android:textColorHint="#AFA7A7"
+                android:textSize="16dp" />
+
+            <Button
+                android:id="@+id/btn_ChonAnh"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Chọn ảnh" />
+        </LinearLayout>
 
         <EditText
             android:id="@+id/ed_tenKH"
-            android:layout_width="330dp"
-            android:layout_height="53dp"
-            android:background="@drawable/white_border_background"
             android:hint="Tên Khách hàng"
-            android:paddingLeft="20dp"
-            android:layout_marginTop="30dp"
-            android:textColor="@color/black"
-            android:textColorHint="#AFA7A7"
-            android:textSize="16dp" />
+            style="@style/ed_Text" />
 
         <EditText
             android:id="@+id/ed_soDT_KH"
-            android:layout_width="330dp"
-            android:layout_height="53dp"
-            android:layout_marginTop="30dp"
-            android:background="@drawable/white_border_background"
             android:hint="Số điện thoại"
-            android:paddingLeft="20dp"
-            android:textColor="@color/black"
-            android:textColorHint="#AFA7A7"
-            android:textSize="16dp" />
+            style="@style/ed_Text" />
 
         <EditText
             android:id="@+id/ed_diaChiKH"
-            android:layout_width="330dp"
-            android:layout_height="53dp"
-            android:layout_marginTop="30dp"
-            android:background="@drawable/white_border_background"
             android:hint="Địa chỉ"
-            android:paddingLeft="20dp"
-            android:textColor="@color/black"
-            android:textColorHint="#AFA7A7"
-            android:textSize="16dp" />
+            style="@style/ed_Text" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -105,24 +98,13 @@
 
             <Button
                 android:id="@+id/btn_themKH"
-                android:layout_width="158dp"
-                android:layout_height="45dp"
-                android:background="@drawable/orange_border"
-                android:gravity="center"
                 android:text="Thêm"
-                android:textColor="@color/white"
-                android:textSize="18dp" />
+                style="@style/btn_Them" />
 
             <Button
                 android:id="@+id/btn_huyThemKH"
-                android:layout_width="158dp"
-                android:layout_height="45dp"
-                android:layout_marginLeft="20dp"
-                android:background="@drawable/white_border_background"
-                android:gravity="center"
                 android:text="Hủy"
-                android:textColor="@color/orange"
-                android:textSize="18dp" />
+                style="@style/btn_Huy" />
         </LinearLayout>
 
     </LinearLayout>
