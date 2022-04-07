@@ -13,20 +13,62 @@ import androidx.annotation.Nullable;
 import java.util.ArrayList;
 
 public class dbSanPham extends SQLiteOpenHelper {
+    private static final String DATABASE_NAME = "GIUAKYANDROID";
+    private static final int DATABASE_VERSION = 1;
+
+    // SQL CREATE TABLE SANPHAM
+    private static final String DBCREATE_SQLSANPHAM = "CREATE TABLE SANPHAM (" +
+            "    MASP    INTEGER PRIMARY KEY AUTOINCREMENT," +
+            "    TENSP   TEXT," +
+            "    XUATXU  TEXT," +
+            "    DONGIA  DOUBLE," +
+            "    HINHANH BLOB );" ;
+
+    // SQL CREATE TABLE KHACHHANG
+    private static final String DBCREATE_SQLKHACHHANG = "CREATE TABLE KHACHHANG (" +
+            "    MAKH    INTEGER PRIMARY KEY AUTOINCREMENT," +
+            "    HINHANH BLOB," +
+            "    TENKH   TEXT," +
+            "    DIACHI  TEXT," +
+            "    DIENTHOAI  TEXT" +
+            ");";
+    // SQL CREATE TABLE DONHANG
+    private static final String DBCREATE_SQLDONHANG = "CREATE TABLE DONHANG (" +
+            "    MADH   INTEGER PRIMARY KEY," +
+            "    NGAYDH DATE," +
+            "    MAKH           REFERENCES KHACHHANG (MAKH) ON DELETE CASCADE" +
+            "                                               ON UPDATE CASCADE" +
+            "                                               MATCH SIMPLE" +
+            ");";
+    // SQL CREATE TABLE THONGTINDATHANG
+    private static final String DBCREATE_SQLTHONGTINDATHANG = "CREATE TABLE THONGTINDATHANG (" +
+            "    MADH       INTEGER REFERENCES DONHANG (MADH) ON DELETE CASCADE" +
+            "                                                 ON UPDATE CASCADE" +
+            "                                                 MATCH SIMPLE," +
+            "    MASP       INTEGER REFERENCES SANPHAM (MASP) ON DELETE CASCADE" +
+            "                                                 ON UPDATE CASCADE," +
+            "    SOLUONGDAT INTEGER," +
+            "    PRIMARY KEY (MADH, MASP)" +
+            ");";
+
     public dbSanPham(@Nullable Context context) {
-        super(context, "GIUAKYANDROID", null, 1); //dbMonHoc = tên database
+        super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
-    // 2 hàm Override dưới đây sẽ tự động chạy mà không cần gọi
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        String sql = "CREATE TABLE SANPHAM (MASP INTEGER PRIMARY KEY AUTOINCREMENT, TENSP TEXT, XUATXU TEXT, DONGIA DOUBLE, HINHANH BLOB);"; //Lệnh này để tạo bảng
-        sqLiteDatabase.execSQL(sql);
+        sqLiteDatabase.execSQL(DBCREATE_SQLKHACHHANG);
+        sqLiteDatabase.execSQL(DBCREATE_SQLSANPHAM);
+        sqLiteDatabase.execSQL(DBCREATE_SQLDONHANG);
+        sqLiteDatabase.execSQL(DBCREATE_SQLTHONGTINDATHANG);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-
+        sqLiteDatabase.execSQL("Drop table if exists KHACHHANG" );
+        sqLiteDatabase.execSQL("Drop table if exists SANPHAM" );
+        sqLiteDatabase.execSQL("Drop table if exists DONHANG" );
+        sqLiteDatabase.execSQL("Drop table if exists THONGTINDATHANG" );
     }
 
     public void themDL(SanPham sanPham) { //Hàm Create

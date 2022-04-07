@@ -14,7 +14,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.giuakyandroid.R;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -47,12 +46,12 @@ public class AdapterKhachHang extends ArrayAdapter<KhachHang> {
         TextView tv_Address = convertView.findViewById(R.id.tv_Address);
         TextView tv_MaKH = convertView.findViewById(R.id.tv_MaKH);
         KhachHang khachHang = DS_khachHang.get(position);
-        Bitmap bitmap = BitmapFactory.decodeByteArray(khachHang.getAvatar(),0,khachHang.getAvatar().length);
+        Bitmap bitmap = BitmapFactory.decodeByteArray(khachHang.getHINHANH(),0,khachHang.getHINHANH().length);
         iv_avatar.setImageBitmap(bitmap);
-        tv_MaKH.setText("Mã KH: " + khachHang.getId() + "");
-        tv_Name.setText("Họ tên: " + khachHang.getName().trim());
-        tv_Phone.setText("SĐT: " + khachHang.getPhone().trim());
-        tv_Address.setText("Địa chỉ: " + khachHang.getAddress().trim());
+        tv_MaKH.setText("Mã KH: " + khachHang.getMAKH() + "");
+        tv_Name.setText("Họ tên: " + khachHang.getTENKH().trim());
+        tv_Phone.setText("SĐT: " + khachHang.getDIENTHOAI().trim());
+        tv_Address.setText("Địa chỉ: " + khachHang.getDIACHI().trim());
         return convertView;
     }
 }

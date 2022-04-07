@@ -3,67 +3,67 @@ package khachhang.model;
 import java.io.Serializable;
 
 public class KhachHang implements Serializable {
-    private int id;
-    private byte[] avatar;
-    private String name, phone, address;
+    private int MAKH;
+    private byte[] HINHANH;
+    private String TENKH, DIENTHOAI, DIACHI;
 
     public KhachHang() {
 
     }
 
-    public KhachHang(byte[] avatar, String name, String phone, String address) {
-        this.avatar = avatar;
-        this.name = name;
-        this.phone = phone;
-        this.address = address;
+    public KhachHang(byte[] HINHANH, String TENKH, String DIENTHOAI, String DIACHI) {
+        this.HINHANH = HINHANH;
+        this.TENKH = TENKH;
+        this.DIENTHOAI = DIENTHOAI;
+        this.DIACHI = DIACHI;
     }
 
-    public KhachHang(int id, byte[] avatar, String name, String phone, String address) {
-        this.id = id;
-        this.avatar = avatar;
-        this.name = name;
-        this.phone = phone;
-        this.address = address;
+    public KhachHang(int MAKH, byte[] HINHANH, String TENKH, String DIENTHOAI, String DIACHI) {
+        this.MAKH = MAKH;
+        this.HINHANH = HINHANH;
+        this.TENKH = TENKH;
+        this.DIENTHOAI = DIENTHOAI;
+        this.DIACHI = DIACHI;
     }
 
-    public int getId() {
-        return id;
+    public int getMAKH() {
+        return MAKH;
     }
 
-    public byte[] getAvatar() {
-        return avatar;
+    public byte[] getHINHANH() {
+        return HINHANH;
     }
 
-    public String getName() {
-        return name;
+    public String getTENKH() {
+        return TENKH;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getDIENTHOAI() {
+        return DIENTHOAI;
     }
 
-    public String getAddress() {
-        return address;
+    public String getDIACHI() {
+        return DIACHI;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setMAKH(int MAKH) {
+        this.MAKH = MAKH;
     }
 
-    public void setAvatar(byte[] avatar) {
-        this.avatar = avatar;
+    public void setHINHANH(byte[] HINHANH) {
+        this.HINHANH = HINHANH;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTENKH(String TENKH) {
+        this.TENKH = TENKH;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setDIENTHOAI(String DIENTHOAI) {
+        this.DIENTHOAI = DIENTHOAI;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setDIACHI(String DIACHI) {
+        this.DIACHI = DIACHI;
 
     }
 }
