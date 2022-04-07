@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -26,7 +25,6 @@ import java.util.ArrayList;
 import khachhang.model.DBKhachHang;
 import khachhang.model.KhachHang;
 import others.Others;
-import sanpham.model.dbSanPham;
 
 public class KhachHangActivity extends AppCompatActivity {
     // set cung data de lam giao dien
@@ -35,6 +33,7 @@ public class KhachHangActivity extends AppCompatActivity {
     ListView lv_DSKhachHang;
     AdapterKhachHang adapterKhachHang;
     DBKhachHang dbKhachHang;
+    Others others = new Others();
     public static final int REQUEST_TO_THEMKH = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,20 +71,18 @@ public class KhachHangActivity extends AppCompatActivity {
                 Button btn_LuuThongTinKH = view.findViewById(R.id.btn_LuuThongTinKH);
                 Button btn_XoaThongTinKH = view.findViewById(R.id.btn_XoaThongTinKH);
                 // set data
-                Bitmap bitmap = BitmapFactory.decodeByteArray(khachhang.getAvatar(),0,khachhang.getAvatar().length);
+                Bitmap bitmap = BitmapFactory.decodeByteArray(khachhang.getHINHANH(),0,khachhang.getHINHANH().length);
                 iv_avatarKH.setImageBitmap(bitmap);
-                tv_editMaKH.setText("Mã KH: " + khachhang.getId());
-                et_editName.setText(khachhang.getName());
-                et_editPhone.setText(khachhang.getPhone());
-                et_editAddress.setText(khachhang.getAddress());
+                tv_editMaKH.setText("Mã KH: " + khachhang.getMAKH());
+                et_editName.setText(khachhang.getTENKH());
+                et_editPhone.setText(khachhang.getDIENTHOAI());
+                et_editAddress.setText(khachhang.getDIACHI());
 
                 // set event // chua xu ly show dialog
                 btn_XoaThongTinKH.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        dbKhachHang.DeleteData(khachhang.getId());
-
-                        RefreshData();
+                        openConfirmDialog(khachhang,"Bạn có chắc muốn xóa khách hàng này?",1);
                     }
                 });
 
@@ -97,11 +94,10 @@ public class KhachHangActivity extends AppCompatActivity {
                         String phone = et_editPhone.getText().toString();
                         String address = et_editAddress.getText().toString();
                         if(checkData(name,phone,address)){
-                            khachhang.setName(name);
-                            khachhang.setPhone(phone);
-                            khachhang.setAddress(address);
-                            dbKhachHang.updateData(khachhang);
-                            RefreshData();
+                            khachhang.setTENKH(name);
+                            khachhang.setDIENTHOAI(phone);
+                            khachhang.setDIACHI(address);
+                            openConfirmDialog(khachhang,"Bạn có chắc muốn Cập nhật thông tin khách hàng này?",2);
                         }
 
                     }
@@ -110,6 +106,7 @@ public class KhachHangActivity extends AppCompatActivity {
                 return false;
             }
         });
+
     }
 
     private boolean checkData(String name, String phone, String address){
@@ -140,12 +137,51 @@ public class KhachHangActivity extends AppCompatActivity {
         adapterKhachHang.notifyDataSetChanged();
     }
 
-    private void openConfirmDialog() {
-        //others.
+    private void openConfirmDialog(KhachHang khachhang, String title , int tag) {
+        Dialog confirmDialog = others.openConfirmDialog(KhachHangActivity.this, title);
+        confirmDialog.show();
+        TextView btnConfirmDongY = confirmDialog.findViewById(R.id.btn_confirm_dong_y);
+        TextView btnConfirmHuy = confirmDialog.findViewById(R.id.btn_confirm_huy_bo);
+        btnConfirmHuy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                confirmDialog.dismiss();
+            }
+        });
+
+        if(tag == 1){
+            btnConfirmDongY.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    dbKhachHang.DeleteData(khachhang.getMAKH());
+                    confirmDialog.dismiss();
+                    openSuccessDialog("Đã Xóa Khách hàng thành công!");
+                }
+            });
+        }
+        else if(tag == 2) {
+            btnConfirmDongY.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    dbKhachHang.updateData(khachhang);
+                    confirmDialog.dismiss();
+                    openSuccessDialog("Cập nhật thông tin khách hàng thành công!");
+                }
+            });
+        }
     }
 
-    private void openSuccessDialog() {
-
+    private void openSuccessDialog(String title) {
+        Dialog successDialog = others.openSuccessDialog(KhachHangActivity.this, title);
+        successDialog.show();
+        TextView btnSuccessDongY = successDialog.findViewById(R.id.btn_success_dong_y);
+        btnSuccessDongY.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                RefreshData();
+                successDialog.dismiss();
+            }
+        });
     }
 
     @Override

@@ -19,6 +19,9 @@ import com.example.giuakyandroid.R;
 import java.io.ByteArrayOutputStream;
 
 public class Others {
+    public Others() {
+    }
+
     public Dialog openConfirmDialog(Context context, String content) {
         Dialog dialog = new Dialog(context);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
