@@ -97,7 +97,6 @@ public class DBKhachHang extends SQLiteOpenHelper {
         return data;
     }
 
-
     public void InsertData(KhachHang khachHang) {
         String sql = "insert into " + TABLE_NAME +"(" + COLUMN_AVATAR + ", " + COLUMN_NAME + ", " + COLUMN_ADDRESS
                 + ", " + COLUMN_PHONE + ") values(?,?,?,?)";

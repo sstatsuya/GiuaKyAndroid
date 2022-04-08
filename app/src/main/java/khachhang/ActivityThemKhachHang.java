@@ -21,6 +21,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,7 +41,8 @@ import others.Others;
 
 public class ActivityThemKhachHang extends AppCompatActivity {
     private ImageView iv_avatarKH;
-    private  Button btn_themKH, btn_huyThemKH, btn_ChonAnh;
+    private  Button btn_themKH, btn_huyThemKH;
+    private LinearLayout btn_ChonAnh;
     private  EditText ed_tenKH, ed_soDT_KH, ed_diaChiKH;
     private  TextView tv_avatarKH;
     private String name="", phone="", address= "";
@@ -180,6 +182,7 @@ public class ActivityThemKhachHang extends AppCompatActivity {
         btnSuccessDongY.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                setResult(RESULT_OK);
                 successDialog.dismiss();
                 onBackPressed();
             }
