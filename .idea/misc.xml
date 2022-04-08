@@ -69,6 +69,7 @@
         <entry key="..\:/Data/FileLapTrinh/GiuaKyAndroid/app/src/main/res/layout/layout_san_pham.xml" value="0.17391304347826086" />
         <entry key="..\:/Data/FileLapTrinh/GiuaKyAndroid/app/src/main/res/layout/layout_success.xml" value="0.25" />
         <entry key="..\:/Data/FileLapTrinh/GiuaKyAndroid/app/src/main/res/layout/spinner_loc_layout.xml" value="0.1" />
+        <entry key="..\:/Users/thach/.gradle/caches/transforms-3/f791586eb8e3cddcf33fb36842d7675a/transformed/appcompat-1.4.1/res/layout/support_simple_spinner_dropdown_item.xml" value="0.13240740740740742" />
         <entry key="..\:/Users/thach/AndroidStudioProjects/GiuaKyAndroid/app/src/main/res/drawable/black-background_border-radius.xml" value="0.1625" />
         <entry key="..\:/Users/thach/AndroidStudioProjects/GiuaKyAndroid/app/src/main/res/drawable/blackbackground.xml" value="0.1625" />
         <entry key="..\:/Users/thach/AndroidStudioProjects/GiuaKyAndroid/app/src/main/res/drawable/blackboder_whitebackground.xml" value="0.1" />
@@ -84,8 +85,8 @@
         <entry key="..\:/Users/thach/AndroidStudioProjects/GiuaKyAndroid/app/src/main/res/drawable/white_border.xml" value="0.102" />
         <entry key="..\:/Users/thach/AndroidStudioProjects/GiuaKyAndroid/app/src/main/res/drawable/white_border_background.xml" value="0.1" />
         <entry key="..\:/Users/thach/AndroidStudioProjects/GiuaKyAndroid/app/src/main/res/drawable/white_border_background_shadow.xml" value="0.102" />
-        <entry key="..\:/Users/thach/AndroidStudioProjects/GiuaKyAndroid/app/src/main/res/layout/activity_items_khachhang.xml" value="0.264" />
-        <entry key="..\:/Users/thach/AndroidStudioProjects/GiuaKyAndroid/app/src/main/res/layout/activity_khachhang.xml" value="0.24210526315789474" />
+        <entry key="..\:/Users/thach/AndroidStudioProjects/GiuaKyAndroid/app/src/main/res/layout/activity_items_khachhang.xml" value="0.176" />
+        <entry key="..\:/Users/thach/AndroidStudioProjects/GiuaKyAndroid/app/src/main/res/layout/activity_khachhang.xml" value="0.264" />
         <entry key="..\:/Users/thach/AndroidStudioProjects/GiuaKyAndroid/app/src/main/res/layout/activity_san_pham.xml" value="0.1334853090172239" />
         <entry key="..\:/Users/thach/AndroidStudioProjects/GiuaKyAndroid/app/src/main/res/layout/activity_them_don_hang.xml" value="0.23097826086956522" />
         <entry key="..\:/Users/thach/AndroidStudioProjects/GiuaKyAndroid/app/src/main/res/layout/activity_them_khach_hang.xml" value="0.264" />

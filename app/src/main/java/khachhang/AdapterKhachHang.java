@@ -16,6 +16,9 @@ import androidx.annotation.Nullable;
 import com.example.giuakyandroid.R;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Locale;
 
 import khachhang.model.KhachHang;
 
@@ -23,12 +26,14 @@ public class AdapterKhachHang extends ArrayAdapter<KhachHang> {
     private Context context;
     private int resource;
     private ArrayList<KhachHang> DS_khachHang;
+    private ArrayList<KhachHang> DS_khachHangBK = new ArrayList<>();
 
     public AdapterKhachHang(@NonNull Context context, int resource, @NonNull ArrayList<KhachHang> DS_khachHang) {
         super(context, resource, DS_khachHang);
         this.context = context;
         this.resource = resource;
         this.DS_khachHang = DS_khachHang;
+        this.DS_khachHangBK.addAll(DS_khachHang);
     }
 
     @Override
@@ -53,5 +58,86 @@ public class AdapterKhachHang extends ArrayAdapter<KhachHang> {
         tv_Phone.setText("SĐT: " + khachHang.getDIENTHOAI().trim());
         tv_Address.setText("Địa chỉ: " + khachHang.getDIACHI().trim());
         return convertView;
+    }
+
+    public void FindKhachHang(String strTENKH) {
+        DS_khachHang.clear();
+        strTENKH = strTENKH.trim().toLowerCase();
+        if(strTENKH.equals("")) DS_khachHang.addAll(DS_khachHangBK);
+        else {
+            for (KhachHang khachHang: DS_khachHangBK
+                 ) {
+                if(khachHang.getTENKH().toLowerCase().contains(strTENKH))
+                    DS_khachHang.add(khachHang);
+            }
+        }
+        notifyDataSetChanged();
+    }
+
+    public void locBangSpinner(int option) {
+        switch (option){
+            case 0:{
+                Collections.sort(DS_khachHang, new Comparator<KhachHang>() {
+                    @Override
+                    public int compare(KhachHang khachHang1, KhachHang khachHang2) {
+                        return (khachHang1.getMAKH() > khachHang2.getMAKH()) ? 1 : -1;
+                    }
+                });
+
+
+                break;
+            }
+            case  1:{
+                Collections.sort(DS_khachHang, new Comparator<KhachHang>() {
+                    @Override
+                    public int compare(KhachHang khachHang1, KhachHang khachHang2) {
+                        return (khachHang1.getMAKH() > khachHang2.getMAKH()) ? -1 : 1;
+                    }
+                });
+                break;
+            } case  2:{
+                Collections.sort(DS_khachHang, new Comparator<KhachHang>() {
+                    @Override
+                    public int compare(KhachHang khachHang1, KhachHang khachHang2) {
+                        String Name1 = khachHang1.getTENKH();
+                        String Name2 = khachHang2.getTENKH();
+                        String lastName1 = Name1;
+                        String lastName2 = Name2;
+                        if(Name1.contains(" ")){
+                            lastName1 = Name1.substring(Name1.lastIndexOf(" "));
+
+                        }
+                        if(Name2.contains(" ")){
+                            lastName2 = Name2.substring(Name2.lastIndexOf(" "));
+
+                        }
+                        return lastName1.compareToIgnoreCase(lastName2);
+                    }
+                });
+                break;
+            }
+            case 3: {
+                Collections.sort(DS_khachHang, new Comparator<KhachHang>() {
+                    @Override
+                    public int compare(KhachHang khachHang1, KhachHang khachHang2) {
+                        String Name1 = khachHang1.getTENKH();
+                        String Name2 = khachHang2.getTENKH();
+                        String lastName1 = Name1;
+                        String lastName2 = Name2;
+                        if(Name1.contains(" ")){
+                            lastName1 = Name1.substring(Name1.lastIndexOf(" "));
+
+                        }
+                        if(Name2.contains(" ")){
+                            lastName2 = Name2.substring(Name2.lastIndexOf(" "));
+
+                        }
+                        return lastName2.compareToIgnoreCase(lastName1);
+                    }
+                });
+                break;
+            }
+        }
+        notifyDataSetChanged();
     }
 }
