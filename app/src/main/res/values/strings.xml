@@ -42,4 +42,17 @@
     <string name="xem">Xem</string>
     <string name="thu_muc">Thư mục...</string>
     <string name="camera">Camera</string>
+    <string name="timkiem">Tìm kiếm</string>
+    <string name="source_img">Source ảnh</string>
+    <string name="ten_khachhang">Tên Khách hàng</string>
+    <string name="soDT">Số điện thoại</string>
+    <string name="dia_chi">Địa chỉ</string>
+    <string name="btn_them">Thêm</string>
+    <string name="btn_huy">Hủy</string>
+    <string name="tv_makh">Mã KH:</string>
+    <string name="tv_hoten">Họ tên:</string>
+    <string name="tv_soDT">SĐT:</string>
+    <string name="tv_diachi">Địa chỉ:</string>
+    <string name="btn_dongy">Đồng ý</string>
+    <string name="btn_xoa">Xóa</string>
 </resources>

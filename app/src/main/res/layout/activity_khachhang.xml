@@ -39,7 +39,7 @@
             android:iconifiedByDefault="false"
             android:inputType="textPersonName"
             android:orientation="horizontal"
-            android:queryHint="Tìm kiếm "
+            android:queryHint="@string/timkiem"
             android:textColor="@color/black"
             android:textColorHint="#AFA7A7"
             android:textSize="14dp">
