@@ -61,7 +61,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
-                android:hint="Source ảnh"
+                android:hint="@string/source_img"
                 android:paddingLeft="20dp"
                 android:textColor="@color/black"
                 android:textColorHint="#AFA7A7"
@@ -85,17 +85,19 @@
 
         <EditText
             android:id="@+id/ed_tenKH"
-            android:hint="Tên Khách hàng"
+            android:hint="@string/ten_kh"
+            android:maxLength="35"
             style="@style/ed_Text" />
 
         <EditText
             android:id="@+id/ed_soDT_KH"
-            android:hint="Số điện thoại"
+            android:hint="@string/sdt"
+            android:maxLength="10"
             style="@style/ed_Text" />
 
         <EditText
             android:id="@+id/ed_diaChiKH"
-            android:hint="Địa chỉ"
+            android:hint="@string/diachi"
             style="@style/ed_Text" />
 
         <LinearLayout
@@ -107,12 +109,12 @@
 
             <Button
                 android:id="@+id/btn_themKH"
-                android:text="Thêm"
+                android:text="@string/btnThem"
                 style="@style/btn_Them" />
 
             <Button
                 android:id="@+id/btn_huyThemKH"
-                android:text="Hủy"
+                android:text="@string/btn_huy"
                 style="@style/btn_Huy" />
         </LinearLayout>
 

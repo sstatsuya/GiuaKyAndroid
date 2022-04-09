@@ -77,15 +77,15 @@ public class ActivityThemKhachHang extends AppCompatActivity {
             Toast.makeText(this, "Hãy chọn ảnh đại diện khách hàng!", Toast.LENGTH_SHORT).show();
             return false;
         }
-        else if (!name.matches("^[a-zA-Z\\s]+")) {
+        else if (!others.checkName(name)) {
             Toast.makeText(this, "Tên khách hàng không hợp lệ!", Toast.LENGTH_SHORT).show();
             return false;
         }
-        else if (!phone.matches("^[0]\\d{9}$")) {
+        else if (!others.checkPhone(phone)) {
             Toast.makeText(this, "Số điện thoại không hợp lệ!", Toast.LENGTH_SHORT).show();
             return false;
         }
-        else if (address.equals("")) {
+        else if (!others.checkAddress(address)) {
             Toast.makeText(this, "Địa chỉ không hợp lệ!", Toast.LENGTH_SHORT).show();
             return false;
         }
