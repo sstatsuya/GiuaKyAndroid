@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.giuakyandroid">
+    package="com.example.giuakyandroid" >
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -10,7 +10,13 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.GiuaKyAndroid">
+        android:theme="@style/Theme.GiuaKyAndroid" >
+        <activity
+            android:name="thongke.ThongKeActivity"
+            android:exported="false" />
+        <activity
+            android:name="donhang.ChonMatHangActivity"
+            android:exported="false" />
         <activity
             android:name="sanpham.SuaThongTinSanPhamActivity"
             android:exported="false" />
@@ -22,8 +28,8 @@
             android:exported="false" />
         <activity
             android:name="donhang.ThemDonHangActivity"
-            android:windowSoftInputMode="adjustPan"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name="sanpham.ThemSanPhamActivity"
             android:exported="false"
@@ -49,7 +55,7 @@
             android:exported="false" />
         <activity
             android:name="sanpham.BatDauActivity"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

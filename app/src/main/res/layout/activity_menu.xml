@@ -130,6 +130,39 @@
 
             </LinearLayout>
 
+            <View
+                android:layout_width="320dp"
+                android:layout_height="1dp"
+                android:background="@color/primary"></View>
+
+            <LinearLayout
+                android:id="@+id/btnThongKe"
+                android:layout_width="320dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:orientation="horizontal"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="?attr/selectableItemBackground"
+                android:paddingLeft="32dp"
+                >
+
+                <TextView
+                    android:layout_width="242dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="@string/thong_ke"
+                    android:textColor="@color/black"
+                    android:textSize="32dp"></TextView>
+
+                <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:src="@drawable/arrow" />
+
+            </LinearLayout>
+
 
         </LinearLayout>
 

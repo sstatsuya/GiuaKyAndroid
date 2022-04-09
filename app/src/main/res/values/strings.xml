@@ -6,40 +6,42 @@
     <string name="san_pham">Sản phẩm</string>
     <string name="khach_hang">Khách hàng</string>
     <string name="don_hang">Đơn hàng</string>
+    <string name="thong_ke">Thống kê</string>
     //DonHang
     <string name="tao_don_hang">Tạo đơn hàng</string>
     <string name="chon_san_pham">Chọn sản phẩm</string>
     <string name="them_mat_hang">Thêm mặt hàng</string>
     <string name="danh_sach_mat_hang">Danh sách mặt hàng</string>
     <string name="ngay_dat_hang">Ngày đặt hàng</string>
-    //Utility
-    <string name="them">Thêm</string>
-
-
-    //KhachHang
-    <string name="ma_khach_hang">Mã khách hàng</string>
-    <string name="them_khachhang">Thêm khách hàng</string>
     <string name="don_dat_hang">Đơn đặt hàng</string>
     <string name="ten_san_pham">Tên sản phẩm</string>
     <string name="don_gia">Đơn giá</string>
+    //SanPham
     <string name="ma_san_pham">Mã sản phẩm</string>
     <string name="xuat_xu">Xuất xứ</string>
     <string name="thong_tin_san_pham">Thông tin sản phẩm</string>
     <string name="thong_tin_don_hang">Thông tin đơn hàng</string>
     <string name="thong_tin">Thông tin</string>
+    <string name="sua_thong_tin_san_pham">Sửa thông tin sản phẩm</string>
+    <string name="them_san_pham">Thêm sản phẩm</string>
+    //KhachHang
+    <string name="ma_khach_hang">Mã khách hàng</string>
+    <string name="them_khachhang">Thêm khách hàng</string>
+    //Utility
+    <string name="them">Thêm</string>
+    <string name="chon">Chọn</string>
     <string name="sua">Sửa</string>
     <string name="xoa">Xóa</string>
+    <string name="luu">lưu</string>
+    <string name="huy">Hủy</string>
+    <string name="xem">Xem</string>
     <string name="canh_bao">Cảnh báo</string>
     <string name="thanh_cong">Thành công</string>
     <string name="thong_bao">Thông báo</string>
     <string name="dong_y">Đồng ý</string>
     <string name="huy_bo">Hủy bỏ</string>
-    <string name="huy">Hủy</string>
-    <string name="sua_thong_tin_san_pham">Sửa thông tin sản phẩm</string>
-    <string name="them_san_pham">Thêm sản phẩm</string>
-    <string name="link_hinh_anh">Link hình ảnh</string>
-    <string name="hinh_anh">Hình ảnh</string>
-    <string name="xem">Xem</string>
     <string name="thu_muc">Thư mục...</string>
+    <string name="hinh_anh">Hình ảnh</string>
+    <string name="link_hinh_anh">Link hình ảnh</string>
     <string name="camera">Camera</string>
 </resources>

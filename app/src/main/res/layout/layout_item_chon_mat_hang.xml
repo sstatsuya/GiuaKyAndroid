@@ -2,19 +2,19 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal"
-    android:background="@color/gray_2">
+    android:background="@color/gray_2"
+    android:orientation="horizontal">
 
     <GridLayout
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:columnCount="5"
-        android:rowCount="3"
         android:layout_marginTop="10dp"
-        android:background="@drawable/white_border_background">
+        android:background="@drawable/white_border_background"
+        android:columnCount="5"
+        android:rowCount="3">
 
         <ImageView
-            android:id="@+id/ivHinhAnhSanPham"
+            android:id="@+id/iv_itemchonmathang_hinhanhsanpham"
             android:layout_width="100dp"
             android:layout_rowSpan="3"
             android:layout_column="0"
@@ -22,27 +22,27 @@
             android:src="@drawable/sanpham" />
 
         <TextView
-            android:textColor="@color/black"
-            android:id="@+id/tvTenSanPham"
+            android:id="@+id/tv_itemchonmathang_tensanpham"
+            android:layout_width="wrap_content"
             android:layout_row="0"
             android:layout_column="1"
             android:layout_columnSpan="3"
             android:layout_gravity="left|top"
-            android:layout_width="wrap_content"
+            android:maxLength="20"
             android:text="@string/ten_san_pham"
             android:textAllCaps="true"
+            android:textColor="@color/black"
             android:textSize="20dp"
-            android:maxLength="20"
             android:textStyle="bold" />
 
         <TextView
-            android:textColor="#7A000000"
-            android:id="@+id/tvMaSanPham"
+            android:id="@+id/tv_itemchonmathang_masanpham"
             android:layout_row="1"
             android:layout_column="1"
             android:layout_columnSpan="3"
             android:layout_gravity="left|top"
             android:text="@string/ma_san_pham"
+            android:textColor="#7A000000"
             android:textSize="15dp" />
 
         <LinearLayout
@@ -52,54 +52,37 @@
             android:layout_gravity="left|bottom"
             android:orientation="horizontal">
 
-            <Button
-                android:textColor="@color/black"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:background="@drawable/ic_sub_button"/>
 
             <TextView
-                android:textColor="@color/black"
-                android:id="@+id/tvSoLuongSanPham"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:gravity="center_horizontal"
-                android:text="2"/>
-
-            <Button
-                android:textColor="@color/black"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:background="@drawable/ic_add_button"/>
-
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="match_parent" />
-
-            <TextView
-                android:id="@+id/tvGiaTienSanPham"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="right|bottom"
+                android:paddingRight="20dp"
                 android:text="Giá tiền"
+                android:textColor="#127516" />
+
+            <TextView
+                android:id="@+id/tv_itemchonmathang_giatiensanpham"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="right|bottom"
+                android:text="300000"
                 android:textColor="#127516" />
 
         </LinearLayout>
 
         <Button
-            android:id="@+id/btnLoaiBoSanPham"
+            android:id="@+id/btn_itemchonmathang_chon"
             android:layout_width="50dp"
+            android:layout_row="0"
             android:layout_rowSpan="3"
             android:layout_column="4"
-            android:layout_row="0"
             android:layout_gravity="center_vertical"
-            android:background="@drawable/orange_border_button"
-            android:text="@string/xoa"
-            android:textSize="10dp"
             android:layout_marginRight="10dp"
-            android:textColor="@color/white" />
+            android:background="@drawable/orange_border_button"
+            android:text="@string/chon"
+            android:textColor="@color/white"
+            android:textSize="10dp" />
     </GridLayout>
-
-
 
 </LinearLayout>
