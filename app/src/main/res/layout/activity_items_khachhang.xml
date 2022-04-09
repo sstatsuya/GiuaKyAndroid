@@ -42,7 +42,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1.5"
                     android:gravity="center_vertical"
-                    android:text="Mã KH:"
+                    android:text="@string/tv_makh"
                     android:textColor="@color/black"
                     android:textSize="14dp" />
 
@@ -52,7 +52,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1.5"
                     android:gravity="center_vertical"
-                    android:text="Họ tên:"
+                    android:text="@string/tv_hoten"
                     android:textColor="@color/black"
                     android:textSize="14dp" />
 
@@ -62,7 +62,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1.5"
                     android:gravity="center_vertical"
-                    android:text="SĐT:"
+                    android:text="@string/tv_soDT"
                     android:textColor="@color/black"
                     android:textSize="14dp" />
 
@@ -72,7 +72,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_weight="2.5"
-                    android:text="Địa chỉ:"
+                    android:text="@string/tv_diachi"
                     android:textColor="@color/black"
                     android:textSize="14dp" />
             </LinearLayout>
@@ -108,7 +108,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1.5"
                         android:gravity="center_vertical"
-                        android:text="Mã KH:"
+                        android:text="@string/tv_makh"
                         android:textColor="@color/black"
                         android:textSize="14dp" />
 
@@ -123,7 +123,7 @@
 
                             android:layout_height="wrap_content"
                             android:gravity="center_vertical"
-                            android:text="Họ Tên:"
+                            android:text="@string/tv_hoten"
                             android:textColor="@color/black"
                             android:textSize="14dp" />
 
@@ -146,7 +146,7 @@
                             android:layout_width="50dp"
                             android:layout_height="wrap_content"
                             android:gravity="center_vertical"
-                            android:text="SDT:"
+                            android:text="@string/tv_soDT"
                             android:textColor="@color/black"
                             android:textSize="14dp" />
 
@@ -154,6 +154,8 @@
                             android:id="@+id/et_editPhone"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:maxLength="10"
+                            android:inputType="phone"
                             android:gravity="center_vertical"
                             android:textColor="@color/black"
                             android:textSize="14dp" />
@@ -169,7 +171,7 @@
                             android:layout_width="50dp"
                             android:layout_height="wrap_content"
                             android:gravity="center_vertical"
-                            android:text="Địa chỉ:"
+                            android:text="@string/tv_diachi"
                             android:textColor="@color/black"
                             android:textSize="14dp" />
 
@@ -200,7 +202,7 @@
                     android:drawableRight="@drawable/icon_ok"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
-                    android:text="Đồng ý"
+                    android:text="@string/btn_dongy"
                     android:textColor="@color/white" />
 
                 <Button
@@ -211,7 +213,7 @@
                     android:drawableRight="@drawable/icon_xoa"
                     android:paddingLeft="20dp"
                     android:paddingRight="20dp"
-                    android:text="Xóa"
+                    android:text="@string/btn_xoa"
                     android:textColor="@color/black" />
             </LinearLayout>
         </LinearLayout>
