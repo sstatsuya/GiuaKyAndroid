@@ -10,10 +10,12 @@ import android.widget.LinearLayout;
 import com.example.giuakyandroid.R;
 
 import donhang.DonHangActivity;
+import donhang.ThongTinDonHangActivity;
 import khachhang.KhachHangActivity;
+import thongke.ThongKeActivity;
 
 public class MenuActivity extends AppCompatActivity {
-    LinearLayout btnSanPham,btnKhachHang, btnDonDatHang;
+    LinearLayout btnSanPham,btnKhachHang, btnDonDatHang, btnThongKe;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,11 +50,20 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
 
+        this.btnThongKe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MenuActivity.this, ThongKeActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
     private void setControl() {
         btnSanPham = findViewById(R.id.btnSanPham);
         btnKhachHang = findViewById(R.id.btnKhachHang);
         this.btnDonDatHang = findViewById(R.id.btnDonDatHang);
+        this.btnThongKe = findViewById(R.id.btnThongKe);
     }
 }
