@@ -7,26 +7,17 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.giuakyandroid.R;
 
 import others.Others;
-import sanpham.model.SanPham;
-import sanpham.model.dbSanPham;
-
-import com.squareup.picasso.Picasso;
+import database.model.SanPham;
+import database.dbSanPham;
 
 public class ThongTinSanPhamActivity extends AppCompatActivity {
     SanPham sanPham;

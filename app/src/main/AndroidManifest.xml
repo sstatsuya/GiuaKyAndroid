@@ -22,6 +22,7 @@
             android:exported="false" />
         <activity
             android:name="donhang.ThemDonHangActivity"
+            android:windowSoftInputMode="adjustPan"
             android:exported="false" />
         <activity
             android:name="sanpham.ThemSanPhamActivity"

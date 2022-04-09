@@ -1,4 +1,4 @@
-package khachhang.model;
+package database;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -9,6 +9,8 @@ import android.database.sqlite.SQLiteStatement;
 import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
+
+import database.model.KhachHang;
 
 public class DBKhachHang extends SQLiteOpenHelper {
     public static final String TABLE_NAME = "KHACHHANG";

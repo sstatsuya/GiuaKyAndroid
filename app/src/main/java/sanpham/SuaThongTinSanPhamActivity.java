@@ -11,7 +11,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -24,8 +23,8 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 
 import others.Others;
-import sanpham.model.SanPham;
-import sanpham.model.dbSanPham;
+import database.model.SanPham;
+import database.dbSanPham;
 
 public class SuaThongTinSanPhamActivity extends AppCompatActivity {
     EditText etSTTSPTen, etSTTPGia, etSTTSPXuatXu;

@@ -1,6 +1,8 @@
 package donhang.model;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,8 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.giuakyandroid.R;
-import sanpham.model.SanPham;
-import com.squareup.picasso.Picasso;
+import database.model.SanPham;
 
 import java.util.ArrayList;
 
@@ -40,7 +41,7 @@ public class AdapterDSSanPham extends ArrayAdapter {
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         convertView = LayoutInflater.from(context).inflate(resource, null);
 
-        ImageView hinhAnhSanPham =convertView.findViewById(R.id.ivHinhAnhSanPham);
+        ImageView hinhAnhSanPham = convertView.findViewById(R.id.ivHinhAnhSanPham);
         TextView tenSanPham = convertView.findViewById(R.id.tvTenSanPham),
                 maSanPham = convertView.findViewById(R.id.tvMaSanPham),
                 soLuongSanPham = convertView.findViewById(R.id.tvSoLuongSanPham),
@@ -49,11 +50,12 @@ public class AdapterDSSanPham extends ArrayAdapter {
         SanPham sp = this.sanPhams.get(position);
 
         tenSanPham.setText(sp.getTenSP());
-        maSanPham.setText(sp.getMaSP());
+        maSanPham.setText(String.valueOf(sp.getMaSP()));
         soLuongSanPham.setText("0");
         giaTienSanPham.setText(sp.getDonGia().toString());
 
-        Picasso.get().load(sp.getMaSP()).into(hinhAnhSanPham);
+        Bitmap bitmap = BitmapFactory.decodeByteArray(sp.getHinh(), 0, sp.getHinh().length);
+        hinhAnhSanPham.setImageBitmap(bitmap);
 
         return convertView;
     }
