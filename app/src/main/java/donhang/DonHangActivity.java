@@ -3,6 +3,7 @@ package donhang;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -42,6 +43,14 @@ public class DonHangActivity extends AppCompatActivity {
         khoiTao();
         AdapterDonHang adapterDonHang = new AdapterDonHang(this, R.layout.layout_item_donhang, donHangs);
         lvDSDonHang.setAdapter(adapterDonHang);
+
+        this.btnThemDonHang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(DonHangActivity.this, ThemDonHangActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 

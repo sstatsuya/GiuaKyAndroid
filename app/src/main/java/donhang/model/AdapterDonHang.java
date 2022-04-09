@@ -2,26 +2,20 @@ package donhang.model;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.giuakyandroid.R;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-import donhang.DonHangActivity;
 import others.Others;
-import sanpham.model.SanPham;
 
 public class AdapterDonHang extends ArrayAdapter<DonHang> {
     Context context;

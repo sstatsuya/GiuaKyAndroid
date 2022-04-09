@@ -1,16 +1,16 @@
-package sanpham.model;
+package database;
 
-import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteStatement;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
+
+import database.model.SanPham;
 
 public class dbSanPham extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "GIUAKYANDROID";

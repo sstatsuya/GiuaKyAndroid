@@ -1,4 +1,4 @@
-package khachhang.model;
+package database.model;
 
 import java.io.Serializable;
 

@@ -15,9 +15,10 @@ import androidx.annotation.Nullable;
 
 import com.example.giuakyandroid.R;
 
-import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.Collections;
+
+import database.model.SanPham;
 
 public class AdapterSanPham extends ArrayAdapter<SanPham> {
     Context context;

@@ -1,4 +1,4 @@
-package sanpham.model;
+package database.model;
 
 import java.io.Serializable;
 

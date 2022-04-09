@@ -4,17 +4,13 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
-import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Spinner;
@@ -27,13 +23,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.giuakyandroid.R;
 
-import java.io.ByteArrayOutputStream;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
 import java.util.ArrayList;
 
-import khachhang.model.DBKhachHang;
-import khachhang.model.KhachHang;
+import database.DBKhachHang;
+import database.model.KhachHang;
 import others.Others;
 
 public class KhachHangActivity extends AppCompatActivity {

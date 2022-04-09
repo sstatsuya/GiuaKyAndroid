@@ -18,9 +18,8 @@ import com.example.giuakyandroid.R;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Locale;
 
-import khachhang.model.KhachHang;
+import database.model.KhachHang;
 
 public class AdapterKhachHang extends ArrayAdapter<KhachHang> {
     private Context context;
