@@ -1,4 +1,4 @@
-package sanpham;
+package batdau;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,8 +10,8 @@ import android.widget.LinearLayout;
 import com.example.giuakyandroid.R;
 
 import donhang.DonHangActivity;
-import donhang.ThongTinDonHangActivity;
 import khachhang.KhachHangActivity;
+import sanpham.SanPhamActivity;
 import thongke.ThongKeActivity;
 
 public class MenuActivity extends AppCompatActivity {

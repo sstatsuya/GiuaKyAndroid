@@ -1,4 +1,4 @@
-package sanpham;
+package batdau;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -25,8 +25,8 @@ public class BatDauActivity extends AppCompatActivity {
         btnStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent myIntent = new Intent(getBaseContext(), MenuActivity.class);
-                startActivity(myIntent);
+                Intent intent = new Intent(BatDauActivity.this, TrangChuActivity.class);
+                startActivity(intent);
             }
         });
     }
