@@ -23,7 +23,6 @@
             android:text="@string/thong_ke"
             android:textColor="@color/primary" />
 
-
     </LinearLayout>
 
     <TextView

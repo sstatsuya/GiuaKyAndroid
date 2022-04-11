@@ -11,8 +11,7 @@ import java.util.ArrayList;
 
 import database.dbSanPham;
 import database.model.SanPham;
-import donhang.model.AdapterDSMatHang;
-import donhang.model.AdapterDSSanPham;
+import donhang.model.AdapterChonMatHang;
 
 public class ChonMatHangActivity extends AppCompatActivity {
     ArrayList<SanPham> matHangs = new ArrayList<>();
@@ -34,8 +33,8 @@ public class ChonMatHangActivity extends AppCompatActivity {
 
         this.lvMatHang = findViewById(R.id.lv_chonmathang_danhsachmathang);
 
-        AdapterDSMatHang adapterDSMatHang = new AdapterDSMatHang(this, R.layout.layout_item_chon_mat_hang, this.matHangs);
-        this.lvMatHang.setAdapter(adapterDSMatHang);
+        AdapterChonMatHang adapterChonMatHang = new AdapterChonMatHang(this, R.layout.layout_item_chon_mat_hang, this.matHangs);
+        this.lvMatHang.setAdapter(adapterChonMatHang);
     }
 
     private void setEvent() {

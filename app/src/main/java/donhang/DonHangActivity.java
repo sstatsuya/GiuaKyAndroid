@@ -1,5 +1,6 @@
 package donhang;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Dialog;
@@ -13,6 +14,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.giuakyandroid.R;
 
@@ -48,7 +50,8 @@ public class DonHangActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(DonHangActivity.this, ThemDonHangActivity.class);
-                startActivity(intent);
+//                startActivity(intent);
+                startActivityForResult(intent, 1);
             }
         });
 
@@ -66,6 +69,18 @@ public class DonHangActivity extends AppCompatActivity {
     private void setControl() {
         btnThemDonHang = findViewById(R.id.btn_them_don_hang);
         lvDSDonHang = findViewById(R.id.lvDSDonHang);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == 1){
+            if(resultCode == 0) {
+                Toast.makeText(this, "bam nut huy", Toast.LENGTH_SHORT).show();
+            } else if(resultCode == 1) {
+                Toast.makeText(this, "bam nut luu", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 
 
