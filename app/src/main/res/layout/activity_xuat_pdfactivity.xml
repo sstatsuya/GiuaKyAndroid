@@ -12,4 +12,15 @@
         android:text="Trang xuất pdf"
         android:textSize="32dp"
         android:textColor="@color/red"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="File pdf nằm trong Android/data/com.example.giuakyandroid/files/Documents/hoadon.pdf"
+        android:textSize="16dp"
+        android:textColor="@color/black"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Xuất PDF"
+        android:id="@+id/btn_xuat_pdf"/>
 </LinearLayout>
