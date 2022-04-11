@@ -1,6 +1,7 @@
 package donhang.model;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
@@ -24,7 +25,7 @@ public class AdapterChonMatHang extends ArrayAdapter {
     ///Chọn 1 sản phẩm sẽ phải hỏi số lượng bằng dialog
     Context context;
     int resource;
-    ArrayList<SanPham> matHangs;
+    ArrayList<SanPham> matHangs, sanPhamDaChons;
 
     ImageView hinhAnhSanPham;
     TextView tenSanPham, maSanPham, giaTienSanPham;
@@ -62,19 +63,7 @@ public class AdapterChonMatHang extends ArrayAdapter {
         Bitmap bitmap = BitmapFactory.decodeByteArray(sp.getHinh(), 0, sp.getHinh().length);
         hinhAnhSanPham.setImageBitmap(bitmap);
 
-        //SetEvent
-        setEvent(position);
-
         return convertView;
     }
 
-    private void setEvent(int i) {
-        this.btnChonSanPham.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                matHangs.remove(i);
-                notifyDataSetChanged();
-            }
-        });
-    }
 }

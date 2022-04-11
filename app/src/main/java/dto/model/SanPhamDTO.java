@@ -1,21 +1,16 @@
-package database.model;
+package dto.model;
 
-import androidx.annotation.Nullable;
-
-import java.io.Serializable;
-import java.util.Arrays;
-import java.util.Objects;
-
-public class SanPham implements Serializable {
+public class SanPhamDTO {
     Integer maSP;
+    int soLuong;
     String tenSP, xuatXu;
     Double donGia;
     byte[] hinh;
 
-    public SanPham() {
+    public SanPhamDTO() {
     }
 
-    public SanPham(Integer maSP, String tenSP, String xuatXu, Double donGia, byte[] hinh) {
+    public SanPhamDTO(Integer maSP, String tenSP, String xuatXu, Double donGia, byte[] hinh) {
         this.maSP = maSP;
         this.tenSP = tenSP;
         this.xuatXu = xuatXu;
@@ -23,24 +18,22 @@ public class SanPham implements Serializable {
         this.hinh = hinh;
     }
 
-    @Override
-    public int hashCode() {
-        return this.maSP;
+    public SanPhamDTO(Integer maSP, int soLuong, String tenSP, String xuatXu, Double donGia, byte[] hinh) {
+        this.maSP = maSP;
+        this.soLuong = soLuong;
+        this.tenSP = tenSP;
+        this.xuatXu = xuatXu;
+        this.donGia = donGia;
+        this.hinh = hinh;
     }
-//
-//    @Override
-//    public boolean equals(@Nullable Object obj) {
-//        return this.getMaSP() == ((SanPham) obj).getMaSP() ;
-//    }
-//
-//    @Override
-//    public int compareTo(SanPham sanPham) {
-//        if(this.getMaSP()==sanPham.getMaSP())
-//            return 1;
-//        else return 0;
-//    }
 
-    //get set
+    public int getSoLuong() {
+        return soLuong;
+    }
+
+    public void setSoLuong(int soLuong) {
+        this.soLuong = soLuong;
+    }
 
     public Integer getMaSP() {
         return maSP;

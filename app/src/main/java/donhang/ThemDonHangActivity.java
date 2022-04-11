@@ -1,5 +1,6 @@
 package donhang;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -11,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.giuakyandroid.R;
 import database.model.SanPham;
@@ -24,11 +26,20 @@ import database.dbSanPham;
 public class ThemDonHangActivity extends AppCompatActivity {
 
     ListView lsSanPham;
-    TextView tvMaKhachHang, tvTongTien;
-    EditText etNgayDatHang;
+    TextView tvTenKhachHang, tvTongTien;
+    EditText etMaKhachHang, etNgayDatHang;
     Button btnChonKhachHang, btnChonMatHang, btnLuu, btnHuy;
     ArrayList<SanPham> sanPhams = new ArrayList<>();
 
+    AdapterThemDonHangDSSanPham adapterThemDonHangDSSanPham;
+
+    public ArrayList<SanPham> getSanPhams() {
+        return sanPhams;
+    }
+
+    public void setSanPhams(ArrayList<SanPham> sanPhams) {
+        this.sanPhams = sanPhams;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,8 +52,9 @@ public class ThemDonHangActivity extends AppCompatActivity {
     }
 
     private void setControl() {
-        init();
-        this.tvMaKhachHang = findViewById(R.id.tv_themdonhang_MaKhachHang);
+//        init();
+        this.etMaKhachHang = findViewById(R.id.et_themdonhang_MaKhachHang);
+        this.tvTenKhachHang = findViewById(R.id.tv_themdonhang_TenKhachHang);
         this.btnChonKhachHang = findViewById(R.id.btn_themdonhang_ChonKhachHang);
         this.etNgayDatHang = findViewById(R.id.et_themdonhang_NgayDatHang);
         this.btnChonMatHang = findViewById(R.id.btn_themdonhang_ChonMatHang);
@@ -112,7 +124,7 @@ public class ThemDonHangActivity extends AppCompatActivity {
             public void afterTextChanged(Editable s) {}
         });
 
-        AdapterThemDonHangDSSanPham adapterThemDonHangDSSanPham = new AdapterThemDonHangDSSanPham(this, R.layout.layout_item_them_mat_hang, this.sanPhams);
+        this.adapterThemDonHangDSSanPham = new AdapterThemDonHangDSSanPham(this, R.layout.layout_item_them_mat_hang, this.sanPhams);
         this.lsSanPham.setAdapter(adapterThemDonHangDSSanPham);
     }
 
@@ -120,7 +132,7 @@ public class ThemDonHangActivity extends AppCompatActivity {
         this.btnChonKhachHang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                String temp = String.valueOf(etMaKhachHang.getText());
             }
         });
 
@@ -129,7 +141,7 @@ public class ThemDonHangActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(ThemDonHangActivity.this, ChonMatHangActivity.class);
 //                startActivity(intent);
-                startActivityForResult(intent, 1);
+                startActivityForResult(intent, 2);
             }
 
         });
@@ -137,8 +149,6 @@ public class ThemDonHangActivity extends AppCompatActivity {
         this.btnHuy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent intent = new Intent(ThemDonHangActivity.this, DonHangActivity.class);
-//                startActivity(intent);
                 Intent intent = new Intent();
                 setResult(0);
                 finish();
@@ -148,8 +158,6 @@ public class ThemDonHangActivity extends AppCompatActivity {
         this.btnLuu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent intent = new Intent(ThemDonHangActivity.this, DonHangActivity.class);
-//                startActivity(intent);
                 Intent intent = new Intent();
                 setResult(1);
                 finish();
@@ -163,5 +171,26 @@ public class ThemDonHangActivity extends AppCompatActivity {
         sanPhams.addAll(dbSanPham.docDL());
     }
 
-
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case 1:
+                Toast.makeText(this, "request code 1", Toast.LENGTH_SHORT).show();
+                break;
+            case 2:
+                if(resultCode == 1) {
+                    if(data != null) {
+                        SanPham sp = (SanPham) data.getSerializableExtra("sanpham");
+                        if(!this.sanPhams.contains(sp)){
+                            this.sanPhams.add(sp);
+                        }
+                        adapterThemDonHangDSSanPham.notifyDataSetChanged();
+                    } else {
+                        Toast.makeText(this, "data null", Toast.LENGTH_SHORT).show();
+                    }
+                }
+                break;
+        }
+    }
 }
