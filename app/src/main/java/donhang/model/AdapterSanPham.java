@@ -1,6 +1,8 @@
 package donhang.model;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,13 +18,14 @@ import com.example.giuakyandroid.R;
 import java.util.ArrayList;
 
 import database.model.SanPham;
+import database.model.SanPhamDonHang;
 
-public class AdapterSanPham extends ArrayAdapter<SanPham> {
+public class AdapterSanPham extends ArrayAdapter<SanPhamDonHang> {
     Context context;
     int resource;
-    ArrayList<SanPham> data;
+    ArrayList<SanPhamDonHang> data;
 
-    public AdapterSanPham(@NonNull Context context, int resource, @NonNull ArrayList<SanPham> data) {
+    public AdapterSanPham(@NonNull Context context, int resource, @NonNull ArrayList<SanPhamDonHang> data) {
         super(context, resource, data);
         this.context = context;
         this.resource = resource;
@@ -38,20 +41,22 @@ public class AdapterSanPham extends ArrayAdapter<SanPham> {
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         convertView = LayoutInflater.from(context).inflate(resource, null);
+        SanPhamDonHang sp = this.data.get(position);
+
+        System.out.println("----------------" + this.data.size());
 
         ImageView ivTTSPHinh = convertView.findViewById(R.id.iv_ttdh_hinh_sp);
         TextView tvTTSPMa = convertView.findViewById(R.id.tv_ttdh_ma_sp);
         TextView tvTTSPTen = convertView.findViewById(R.id.tv_ttdh_ten_sp);
-//        TextView tvTTSPSoLuong = convert
-//        View.findViewById(R.id.tv_ttdh_soluong_sp);
-//        SanPham sanPham = data.get(position);
-//
-//        tvTTSPMa.setText(sanPham.getMaSP());
-//        tvTTSPTen.setText(sanPham.getTenSP());
-//        tvTTSPSoLuong.setText("Chua biet so luong");
+        TextView tvTTSPSoLuong = convertView.findViewById(R.id.tv_ttdh_soluong_sp);
+        TextView tvTTSPGiaTien = convertView.findViewById(R.id.tv_ttdh_giatien_sp);
 
+        ivTTSPHinh.setImageBitmap(BitmapFactory.decodeByteArray(sp.getHinh(), 0, sp.getHinh().length));
+        tvTTSPMa.setText("Mã sản phẩm " + String.valueOf(sp.getMaSP()));
+        tvTTSPTen.setText(sp.getTenSP());
+        tvTTSPSoLuong.setText(String.valueOf(sp.getSoLuong()));
+        tvTTSPGiaTien.setText(String.valueOf(sp.getDonGia()));
 
-//        Picasso.get().load(sanPham.getLinkHinhAnh()).into(ivTTSPHinh);
 //
 //        imageView.setOnClickListener(new View.OnClickListener() {
 //            @Override

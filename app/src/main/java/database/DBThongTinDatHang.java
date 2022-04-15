@@ -50,7 +50,7 @@ public class DBThongTinDatHang {
         //query
         String sql = "SELECT SP.MASP, SP.TENSP, SP.XUATXU, SP.DONGIA, SP.HINHANH, DH.SOLUONGDAT\n" +
                     "FROM SANPHAM SP, THONGTINDATHANG DH\n" +
-                    "WHERE SP.MASP = DH.MASP AND DH.MADH = " + String.valueOf(id);
+                    "WHERE SP.MASP = DH.MASP AND DH.MADH=" + String.valueOf(id);
 
         SQLiteDatabase database = dbHelper.getReadableDatabase();
         Cursor cursor = database.rawQuery(sql, null);

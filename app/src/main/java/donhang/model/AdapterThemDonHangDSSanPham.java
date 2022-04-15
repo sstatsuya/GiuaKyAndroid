@@ -88,7 +88,8 @@ public class AdapterThemDonHangDSSanPham extends ArrayAdapter {
         this.btnTruSoLuongSanPham.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                sanPhams.get(position).setSoLuong(sanPhams.get(position).getSoLuong() - 1);
+                if(sanPhams.get(position).getSoLuong() != 1)
+                    sanPhams.get(position).setSoLuong(sanPhams.get(position).getSoLuong() - 1);
                 soLuongSanPham.setText(String.valueOf(sanPhams.get(position).getSoLuong()));
                 tongTien(finalConvertView);
 //                Toast.makeText(context, "tru so luong san pham", Toast.LENGTH_SHORT).show();
