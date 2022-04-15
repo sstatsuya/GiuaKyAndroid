@@ -2,6 +2,7 @@ package donhang.model;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import database.model.DonHang;
+import donhang.DonHangActivity;
+import donhang.ThongTinDonHangActivity;
 import others.Others;
 
 public class AdapterDonHang extends ArrayAdapter<DonHang> {
@@ -60,6 +63,16 @@ public class AdapterDonHang extends ArrayAdapter<DonHang> {
             @Override
             public void onClick(View view) {
                 xoaDonHang(donHang);
+            }
+        });
+
+        btnXemDonHang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int value=data.get(position).getMaDH();
+                Intent intent = new Intent(view.getContext(), ThongTinDonHangActivity.class);
+                intent.putExtra("madonhang",value);
+                context.startActivity(intent);
             }
         });
 

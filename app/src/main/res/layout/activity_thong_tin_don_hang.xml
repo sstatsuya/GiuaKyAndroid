@@ -42,7 +42,7 @@
                 android:paddingVertical="8dp">
 
                 <TextView
-                    android:id="@+id/tv_donhang_ma"
+                    android:id="@+id/tv_thongtindonhang_madonhang"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -52,7 +52,7 @@
                     android:textSize="12dp" />
 
                 <TextView
-                    android:id="@+id/tv_donhang_ngay"
+                    android:id="@+id/tv_thongtindonhang_ngaydathang"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -63,7 +63,7 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/tv_donhang_ten_khachhang"
+                android:id="@+id/tv_thongtindonhang_tenkhachhang"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingHorizontal="12dp"

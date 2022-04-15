@@ -129,7 +129,6 @@ public class ThemDonHangActivity extends AppCompatActivity {
                 }
             }
 
-
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 
@@ -205,6 +204,8 @@ public class ThemDonHangActivity extends AppCompatActivity {
                 });
             }
         });
+
+
     }
 
     public void init(){

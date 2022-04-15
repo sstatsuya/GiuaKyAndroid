@@ -79,11 +79,12 @@ public class DonHangActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == 1){
             if(resultCode == 0) {
-                Toast.makeText(this, "bam nut huy", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(this, "bam nut huy", Toast.LENGTH_SHORT).show();
             } else if(resultCode == 1) {
-                donHangs = dbDonHang.getAll();
+                donHangs.clear();
+                donHangs.addAll(dbDonHang.getAll());
                 adapterDonHang.notifyDataSetChanged();
-                Toast.makeText(this, "bam nut luu", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(this, "bam nut luu", Toast.LENGTH_SHORT).show();
             }
         }
     }
