@@ -22,13 +22,18 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
+import database.DBDonHang;
+import database.model.DonHang;
 import donhang.model.AdapterDonHang;
-import donhang.model.DonHang;
 import others.Others;
 
 public class DonHangActivity extends AppCompatActivity {
+    //database
+    DBDonHang dbDonHang;
+
     ListView lvDSDonHang;
     TextView btnThemDonHang;
+    AdapterDonHang adapterDonHang;
     ArrayList<DonHang> donHangs = new ArrayList<>();
     Others others;
     @Override
@@ -37,13 +42,16 @@ public class DonHangActivity extends AppCompatActivity {
         setContentView(R.layout.activity_don_hang);
         getSupportActionBar().hide();
         getWindow().setStatusBarColor(getResources().getColor(R.color.gray));
+
+        this.dbDonHang = new DBDonHang(this.getApplicationContext());
+
         setControl();
         setEvent();
     }
 
     private void setEvent() {
-        khoiTao();
-        AdapterDonHang adapterDonHang = new AdapterDonHang(this, R.layout.layout_item_donhang, donHangs);
+        init();
+        adapterDonHang = new AdapterDonHang(this, R.layout.layout_item_donhang, donHangs);
         lvDSDonHang.setAdapter(adapterDonHang);
 
         this.btnThemDonHang.setOnClickListener(new View.OnClickListener() {
@@ -57,13 +65,8 @@ public class DonHangActivity extends AppCompatActivity {
 
     }
 
-    private void khoiTao() {
-        Date date = new Date(2022, 4, 3);
-        donHangs.add(new DonHang("DH0001", date, "KH0001"));
-        donHangs.add(new DonHang("DH0002", date, "KH0001"));
-        donHangs.add(new DonHang("DH0003", date, "KH0001"));
-        donHangs.add(new DonHang("DH0004", date, "KH0001"));
-        donHangs.add(new DonHang("DH0005", date, "KH0001"));
+    private void init() {
+        donHangs = dbDonHang.getAll();
     }
 
     private void setControl() {
@@ -78,6 +81,8 @@ public class DonHangActivity extends AppCompatActivity {
             if(resultCode == 0) {
                 Toast.makeText(this, "bam nut huy", Toast.LENGTH_SHORT).show();
             } else if(resultCode == 1) {
+                donHangs = dbDonHang.getAll();
+                adapterDonHang.notifyDataSetChanged();
                 Toast.makeText(this, "bam nut luu", Toast.LENGTH_SHORT).show();
             }
         }

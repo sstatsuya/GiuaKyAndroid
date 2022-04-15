@@ -15,31 +15,42 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.giuakyandroid.R;
+
+import chucnang.Dialog;
+import database.DBDonHang;
+import database.DBKhachHang;
+import database.model.DonHang;
 import database.model.SanPham;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
+import database.model.SanPhamDonHang;
 import donhang.model.AdapterThemDonHangDSSanPham;
 import database.dbSanPham;
 
 public class ThemDonHangActivity extends AppCompatActivity {
-
+    //Variable match with layout
     ListView lsSanPham;
     TextView tvTenKhachHang, tvTongTien;
     EditText etMaKhachHang, etNgayDatHang;
     Button btnChonKhachHang, btnChonMatHang, btnLuu, btnHuy;
-    ArrayList<SanPham> sanPhams = new ArrayList<>();
-
+    //Essential Variable
+    ArrayList<SanPhamDonHang> sanPhamDonHangs = new ArrayList<>();
     AdapterThemDonHangDSSanPham adapterThemDonHangDSSanPham;
+    DBKhachHang dbKhachHang;
+    DBDonHang dbDonHang;
+    int maKhachHang;
 
-    public ArrayList<SanPham> getSanPhams() {
-        return sanPhams;
-    }
-
-    public void setSanPhams(ArrayList<SanPham> sanPhams) {
-        this.sanPhams = sanPhams;
-    }
+//    public ArrayList<SanPham> getSanPhams() {
+//        return sanPhams;
+//    }
+//
+//    public void setSanPhams(ArrayList<SanPham> sanPhams) {
+//        this.sanPhams = sanPhams;
+//    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +63,8 @@ public class ThemDonHangActivity extends AppCompatActivity {
     }
 
     private void setControl() {
+        this.dbKhachHang = new DBKhachHang(this.getApplicationContext());
+        this.dbDonHang = new DBDonHang(this.getApplicationContext());
 //        init();
         this.etMaKhachHang = findViewById(R.id.et_themdonhang_MaKhachHang);
         this.tvTenKhachHang = findViewById(R.id.tv_themdonhang_TenKhachHang);
@@ -124,7 +137,7 @@ public class ThemDonHangActivity extends AppCompatActivity {
             public void afterTextChanged(Editable s) {}
         });
 
-        this.adapterThemDonHangDSSanPham = new AdapterThemDonHangDSSanPham(this, R.layout.layout_item_them_mat_hang, this.sanPhams);
+        this.adapterThemDonHangDSSanPham = new AdapterThemDonHangDSSanPham(this, R.layout.layout_item_them_mat_hang, this.sanPhamDonHangs);
         this.lsSanPham.setAdapter(adapterThemDonHangDSSanPham);
     }
 
@@ -132,7 +145,12 @@ public class ThemDonHangActivity extends AppCompatActivity {
         this.btnChonKhachHang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String temp = String.valueOf(etMaKhachHang.getText());
+                maKhachHang = Integer.parseInt(String.valueOf(etMaKhachHang.getText()));
+                try {
+                    tvTenKhachHang.setText(dbKhachHang.getTenKhachHangByID(maKhachHang));
+                } catch (Exception e){
+                    Toast.makeText(ThemDonHangActivity.this, "Không tìm thấy khách hàng có mã " + maKhachHang, Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -158,17 +176,41 @@ public class ThemDonHangActivity extends AppCompatActivity {
         this.btnLuu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent();
-                setResult(1);
-                finish();
+                SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+                Date ngayDatHang;
+                try {
+                    ngayDatHang = df.parse(String.valueOf(etNgayDatHang.getText()));
+                } catch (Exception e) {
+                    Toast.makeText(ThemDonHangActivity.this, "Vui lòng nhập ngày đặt hàng", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if(maKhachHang == 0){
+                    Toast.makeText(ThemDonHangActivity.this, "Vui lòng nhập mã khách hàng", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                int n = dbDonHang.insert(new DonHang(1,2, new Date(), sanPhamDonHangs));
+
+                android.app.Dialog dialog = Dialog.openSuccessDialog(ThemDonHangActivity.this, "Đơn hàng vừa thêm có mã đơn hàng là " + String.valueOf(n));
+                dialog.show();
+                TextView btnSuccessDongY = dialog.findViewById(R.id.btn_success_dong_y);
+                btnSuccessDongY.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent();
+                        setResult(1);
+                        finish();
+                    }
+                });
             }
         });
     }
 
     public void init(){
-        dbSanPham dbSanPham = new dbSanPham(getApplicationContext());
-        sanPhams.clear();
-        sanPhams.addAll(dbSanPham.docDL());
+//        dbSanPham dbSanPham = new dbSanPham(getApplicationContext());
+//        sanPhams.clear();
+//        sanPhams.addAll(dbSanPham.docDL());
     }
 
     @Override
@@ -181,10 +223,16 @@ public class ThemDonHangActivity extends AppCompatActivity {
             case 2:
                 if(resultCode == 1) {
                     if(data != null) {
-                        SanPham sp = (SanPham) data.getSerializableExtra("sanpham");
-                        if(!this.sanPhams.contains(sp)){
-                            this.sanPhams.add(sp);
+                        SanPhamDonHang sp = (SanPhamDonHang) data.getSerializableExtra("sanpham");
+                        boolean flag = true;
+                        for(SanPhamDonHang i: sanPhamDonHangs) {
+                            if(i.getMaSP().equals(sp.getMaSP())) {
+                                flag = false;
+                            }
                         }
+
+                        if(flag)
+                            sanPhamDonHangs.add(sp);
                         adapterThemDonHangDSSanPham.notifyDataSetChanged();
                     } else {
                         Toast.makeText(this, "data null", Toast.LENGTH_SHORT).show();
@@ -192,5 +240,9 @@ public class ThemDonHangActivity extends AppCompatActivity {
                 }
                 break;
         }
+    }
+
+    public void setTongTien(Double tongTien) {
+        this.tvTongTien.setText(String.valueOf(tongTien));
     }
 }

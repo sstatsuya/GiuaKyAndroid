@@ -17,6 +17,7 @@ import androidx.annotation.Nullable;
 
 import com.example.giuakyandroid.R;
 import database.model.SanPham;
+import database.model.SanPhamDonHang;
 
 import java.util.ArrayList;
 
@@ -24,13 +25,22 @@ import java.util.ArrayList;
 public class AdapterThemDonHangDSSanPham extends ArrayAdapter {
     Context context;
     int resource;
-    ArrayList<SanPham> sanPhams;
+    public ArrayList<SanPhamDonHang> sanPhams;
 
     ImageView hinhAnhSanPham;
     TextView tenSanPham, maSanPham, soLuongSanPham, giaTienSanPham;
     Button btnXoaSanPham, btnCongSoLuongSanPham, btnTruSoLuongSanPham;
 
-    public AdapterThemDonHangDSSanPham(@NonNull Context context, int resource, @NonNull ArrayList<SanPham> sanPhams) {
+    public void tongTien(@Nullable View convertView){
+        TextView tvTongTien = convertView.findViewById(R.id.tv_themdonhang_TongTien);
+        Double res = 0.0;
+        for(SanPhamDonHang i: sanPhams)
+            res += (i.getDonGia() * i.getSoLuong());
+        System.out.println("==================================" + String.valueOf(res));
+//        tvTongTien.setText(String.valueOf(res));
+    }
+
+    public AdapterThemDonHangDSSanPham(@NonNull Context context, int resource, @NonNull ArrayList<SanPhamDonHang> sanPhams) {
         super(context, resource, sanPhams);
         this.context = context;
         this.resource = resource;
@@ -46,7 +56,7 @@ public class AdapterThemDonHangDSSanPham extends ArrayAdapter {
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         convertView = LayoutInflater.from(context).inflate(resource, null);
-        SanPham sp = this.sanPhams.get(position);
+        SanPhamDonHang sp = this.sanPhams.get(position);
         //Match Control
         this.hinhAnhSanPham = convertView.findViewById(R.id.iv_itemthemmathang_hinhanhsanpham);
         this.tenSanPham = convertView.findViewById(R.id.tv_itemthemmathang_tensanpham);
@@ -59,37 +69,41 @@ public class AdapterThemDonHangDSSanPham extends ArrayAdapter {
         //Set value
         this.tenSanPham.setText(sp.getTenSP());
         this.maSanPham.setText(String.valueOf(sp.getMaSP()));
-        this.soLuongSanPham.setText("0");
+        this.soLuongSanPham.setText(String.valueOf(sp.getSoLuong()));
         this.giaTienSanPham.setText(sp.getDonGia().toString());
         Bitmap bitmap = BitmapFactory.decodeByteArray(sp.getHinh(), 0, sp.getHinh().length);
         this.hinhAnhSanPham.setImageBitmap(bitmap);
         //Event
-        setEvent(position);
-
-        return convertView;
-    }
-
-    private void setEvent(int i) {
+        View finalConvertView = convertView;
         this.btnCongSoLuongSanPham.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context, "Cong so luong san pham", Toast.LENGTH_SHORT).show();
+                sanPhams.get(position).setSoLuong(sanPhams.get(position).getSoLuong() + 1);
+                soLuongSanPham.setText(String.valueOf(sanPhams.get(position).getSoLuong()));
+                tongTien(finalConvertView);
+//                Toast.makeText(context, "Cong so luong san pham", Toast.LENGTH_SHORT).show();
             }
         });
 
         this.btnTruSoLuongSanPham.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context, "tru so luong san pham", Toast.LENGTH_SHORT).show();
+                sanPhams.get(position).setSoLuong(sanPhams.get(position).getSoLuong() - 1);
+                soLuongSanPham.setText(String.valueOf(sanPhams.get(position).getSoLuong()));
+                tongTien(finalConvertView);
+//                Toast.makeText(context, "tru so luong san pham", Toast.LENGTH_SHORT).show();
             }
         });
 
         this.btnXoaSanPham.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                sanPhams.remove(i);
+                sanPhams.remove(position);
                 notifyDataSetChanged();
+                tongTien(finalConvertView);
             }
         });
+
+        return finalConvertView;
     }
 }

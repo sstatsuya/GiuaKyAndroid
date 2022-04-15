@@ -5,11 +5,14 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteStatement;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
+import java.util.Date;
 
+import database.model.DonHang;
 import database.model.KhachHang;
 
 public class DBKhachHang extends SQLiteOpenHelper {
@@ -41,7 +44,7 @@ public class DBKhachHang extends SQLiteOpenHelper {
             ");";
     // SQL CREATE TABLE DONHANG
     private static final String DBCREATE_SQLDONHANG = "CREATE TABLE DONHANG (" +
-            "    MADH   INTEGER PRIMARY KEY," +
+            "    MADH   INTEGER PRIMARY KEY AUTOINCREMENT," +
             "    NGAYDH DATE," +
             "    MAKH           REFERENCES KHACHHANG (MAKH) ON DELETE CASCADE" +
             "                                               ON UPDATE CASCADE" +
@@ -134,5 +137,20 @@ public class DBKhachHang extends SQLiteOpenHelper {
         SQLiteStatement statement = database.compileStatement(sql);
         statement.executeUpdateDelete();
         database.close();
+    }
+
+    public String getTenKhachHangByID(int id) {
+        Log.i("DATABASE", "DBKhachHang.getTenKhachHangByID " + String.valueOf(id));
+        DonHang donHang;
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(TABLE_NAME, new String[] { COLUMN_ID, COLUMN_NAME},
+                COLUMN_ID + "=?",
+                new String[] { String.valueOf(id) }, null, null, null, null);
+        if (cursor != null)
+            cursor.moveToFirst();
+
+        return cursor.getString(1);
     }
 }

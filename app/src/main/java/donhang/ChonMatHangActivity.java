@@ -12,9 +12,14 @@ import android.widget.Toast;
 import com.example.giuakyandroid.R;
 
 import java.util.ArrayList;
+import java.util.Date;
 
+import database.DBDonHang;
+import database.DBThongTinDatHang;
 import database.dbSanPham;
+import database.model.DonHang;
 import database.model.SanPham;
+import database.model.SanPhamDonHang;
 import donhang.model.AdapterChonMatHang;
 
 public class ChonMatHangActivity extends AppCompatActivity {
@@ -30,6 +35,24 @@ public class ChonMatHangActivity extends AppCompatActivity {
         getWindow().setStatusBarColor(getResources().getColor(R.color.primary));
         setControl();
         setEvent();
+
+//        DBDonHang dbDonHang = new DBDonHang(getApplicationContext());
+//        System.out.println("GetAll");
+//        ArrayList<DonHang> donHangs = dbDonHang.getAll();
+//        donHangs.forEach(System.out::println);
+//        System.out.println("Insert");
+//        ArrayList<SanPhamDonHang> dsSanPham = new ArrayList<SanPhamDonHang>();
+//        dsSanPham.add(new SanPhamDonHang(1, 24));
+//        dsSanPham.add(new SanPhamDonHang(2, 12));
+//        int n = dbDonHang.insert(new DonHang(1,2, new Date(), dsSanPham));
+//        System.out.println(n);
+//        System.out.println("GetAll");
+//        donHangs.clear();
+//        donHangs = dbDonHang.getAll();
+//        donHangs.forEach(System.out::println);
+//        System.out.println("GetAll ThongTinDatHang");
+//        new DBThongTinDatHang(getApplicationContext()).getAll();
+
     }
 
     private void setControl() {
@@ -46,7 +69,8 @@ public class ChonMatHangActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent();
-                intent.putExtra("sanpham", matHangs.get(i));
+                SanPham temp = matHangs.get(i);
+                intent.putExtra("sanpham", new SanPhamDonHang(temp.getMaSP(), temp.getTenSP(), 1, temp.getDonGia(), temp.getHinh(), temp.getXuatXu()));
                 setResult(1, intent);
                 finish();
             }

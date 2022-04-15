@@ -13,14 +13,18 @@ import androidx.annotation.Nullable;
 
 import com.example.giuakyandroid.R;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
+import database.model.DonHang;
 import others.Others;
 
 public class AdapterDonHang extends ArrayAdapter<DonHang> {
     Context context;
     int resource;
     ArrayList<DonHang> data;
+
+    SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 
     public AdapterDonHang(@NonNull Context context, int resource, @NonNull ArrayList<DonHang> data) {
         super(context, resource, data);
@@ -40,17 +44,16 @@ public class AdapterDonHang extends ArrayAdapter<DonHang> {
         convertView = LayoutInflater.from(context).inflate(resource, null);
         DonHang donHang = data.get(position);
 
-
         TextView tvMaDonHang = convertView.findViewById(R.id.tv_donhang_ma);
         TextView tvNgayDonHang = convertView.findViewById(R.id.tv_donhang_ngay);
         TextView tvTenKhachHang = convertView.findViewById(R.id.tv_donhang_ten_khachhang);
         TextView btnXoaDonHang = convertView.findViewById(R.id.btn_donhang_xoa);
         TextView btnXemDonHang = convertView.findViewById(R.id.btn_donhang_xem);
 
-        tvMaDonHang.setText(donHang.getMaDH());
-        String ngayDatHang = donHang.getNgayDatHang().getDay() + "/" + donHang.getNgayDatHang().getMonth() + "/" + donHang.getNgayDatHang().getYear();
-        tvNgayDonHang.setText(ngayDatHang);
-        tvMaDonHang.setText("Khách hàng chưa xác định");
+        tvMaDonHang.setText(String.valueOf(donHang.getMaDH()));
+        tvNgayDonHang.setText(df.format(donHang.getNgayDatHang()));
+        tvMaDonHang.setText("Mã đơn hàng: " + String.valueOf(donHang.getMaDH()));
+        tvTenKhachHang.setText("Tên khách hàng : " + String.valueOf(donHang.getTenKH()));
 
         //Event
         btnXoaDonHang.setOnClickListener(new View.OnClickListener() {
