@@ -25,7 +25,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import database.dbSanPham;
+import database.DBSanPham;
 import database.model.SanPham;
 
 public class XuatPDFActivity extends AppCompatActivity {
@@ -143,7 +143,7 @@ public class XuatPDFActivity extends AppCompatActivity {
     }
 
     private void layDuLieuDatabase() {
-        dbSanPham dbSanPham = new dbSanPham(getApplicationContext());
+        DBSanPham dbSanPham = new DBSanPham(getApplicationContext());
         sanPhams.clear();
         sanPhams.addAll(dbSanPham.docDL());
     }

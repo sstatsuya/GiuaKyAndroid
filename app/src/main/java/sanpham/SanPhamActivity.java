@@ -18,7 +18,7 @@ import com.example.giuakyandroid.R;
 
 import sanpham.model.AdapterSanPham;
 import database.model.SanPham;
-import database.dbSanPham;
+import database.DBSanPham;
 
 import java.util.ArrayList;
 
@@ -96,7 +96,7 @@ public class SanPhamActivity extends AppCompatActivity {
     }
 
     private void layDuLieuDatabase() {
-        dbSanPham dbSanPham = new dbSanPham(getApplicationContext());
+        DBSanPham dbSanPham = new DBSanPham(getApplicationContext());
         sanPhams.clear();
         sanPhams.addAll(dbSanPham.docDL());
     }

@@ -8,13 +8,11 @@ import android.util.Log;
 
 import androidx.annotation.Nullable;
 
-import java.text.SimpleDateFormat;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Date;
 
-import database.model.DonHang;
-import database.model.SanPham;
 import database.model.SanPhamDonHang;
+import database.model.ThongTinDonHang;
 
 public class DBThongTinDatHang {
     private static final String TAG = "Database";
@@ -30,19 +28,47 @@ public class DBThongTinDatHang {
         this.dbHelper = new DBSQLiteOpenHelper(contex);
     }
 
-    //Customize Database DAO control
-    public void getAll() { //Hàm Read
+    //Get all data from ThongTinDonHang table
+    public ArrayList<ThongTinDonHang> getAll() { //Hàm Read
+        ArrayList<ThongTinDonHang> data = new ArrayList<>();
         String sql = "select * from " + TABLE_NAME;
         SQLiteDatabase database = dbHelper.getReadableDatabase();
         Cursor cursor = database.rawQuery(sql, null);
         if (cursor.moveToFirst()) {
             do {
-                System.out.println(cursor.getInt(0) + " - " + cursor.getInt(1) + " - " + cursor.getInt(2));
+                ThongTinDonHang thongTinDonHang = new ThongTinDonHang();
+                thongTinDonHang.setMaHD(cursor.getInt(0));
+                thongTinDonHang.setMaSP(cursor.getInt(1));
+                thongTinDonHang.setSoLuongDat(cursor.getInt(2));
+                data.add(thongTinDonHang);
             }
             while (cursor.moveToNext());
         }
         cursor.close();
+        return data;
     }
+
+    //Get ThongTinDonHang base on maDH
+    public ArrayList<ThongTinDonHang> getAllThongTinDonHangByMaDH(Integer maDH) {
+        ArrayList<ThongTinDonHang> data = new ArrayList<>();
+        String sql = "select * from " + TABLE_NAME +
+        " WHERE MADH = " + String.valueOf(maDH);
+        SQLiteDatabase database = dbHelper.getReadableDatabase();
+        Cursor cursor = database.rawQuery(sql, null);
+        if (cursor.moveToFirst()) {
+            do {
+                ThongTinDonHang thongTinDonHang = new ThongTinDonHang();
+                thongTinDonHang.setMaHD(cursor.getInt(0));
+                thongTinDonHang.setMaSP(cursor.getInt(1));
+                thongTinDonHang.setSoLuongDat(cursor.getInt(2));
+                data.add(thongTinDonHang);
+            }
+            while (cursor.moveToNext());
+        }
+        cursor.close();
+        return data;
+    }
+
 
     public ArrayList<SanPhamDonHang> getAllByMaDH(int id) {
         ArrayList<SanPhamDonHang> sanPhams = new ArrayList<>();

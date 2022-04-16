@@ -20,7 +20,6 @@ import chucnang.Dialog;
 import database.DBDonHang;
 import database.DBKhachHang;
 import database.model.DonHang;
-import database.model.SanPham;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -29,7 +28,6 @@ import java.util.Date;
 
 import database.model.SanPhamDonHang;
 import donhang.model.AdapterThemDonHangDSSanPham;
-import database.dbSanPham;
 
 public class ThemDonHangActivity extends AppCompatActivity {
     //Variable match with layout
@@ -190,7 +188,7 @@ public class ThemDonHangActivity extends AppCompatActivity {
                     return;
                 }
 
-                int n = dbDonHang.insert(new DonHang(1,2, new Date(), sanPhamDonHangs));
+                int n = dbDonHang.insert(new DonHang(1,2, ngayDatHang , sanPhamDonHangs));
 
                 android.app.Dialog dialog = Dialog.openSuccessDialog(ThemDonHangActivity.this, "Đơn hàng vừa thêm có mã đơn hàng là " + String.valueOf(n));
                 dialog.show();

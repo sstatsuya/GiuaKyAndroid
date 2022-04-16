@@ -24,7 +24,7 @@ import java.io.InputStream;
 
 import others.Others;
 import database.model.SanPham;
-import database.dbSanPham;
+import database.DBSanPham;
 
 public class SuaThongTinSanPhamActivity extends AppCompatActivity {
     EditText etSTTSPTen, etSTTPGia, etSTTSPXuatXu;
@@ -141,7 +141,7 @@ public class SuaThongTinSanPhamActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //Sua san pham
-                dbSanPham dbSanPham = new dbSanPham(getApplicationContext());
+                DBSanPham dbSanPham = new DBSanPham(getApplicationContext());
                 dbSanPham.suaDL(layDuLieuInput());
                 sanPham = layDuLieuInput();
                 confirmDialog.dismiss();

@@ -7,17 +7,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.example.giuakyandroid.R;
 
 import java.util.ArrayList;
-import java.util.Date;
 
-import database.DBDonHang;
-import database.DBThongTinDatHang;
-import database.dbSanPham;
-import database.model.DonHang;
+import database.DBSanPham;
 import database.model.SanPham;
 import database.model.SanPhamDonHang;
 import donhang.model.AdapterChonMatHang;
@@ -78,7 +73,7 @@ public class ChonMatHangActivity extends AppCompatActivity {
     }
 
     public void init(){
-        dbSanPham dbSanPham = new dbSanPham(getApplicationContext());
+        DBSanPham dbSanPham = new DBSanPham(getApplicationContext());
         this.matHangs.clear();
         this.matHangs.addAll(dbSanPham.docDL());
     }

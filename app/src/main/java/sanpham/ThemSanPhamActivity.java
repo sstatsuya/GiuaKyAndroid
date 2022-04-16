@@ -21,7 +21,7 @@ import com.example.giuakyandroid.R;
 
 import others.Others;
 import database.model.SanPham;
-import database.dbSanPham;
+import database.DBSanPham;
 
 import java.io.FileNotFoundException;
 import java.io.InputStream;
@@ -55,7 +55,7 @@ public class ThemSanPhamActivity extends AppCompatActivity {
     }
 
     private void setEvent() {
-        dbSanPham dbSanPham = new dbSanPham(getApplicationContext());
+        DBSanPham dbSanPham = new DBSanPham(getApplicationContext());
 //        Bam nut huy
         btnTSPHuy.setOnClickListener(new View.OnClickListener() {
             @Override
