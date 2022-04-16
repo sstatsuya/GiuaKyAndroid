@@ -48,6 +48,7 @@
                 android:layout_marginVertical="8dp"
                 android:text="Tên: Bia Tiger thùng 24 lon"
                 android:textColor="@color/black"
+                android:textStyle="bold"
                 android:id="@+id/tv_ttdh_ten_sp"/>
 
             <TextView
@@ -58,6 +59,15 @@
                 android:text="Số lượng 12"
                 android:textColor="@color/black"
                 android:id="@+id/tv_ttdh_soluong_sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginVertical="8dp"
+                android:text="Giá tiền 200000vnd"
+                android:textColor="@color/black"
+                android:id="@+id/tv_ttdh_giatien_sp"/>
         </LinearLayout>
     </LinearLayout>
 

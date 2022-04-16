@@ -1,6 +1,7 @@
 package database.model;
 
 import java.io.Serializable;
+import java.util.Arrays;
 
 public class SanPhamDonHang implements Serializable {
     Integer maSP;
@@ -72,5 +73,16 @@ public class SanPhamDonHang implements Serializable {
 
     public void setXuatXu(String xuatXu) {
         this.xuatXu = xuatXu;
+    }
+
+    @Override
+    public String toString() {
+        return "SanPhamDonHang{" +
+                "maSP=" + maSP +
+                ", tenSP='" + tenSP + '\'' +
+                ", soLuong=" + soLuong +
+                ", donGia=" + donGia +
+                ", xuatXu='" + xuatXu + '\'' +
+                '}';
     }
 }

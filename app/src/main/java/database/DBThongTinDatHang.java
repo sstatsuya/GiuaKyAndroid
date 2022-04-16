@@ -76,7 +76,7 @@ public class DBThongTinDatHang {
         //query
         String sql = "SELECT SP.MASP, SP.TENSP, SP.XUATXU, SP.DONGIA, SP.HINHANH, DH.SOLUONGDAT\n" +
                     "FROM SANPHAM SP, THONGTINDATHANG DH\n" +
-                    "WHERE SP.MASP = DH.MASP AND DH.MADH = " + String.valueOf(id);
+                    "WHERE SP.MASP = DH.MASP AND DH.MADH=" + String.valueOf(id);
 
         SQLiteDatabase database = dbHelper.getReadableDatabase();
         Cursor cursor = database.rawQuery(sql, null);
@@ -129,12 +129,13 @@ public class DBThongTinDatHang {
                 new String[]{String.valueOf(maDH), String.valueOf(maSP)});
     }
 
-    public void delete(int maDH, int maSP) {
-        Log.i(TAG, "DHThongTinDatHang.insert " + maDH + " - " + maSP);
+    public void delete(int maDH) {
+        Log.i(TAG, "DHThongTinDatHang.insert " + maDH);
 
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         db.delete(TABLE_NAME, COLUMN_ID + " = ?",
-                new String[] { String.valueOf(maDH), String.valueOf(maSP) });
+                new String[] { String.valueOf(maDH) });
         db.close();
     }
+
 }

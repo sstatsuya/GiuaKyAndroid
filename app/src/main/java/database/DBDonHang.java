@@ -124,19 +124,32 @@ public class DBDonHang {
 
     public DonHang get(int id) {
         Log.i(TAG, "DBDonHang.get " + String.valueOf(id));
-        DonHang donHang;
+        DonHang donHang = new DonHang();
 
         SQLiteDatabase db = dbHelper.getReadableDatabase();
 
-        Cursor cursor = db.query(TABLE_NAME, new String[] { COLUMN_ID,
-                        COLUMN_CUSTOMER, COLUMN_TIME }, COLUMN_ID + "=?",
-                new String[] { String.valueOf(id) }, null, null, null, null);
+        String sql = "SELECT DH.MADH, DH.MAKH, KH.TENKH, DH.NGAYDH\n" +
+                "FROM DONHANG DH, KHACHHANG KH\n" +
+                "WHERE DH.MAKH = KH.MAKH AND DH.MADH=" + String.valueOf(id);
+        SQLiteDatabase database = dbHelper.getReadableDatabase();
+        Cursor cursor = database.rawQuery(sql, null);
         if (cursor != null)
             cursor.moveToFirst();
 
-        donHang = new DonHang(cursor.getInt(0), cursor.getInt(1), new Date(cursor.getLong(2) * 1000), new ArrayList<>());
+        donHang.setMaDH(cursor.getInt(0));
+        donHang.setMaKH(cursor.getInt(1));
+        donHang.setTenKH(cursor.getString(2));
+        try {
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+            donHang.setNgayDatHang(df.parse(cursor.getString(3)));
+        } catch (ParseException e) {
+            Log.i(TAG, "DBDonHang.get format date errors " + donHang.getMaDH() + " - " + e.toString());
+            e.printStackTrace();
+        }
 
-        return new DonHang();
+        donHang.setSanPhamDonHangs(new DBThongTinDatHang(context).getAllByMaDH(id));
+
+        return donHang;
     }
 
 

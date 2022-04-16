@@ -57,9 +57,6 @@
             android:name="khachhang.KhachHangActivity"
             android:exported="false" />
         <activity
-            android:name="donhang.Test"
-            android:exported="false" />
-        <activity
             android:name="sanpham.SanPhamActivity"
             android:exported="false" />
         <activity
