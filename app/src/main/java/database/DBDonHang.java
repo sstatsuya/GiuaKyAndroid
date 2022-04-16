@@ -89,11 +89,10 @@ public class DBDonHang {
         SQLiteDatabase database = dbHelper.getWritableDatabase();
         // set the format to sql date time
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        Date date = new Date();
         //create order
         ContentValues initialValues = new ContentValues();
         initialValues.put(COLUMN_CUSTOMER, donHangInput.getMaKH());
-        initialValues.put(COLUMN_TIME, dateFormat.format(date));
+        initialValues.put(COLUMN_TIME, dateFormat.format(donHangInput.getNgayDatHang()));
         rowId = database.insert(TABLE_NAME, null, initialValues);
         //update product list
         for(SanPhamDonHang i: donHangInput.getSanPhamDonHangs()){

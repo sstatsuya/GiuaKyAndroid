@@ -17,6 +17,8 @@ import com.example.giuakyandroid.R;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
+import database.DBDonHang;
+import database.DBThongTinDatHang;
 import database.model.DonHang;
 import donhang.DonHangActivity;
 import donhang.ThongTinDonHangActivity;
@@ -81,8 +83,7 @@ public class AdapterDonHang extends ArrayAdapter<DonHang> {
 
 //    Xoa don hang
     public void xoaDonHang(DonHang donHang){
-        Others others = new Others();
-        Dialog confirmDialog = others.openConfirmDialog(context, "Bạn có muốn xóa đơn hàng "+donHang.getMaDH());
+        Dialog confirmDialog = chucnang.Dialog.openConfirmDialog(context, "Bạn có muốn xóa đơn hàng "+donHang.getMaDH());
         confirmDialog.show();
         TextView btnConfirmHuyBo = confirmDialog.findViewById(R.id.btn_confirm_huy_bo);
         TextView btnConfirmDongY = confirmDialog.findViewById(R.id.btn_confirm_dong_y);
@@ -97,12 +98,20 @@ public class AdapterDonHang extends ArrayAdapter<DonHang> {
             @Override
             public void onClick(View view) {
                 confirmDialog.dismiss();
-                Dialog successDialog = others.openSuccessDialog(context, "Xóa đơn hàng thành công");
+                Dialog successDialog = chucnang.Dialog.openSuccessDialog(context, "Xóa đơn hàng thành công");
                 successDialog.show();
                 TextView btnSuccessDongY = successDialog.findViewById(R.id.btn_success_dong_y);
                 btnSuccessDongY.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        new DBDonHang(context).getAll().forEach(System.out::println);
+                        new DBDonHang(context).delete(donHang.getMaDH());
+                        new DBThongTinDatHang(context).delete(donHang.getMaDH());
+                        new DBThongTinDatHang(context).getAll();
+                        new DBDonHang(context).getAll().forEach(System.out::println);
+                        data.remove(donHang);
+                        notifyDataSetChanged();
+
                         successDialog.dismiss();
                     }
                 });
