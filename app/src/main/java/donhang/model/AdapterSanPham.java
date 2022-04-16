@@ -54,8 +54,8 @@ public class AdapterSanPham extends ArrayAdapter<SanPhamDonHang> {
         ivTTSPHinh.setImageBitmap(BitmapFactory.decodeByteArray(sp.getHinh(), 0, sp.getHinh().length));
         tvTTSPMa.setText("Mã sản phẩm " + String.valueOf(sp.getMaSP()));
         tvTTSPTen.setText(sp.getTenSP());
-        tvTTSPSoLuong.setText(String.valueOf(sp.getSoLuong()));
-        tvTTSPGiaTien.setText(String.valueOf(sp.getDonGia()));
+        tvTTSPSoLuong.setText("Số lượng: " + String.valueOf(sp.getSoLuong()));
+        tvTTSPGiaTien.setText("Giá " + String.valueOf(sp.getDonGia()));
 
 //
 //        imageView.setOnClickListener(new View.OnClickListener() {

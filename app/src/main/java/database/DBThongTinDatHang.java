@@ -103,12 +103,13 @@ public class DBThongTinDatHang {
                 new String[]{String.valueOf(maDH), String.valueOf(maSP)});
     }
 
-    public void delete(int maDH, int maSP) {
-        Log.i(TAG, "DHThongTinDatHang.insert " + maDH + " - " + maSP);
+    public void delete(int maDH) {
+        Log.i(TAG, "DHThongTinDatHang.insert " + maDH);
 
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         db.delete(TABLE_NAME, COLUMN_ID + " = ?",
-                new String[] { String.valueOf(maDH), String.valueOf(maSP) });
+                new String[] { String.valueOf(maDH) });
         db.close();
     }
+
 }

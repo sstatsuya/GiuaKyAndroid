@@ -189,7 +189,7 @@ public class ThemDonHangActivity extends AppCompatActivity {
                     return;
                 }
 
-                int n = dbDonHang.insert(new DonHang(1,2, new Date(), sanPhamDonHangs));
+                int n = dbDonHang.insert(new DonHang(1,2, ngayDatHang, sanPhamDonHangs));
 
                 android.app.Dialog dialog = Dialog.openSuccessDialog(ThemDonHangActivity.this, "Đơn hàng vừa thêm có mã đơn hàng là " + String.valueOf(n));
                 dialog.show();
