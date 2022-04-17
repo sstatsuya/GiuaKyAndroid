@@ -4,10 +4,13 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.database.DataSetObserver;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -15,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.giuakyandroid.R;
+import com.google.android.material.snackbar.Snackbar;
 
 import chucnang.Dialog;
 import database.DBDonHang;
@@ -32,25 +36,17 @@ import donhang.model.AdapterThemDonHangDSSanPham;
 import database.dbSanPham;
 
 public class ThemDonHangActivity extends AppCompatActivity {
-    //Variable match with layout
     ListView lsSanPham;
     TextView tvTenKhachHang, tvTongTien;
     EditText etMaKhachHang, etNgayDatHang;
     Button btnChonKhachHang, btnChonMatHang, btnLuu, btnHuy;
     //Essential Variable
-    ArrayList<SanPhamDonHang> sanPhamDonHangs = new ArrayList<>();
+    ArrayList<SanPhamDonHang> sanPhamDonHangs;
     AdapterThemDonHangDSSanPham adapterThemDonHangDSSanPham;
     DBKhachHang dbKhachHang;
     DBDonHang dbDonHang;
+    TextWatcher datePattern;
     int maKhachHang;
-
-//    public ArrayList<SanPham> getSanPhams() {
-//        return sanPhams;
-//    }
-//
-//    public void setSanPhams(ArrayList<SanPham> sanPhams) {
-//        this.sanPhams = sanPhams;
-//    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,25 +54,19 @@ public class ThemDonHangActivity extends AppCompatActivity {
         setContentView(R.layout.activity_them_don_hang);
         getSupportActionBar().hide();
         getWindow().setStatusBarColor(getResources().getColor(R.color.primary));
+        //generate database connector
+        this.dbKhachHang = new DBKhachHang(this.getApplicationContext());
+        this.dbDonHang = new DBDonHang(this.getApplicationContext());
+
+        generate();
         setControl();
         setEvent();
     }
 
-    private void setControl() {
-        this.dbKhachHang = new DBKhachHang(this.getApplicationContext());
-        this.dbDonHang = new DBDonHang(this.getApplicationContext());
-//        init();
-        this.etMaKhachHang = findViewById(R.id.et_themdonhang_MaKhachHang);
-        this.tvTenKhachHang = findViewById(R.id.tv_themdonhang_TenKhachHang);
-        this.btnChonKhachHang = findViewById(R.id.btn_themdonhang_ChonKhachHang);
-        this.etNgayDatHang = findViewById(R.id.et_themdonhang_NgayDatHang);
-        this.btnChonMatHang = findViewById(R.id.btn_themdonhang_ChonMatHang);
-        this.lsSanPham = findViewById(R.id.lv_themdonhang_danhsachmathang);
-        this.tvTongTien = findViewById(R.id.tv_themdonhang_TongTien);
-        this.btnHuy = findViewById(R.id.btn_themdonhang_huy);
-        this.btnLuu = findViewById(R.id.btn_themdonhang_Luu);
-
-        this.etNgayDatHang.addTextChangedListener(new TextWatcher() {
+    private void generate() {
+        this.sanPhamDonHangs = new ArrayList<>();
+        //Date pattern when click to editText NgayDatHang
+        this.datePattern = new TextWatcher() {
             private String current = "";
             private String ddmmyyyy = "DDMMYYYY";
             private Calendar cal = Calendar.getInstance();
@@ -134,13 +124,29 @@ public class ThemDonHangActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {}
-        });
+        };
+    }
 
+    private void setControl() {
+        this.etMaKhachHang = findViewById(R.id.et_themdonhang_MaKhachHang);
+        this.tvTenKhachHang = findViewById(R.id.tv_themdonhang_TenKhachHang);
+        this.btnChonKhachHang = findViewById(R.id.btn_themdonhang_ChonKhachHang);
+        this.etNgayDatHang = findViewById(R.id.et_themdonhang_NgayDatHang);
+        this.btnChonMatHang = findViewById(R.id.btn_themdonhang_ChonMatHang);
+        this.lsSanPham = findViewById(R.id.lv_themdonhang_danhsachmathang);
+        this.tvTongTien = findViewById(R.id.tv_themdonhang_TongTien);
+        this.btnHuy = findViewById(R.id.btn_themdonhang_huy);
+        this.btnLuu = findViewById(R.id.btn_themdonhang_Luu);
+
+        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        this.etNgayDatHang.setText(df.format(new Date()));
         this.adapterThemDonHangDSSanPham = new AdapterThemDonHangDSSanPham(this, R.layout.layout_item_them_mat_hang, this.sanPhamDonHangs);
         this.lsSanPham.setAdapter(adapterThemDonHangDSSanPham);
     }
 
     private void setEvent() {
+        this.etNgayDatHang.addTextChangedListener(datePattern);
+
         this.btnChonKhachHang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -150,6 +156,25 @@ public class ThemDonHangActivity extends AppCompatActivity {
                 } catch (Exception e){
                     Toast.makeText(ThemDonHangActivity.this, "Không tìm thấy khách hàng có mã " + maKhachHang, Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+
+        this.etMaKhachHang.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View view, int i, KeyEvent keyEvent) {
+                // If the event is a key-down event on the "enter" button
+                if ((keyEvent.getAction() == KeyEvent.ACTION_DOWN) &&
+                        (i == KeyEvent.KEYCODE_ENTER)) {
+                    // Perform action on key press
+                    maKhachHang = Integer.parseInt(String.valueOf(etMaKhachHang.getText()));
+                    try {
+                        tvTenKhachHang.setText(dbKhachHang.getTenKhachHangByID(maKhachHang));
+                    } catch (Exception e){
+                        Toast.makeText(ThemDonHangActivity.this, "Không tìm thấy khách hàng có mã " + maKhachHang, Toast.LENGTH_SHORT).show();
+                    }
+                    return true;
+                }
+                return false;
             }
         });
 
@@ -175,43 +200,57 @@ public class ThemDonHangActivity extends AppCompatActivity {
         this.btnLuu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-                Date ngayDatHang;
-                try {
-                    ngayDatHang = df.parse(String.valueOf(etNgayDatHang.getText()));
-                } catch (Exception e) {
-                    Toast.makeText(ThemDonHangActivity.this, "Vui lòng nhập ngày đặt hàng", Toast.LENGTH_SHORT).show();
-                    return;
+                getDataAndSaveNewDonHang();
+            }
+        });
+
+        this.adapterThemDonHangDSSanPham.registerDataSetObserver(new DataSetObserver() {
+            @Override
+            public void onChanged() {
+                double temp = 0.0;
+                for(SanPhamDonHang i: sanPhamDonHangs) {
+                    temp += i.getDonGia() * i.getSoLuong();
                 }
-
-                if(maKhachHang == 0){
-                    Toast.makeText(ThemDonHangActivity.this, "Vui lòng nhập mã khách hàng", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                int n = dbDonHang.insert(new DonHang(1,2, ngayDatHang, sanPhamDonHangs));
-
-                android.app.Dialog dialog = Dialog.openSuccessDialog(ThemDonHangActivity.this, "Đơn hàng vừa thêm có mã đơn hàng là " + String.valueOf(n));
-                dialog.show();
-                TextView btnSuccessDongY = dialog.findViewById(R.id.btn_success_dong_y);
-                btnSuccessDongY.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Intent intent = new Intent();
-                        setResult(1);
-                        finish();
-                    }
-                });
+                tvTongTien.setText(String.valueOf(temp) + "vnd");
             }
         });
 
 
     }
 
-    public void init(){
-//        dbSanPham dbSanPham = new dbSanPham(getApplicationContext());
-//        sanPhams.clear();
-//        sanPhams.addAll(dbSanPham.docDL());
+    private void getDataAndSaveNewDonHang() {
+        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        Date ngayDatHang;
+        try {
+            ngayDatHang = df.parse(String.valueOf(etNgayDatHang.getText()));
+        } catch (Exception e) {
+            Toast.makeText(ThemDonHangActivity.this, "Vui lòng nhập ngày đặt hàng", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if(maKhachHang == 0){
+            Toast.makeText(ThemDonHangActivity.this, "Vui lòng nhập mã khách hàng", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if(sanPhamDonHangs.size() == 0){
+            Toast.makeText(this, "Danh sách mặt hàng trống", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        int n = dbDonHang.insert(new DonHang(1,maKhachHang, ngayDatHang, sanPhamDonHangs));
+
+        android.app.Dialog dialog = Dialog.openSuccessDialog(ThemDonHangActivity.this, "Đơn hàng vừa thêm có mã đơn hàng là " + String.valueOf(n));
+        dialog.show();
+        TextView btnSuccessDongY = dialog.findViewById(R.id.btn_success_dong_y);
+        btnSuccessDongY.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                setResult(1);
+                finish();
+            }
+        });
     }
 
     @Override
@@ -241,9 +280,5 @@ public class ThemDonHangActivity extends AppCompatActivity {
                 }
                 break;
         }
-    }
-
-    public void setTongTien(Double tongTien) {
-        this.tvTongTien.setText(String.valueOf(tongTien));
     }
 }

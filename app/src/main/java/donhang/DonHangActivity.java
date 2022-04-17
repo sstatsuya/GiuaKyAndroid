@@ -28,63 +28,62 @@ import donhang.model.AdapterDonHang;
 import others.Others;
 
 public class DonHangActivity extends AppCompatActivity {
+    ListView lvDSDonHang;
+    TextView tvThemDonHang;
     //database
     DBDonHang dbDonHang;
-
-    ListView lvDSDonHang;
-    TextView btnThemDonHang;
     AdapterDonHang adapterDonHang;
     ArrayList<DonHang> donHangs = new ArrayList<>();
-    Others others;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_don_hang);
         getSupportActionBar().hide();
         getWindow().setStatusBarColor(getResources().getColor(R.color.gray));
-
+        //generate database connector
         this.dbDonHang = new DBDonHang(this.getApplicationContext());
 
+        generate();
         setControl();
         setEvent();
     }
 
-    private void setEvent() {
-        init();
-        adapterDonHang = new AdapterDonHang(this, R.layout.layout_item_donhang, donHangs);
-        lvDSDonHang.setAdapter(adapterDonHang);
-
-        this.btnThemDonHang.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(DonHangActivity.this, ThemDonHangActivity.class);
-//                startActivity(intent);
-                startActivityForResult(intent, 1);
-            }
-        });
-
-    }
-
-    private void init() {
-        donHangs = dbDonHang.getAll();
+    private void generate() {
+        //get list DonHang
+        this.donHangs.clear();
+        this.donHangs.addAll(this.dbDonHang.getAll());
     }
 
     private void setControl() {
-        btnThemDonHang = findViewById(R.id.btn_them_don_hang);
-        lvDSDonHang = findViewById(R.id.lvDSDonHang);
+        //link to layout element
+        this.tvThemDonHang = findViewById(R.id.btn_them_don_hang);
+        this.lvDSDonHang = findViewById(R.id.lvDSDonHang);
+        //Set data to layout element
+        adapterDonHang = new AdapterDonHang(this, R.layout.layout_item_donhang, donHangs);
+        lvDSDonHang.setAdapter(adapterDonHang);
     }
+
+    private void setEvent() {
+        this.tvThemDonHang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(DonHangActivity.this, ThemDonHangActivity.class);
+                startActivityForResult(intent, 1);
+            }
+        });
+    }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == 1){
-            if(resultCode == 0) {
-//                Toast.makeText(this, "bam nut huy", Toast.LENGTH_SHORT).show();
-            } else if(resultCode == 1) {
-                donHangs.clear();
-                donHangs.addAll(dbDonHang.getAll());
+        if (requestCode == 1) { //click Huy button
+            if (resultCode == 0) {
+                Toast.makeText(this, "bam nut huy", Toast.LENGTH_SHORT).show();
+            } else if (resultCode == 1) { //click Luu button
+                generate();
                 adapterDonHang.notifyDataSetChanged();
-//                Toast.makeText(this, "bam nut luu", Toast.LENGTH_SHORT).show();
             }
         }
     }

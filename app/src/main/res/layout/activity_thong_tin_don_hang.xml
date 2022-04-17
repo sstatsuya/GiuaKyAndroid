@@ -27,60 +27,68 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="24dp">
+        android:padding="24dp"
+        android:paddingVertical="8dp">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingVertical="8dp"
-            android:background="@drawable/white_border_background_shadow">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingHorizontal="12dp"
-                android:paddingVertical="8dp">
-
-                <TextView
-                    android:id="@+id/tv_thongtindonhang_madonhang"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Mã đơn: DH0001"
-                    android:textAlignment="textStart"
-                    android:textColor="@color/black"
-                    android:textSize="12dp" />
-
-                <TextView
-                    android:id="@+id/tv_thongtindonhang_ngaydathang"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Mã đơn: DH0001"
-                    android:textAlignment="textEnd"
-                    android:textColor="#999"
-                    android:textSize="12dp" />
-            </LinearLayout>
+            android:orientation="horizontal"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="8dp">
 
             <TextView
-                android:id="@+id/tv_thongtindonhang_tenkhachhang"
+                android:id="@+id/tv_thongtindonhang_madonhang"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingHorizontal="12dp"
-                android:text="Khách hàng Lương Minh Tiến"
-                android:layout_marginTop="12dp"
-                android:layout_marginBottom="12dp"
-                android:textColor="@color/green" />
+                android:layout_weight="1"
+                android:text="Mã đơn: DH0001"
+                android:textAlignment="textStart"
+                android:textColor="@color/black"
+                android:textSize="12dp" />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:background="#ccc"/>
-
-            <ListView
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/tv_thongtindonhang_ngaydathang"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/lv_ttdh_dssp"/>
+                android:layout_weight="1"
+                android:text="Mã đơn: DH0001"
+                android:textAlignment="textEnd"
+                android:textColor="#999"
+                android:textSize="12dp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_thongtindonhang_tenkhachhang"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            android:paddingHorizontal="12dp"
+            android:text="Khách hàng Lương Minh Tiến"
+            android:textColor="@color/green" />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:text="@string/danh_sach_mat_hang"
+            android:textColor="@color/primary"
+            android:textSize="25dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#ccc" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="500dp">
+            <ListView
+                android:id="@+id/lv_ttdh_dssp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
         </LinearLayout>
 
     </LinearLayout>
@@ -98,36 +106,35 @@
             android:textColor="@color/black" />
 
         <TextView
-            android:id="@+id/tv_themdonhang_TongTien"
+            android:id="@+id/tv_thongtindonhang_TongTien"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="3"
+            android:layout_weight="1"
             android:gravity="center"
             android:text="3000000"
             android:textColor="#005A04" />
 
         <Button
-            android:id="@+id/btn_themdonhang_huy"
-            android:layout_width="70dp"
-            android:layout_height="match_parent"
-            android:layout_alignParentLeft="true"
-            android:layout_gravity="right"
-            android:layout_weight="0.5"
-            android:background="@color/hint"
-            android:text="hủy"
-            android:textColor="@color/white" />
-
-        <Button
-            android:id="@+id/btn_themdonhang_Luu"
+            android:id="@+id/btn_thongtindonhang_sua"
             android:layout_width="70dp"
             android:layout_height="match_parent"
             android:layout_alignParentLeft="true"
             android:layout_gravity="right"
             android:layout_weight="0.5"
             android:background="@color/primary"
-            android:text="lưu"
+            android:text="Sửa"
             android:textColor="@color/white" />
 
+        <Button
+            android:id="@+id/btn_thongtindonhang_thoat"
+            android:layout_width="70dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_gravity="right"
+            android:layout_weight="0.5"
+            android:background="@color/hint"
+            android:text="Thoát"
+            android:textColor="@color/white" />
     </LinearLayout>
 
 </LinearLayout>

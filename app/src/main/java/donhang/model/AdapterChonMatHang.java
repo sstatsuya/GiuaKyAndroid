@@ -57,8 +57,8 @@ public class AdapterChonMatHang extends ArrayAdapter {
         this.btnChonSanPham = convertView.findViewById(R.id.btn_itemchonmathang_chon);
 
         tenSanPham.setText(sp.getTenSP());
-        maSanPham.setText(String.valueOf(sp.getMaSP()));
-        giaTienSanPham.setText(sp.getDonGia().toString());
+        maSanPham.setText("Mã sản phẩm " + String.valueOf(sp.getMaSP()));
+        giaTienSanPham.setText(sp.getDonGia().toString() + "vnd");
 
         Bitmap bitmap = BitmapFactory.decodeByteArray(sp.getHinh(), 0, sp.getHinh().length);
         hinhAnhSanPham.setImageBitmap(bitmap);
