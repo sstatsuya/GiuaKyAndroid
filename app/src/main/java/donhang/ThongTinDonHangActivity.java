@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -17,6 +18,7 @@ import java.util.ArrayList;
 
 import database.DBDonHang;
 import database.model.DonHang;
+import database.model.SanPham;
 import database.model.SanPhamDonHang;
 import donhang.model.AdapterSanPham;
 import donhang.model.AdapterThemDonHangDSSanPham;
@@ -37,6 +39,8 @@ public class ThongTinDonHangActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_thong_tin_don_hang);
+        getSupportActionBar().hide();
+        getWindow().setStatusBarColor(getResources().getColor(R.color.gray));
         //get MaDH send from preActivities
         maDH = getIntent().getIntExtra("madonhang", 0);
         //generate database connector
@@ -63,7 +67,7 @@ public class ThongTinDonHangActivity extends AppCompatActivity {
         this.tvNgayDatHang = findViewById(R.id.tv_thongtindonhang_ngaydathang);
         this.lvSanPhamDonHang = findViewById(R.id.lv_ttdh_dssp);
         this.tvTongTien = findViewById(R.id.tv_thongtindonhang_TongTien);
-        this.btnSua = findViewById(R.id.btn_thongtindonhang_sua);
+//        this.btnSua = findViewById(R.id.btn_thongtindonhang_sua);
         this.btnThoat = findViewById(R.id.btn_thongtindonhang_thoat);
 
         this.tvMaDonHang.setText("Mã đơn hàng: " + String.valueOf(this.donHang.getMaDH()));
@@ -87,12 +91,12 @@ public class ThongTinDonHangActivity extends AppCompatActivity {
             }
         });
         
-        this.btnSua.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(ThongTinDonHangActivity.this, "Tính năng này chưa phát triển", Toast.LENGTH_SHORT).show();
-            }
-        });
+//        this.btnSua.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Toast.makeText(ThongTinDonHangActivity.this, "Tính năng này chưa phát triển", Toast.LENGTH_SHORT).show();
+//            }
+//        });
     }
 
     private double calculatorTongTien() {

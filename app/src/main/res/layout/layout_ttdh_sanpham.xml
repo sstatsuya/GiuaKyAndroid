@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/primary"
+    android:background="@color/gray"
     android:orientation="vertical"
     android:padding="12dp">
 
@@ -20,8 +20,8 @@
             android:orientation="vertical">
 
             <ImageView
-                android:layout_width="160dp"
-                android:layout_height="120dp"
+                android:layout_width="120dp"
+                android:layout_height="100dp"
                 android:src="@drawable/empty"
                 android:id="@+id/iv_ttdh_hinh_sp"/>
 
@@ -39,7 +39,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:orientation="vertical"
-            android:gravity="center">
+            android:gravity="center"
+            android:paddingLeft="24dp">
 
             <TextView
                 android:layout_width="wrap_content"

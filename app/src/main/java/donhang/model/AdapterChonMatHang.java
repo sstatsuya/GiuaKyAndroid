@@ -20,6 +20,7 @@ import com.example.giuakyandroid.R;
 import java.util.ArrayList;
 
 import database.model.SanPham;
+import sanpham.ThongTinSanPhamActivity;
 
 public class AdapterChonMatHang extends ArrayAdapter {
     ///Chọn 1 sản phẩm sẽ phải hỏi số lượng bằng dialog
@@ -62,6 +63,16 @@ public class AdapterChonMatHang extends ArrayAdapter {
 
         Bitmap bitmap = BitmapFactory.decodeByteArray(sp.getHinh(), 0, sp.getHinh().length);
         hinhAnhSanPham.setImageBitmap(bitmap);
+
+        this.btnChonSanPham.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intentTTSP = new Intent(context, ThongTinSanPhamActivity.class);
+                intentTTSP.putExtra("mode", "xem");
+                intentTTSP.putExtra("sanPham", sp);
+                context.startActivity(intentTTSP);
+            }
+        });
 
         return convertView;
     }
