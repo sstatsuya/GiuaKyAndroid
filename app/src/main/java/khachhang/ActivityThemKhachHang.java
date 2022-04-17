@@ -114,7 +114,7 @@ public class ActivityThemKhachHang extends AppCompatActivity {
                     if (checkInput()){
                         Intent intent = new Intent();
                         KhachHang khachHang = new KhachHang ( avatar, name, phone, address);
-                        new DBKhachHang(ActivityThemKhachHang.this).InsertData(khachHang);
+                        new DBKhachHang(ActivityThemKhachHang.this).insertData(khachHang);
                         openSuccessDialog();
                     }
 
