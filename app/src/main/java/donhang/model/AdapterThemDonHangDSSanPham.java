@@ -29,16 +29,7 @@ public class AdapterThemDonHangDSSanPham extends ArrayAdapter {
 
     ImageView hinhAnhSanPham;
     TextView tenSanPham, maSanPham, soLuongSanPham, giaTienSanPham;
-    Button btnXoaSanPham, btnCongSoLuongSanPham, btnTruSoLuongSanPham;
-
-    public void tongTien(@Nullable View convertView){
-        TextView tvTongTien = convertView.findViewById(R.id.tv_themdonhang_TongTien);
-        Double res = 0.0;
-        for(SanPhamDonHang i: sanPhams)
-            res += (i.getDonGia() * i.getSoLuong());
-        System.out.println("==================================" + String.valueOf(res));
-//        tvTongTien.setText(String.valueOf(res));
-    }
+    Button btnXemSanPham, btnCongSoLuongSanPham, btnTruSoLuongSanPham;
 
     public AdapterThemDonHangDSSanPham(@NonNull Context context, int resource, @NonNull ArrayList<SanPhamDonHang> sanPhams) {
         super(context, resource, sanPhams);
@@ -63,25 +54,23 @@ public class AdapterThemDonHangDSSanPham extends ArrayAdapter {
         this.maSanPham = convertView.findViewById(R.id.tv_itemthemmathang_masanpham);
         this.soLuongSanPham = convertView.findViewById(R.id.tv_itemthemmathang_soluongsanpham);
         this.giaTienSanPham = convertView.findViewById(R.id.tv_itemthemmathang_giatiensanpham);
-        this.btnXoaSanPham = convertView.findViewById(R.id.btn_itemthemmathang_xoasanpham);
+        this.btnXemSanPham = convertView.findViewById(R.id.btn_itemthemmathang_xoasanpham);
         this.btnCongSoLuongSanPham = convertView.findViewById(R.id.btn_itemthemmathang_soluongsanpham_cong);
         this.btnTruSoLuongSanPham = convertView.findViewById(R.id.btn_itemthemmathang_soluongsanpham_tru);
         //Set value
         this.tenSanPham.setText(sp.getTenSP());
-        this.maSanPham.setText(String.valueOf(sp.getMaSP()));
+        this.maSanPham.setText("Mã sản phẩm " + String.valueOf(sp.getMaSP()));
         this.soLuongSanPham.setText(String.valueOf(sp.getSoLuong()));
-        this.giaTienSanPham.setText(sp.getDonGia().toString());
+        this.giaTienSanPham.setText("Giá " + String.valueOf(sp.getDonGia()) + "vnd");
         Bitmap bitmap = BitmapFactory.decodeByteArray(sp.getHinh(), 0, sp.getHinh().length);
         this.hinhAnhSanPham.setImageBitmap(bitmap);
         //Event
-        View finalConvertView = convertView;
         this.btnCongSoLuongSanPham.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                sanPhams.get(position).setSoLuong(sanPhams.get(position).getSoLuong() + 1);
-                soLuongSanPham.setText(String.valueOf(sanPhams.get(position).getSoLuong()));
-                tongTien(finalConvertView);
-//                Toast.makeText(context, "Cong so luong san pham", Toast.LENGTH_SHORT).show();
+                sanPhams.get(position).setSoLuong(sp.getSoLuong() + 1);
+                soLuongSanPham.setText(String.valueOf(sp.getSoLuong()));
+                notifyDataSetChanged();
             }
         });
 
@@ -91,20 +80,18 @@ public class AdapterThemDonHangDSSanPham extends ArrayAdapter {
                 if(sanPhams.get(position).getSoLuong() != 1)
                     sanPhams.get(position).setSoLuong(sanPhams.get(position).getSoLuong() - 1);
                 soLuongSanPham.setText(String.valueOf(sanPhams.get(position).getSoLuong()));
-                tongTien(finalConvertView);
-//                Toast.makeText(context, "tru so luong san pham", Toast.LENGTH_SHORT).show();
+                notifyDataSetChanged();
             }
         });
 
-        this.btnXoaSanPham.setOnClickListener(new View.OnClickListener() {
+        this.btnXemSanPham.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 sanPhams.remove(position);
                 notifyDataSetChanged();
-                tongTien(finalConvertView);
             }
         });
 
-        return finalConvertView;
+        return convertView;
     }
 }

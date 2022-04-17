@@ -43,8 +43,6 @@ public class AdapterSanPham extends ArrayAdapter<SanPhamDonHang> {
         convertView = LayoutInflater.from(context).inflate(resource, null);
         SanPhamDonHang sp = this.data.get(position);
 
-        System.out.println("----------------" + this.data.size());
-
         ImageView ivTTSPHinh = convertView.findViewById(R.id.iv_ttdh_hinh_sp);
         TextView tvTTSPMa = convertView.findViewById(R.id.tv_ttdh_ma_sp);
         TextView tvTTSPTen = convertView.findViewById(R.id.tv_ttdh_ten_sp);
@@ -55,17 +53,7 @@ public class AdapterSanPham extends ArrayAdapter<SanPhamDonHang> {
         tvTTSPMa.setText("Mã sản phẩm " + String.valueOf(sp.getMaSP()));
         tvTTSPTen.setText(sp.getTenSP());
         tvTTSPSoLuong.setText("Số lượng: " + String.valueOf(sp.getSoLuong()));
-        tvTTSPGiaTien.setText("Giá " + String.valueOf(sp.getDonGia()));
-
-//
-//        imageView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(context, EditDanhLamActivity.class);
-//                intent.putExtra("danhLam", danhLam);
-//                ((MainActivity) context).startActivityForResult(intent, 2);
-//            }
-//        });
+        tvTTSPGiaTien.setText("Giá " + String.valueOf(sp.getDonGia()) + "vnd");
 
         return convertView;
     }

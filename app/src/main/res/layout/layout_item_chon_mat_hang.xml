@@ -81,7 +81,7 @@
             android:layout_gravity="center_vertical"
             android:layout_marginRight="10dp"
             android:background="@drawable/orange_border_button"
-            android:text="@string/chon"
+            android:text="@string/xem"
             android:textColor="@color/white"
             android:textSize="10dp" />
     </GridLayout>
