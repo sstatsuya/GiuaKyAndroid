@@ -4,13 +4,10 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
-import android.database.sqlite.SQLiteStatement;
 import android.util.Log;
 
 import androidx.annotation.Nullable;
 
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -18,9 +15,7 @@ import java.util.Date;
 
 import database.model.DonHang;
 import database.model.KhachHang;
-import database.model.SanPham;
 import database.model.SanPhamDonHang;
-import thongtindonhang.ThongTinDonHang;
 
 public class DBDonHang {
     private static final String TAG = "Database";

@@ -22,9 +22,7 @@
             style="@style/style_title"
             android:text="@string/thong_ke"
             android:textColor="@color/primary" />
-
     </LinearLayout>
-
     <TextView
         android:layout_width="match_parent"
         android:layout_height="2dp"
@@ -37,27 +35,27 @@
         android:orientation="horizontal"
         android:paddingVertical="10dp">
 
-        <RadioGroup
-            android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:orientation="horizontal"
-            android:paddingHorizontal="30dp">
+<!--        <RadioGroup-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="20dp"-->
+<!--            android:orientation="horizontal"-->
+<!--            android:paddingHorizontal="30dp">-->
 
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="Ngày" />
+<!--            <RadioButton-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:text="Ngày" />-->
 
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="Tháng" />
+<!--            <RadioButton-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:text="Tháng" />-->
 
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="Năm" />
-        </RadioGroup>
+<!--            <RadioButton-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:text="Năm" />-->
+<!--        </RadioGroup>-->
 
     </LinearLayout>
 
@@ -66,29 +64,10 @@
         android:id="@+id/barChart"
         android:layout_width="match_parent"
         android:layout_height="300dp"/>
-
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_marginHorizontal="30dp"
-        android:background="@color/primary" />
-
-    <TextView
-        android:layout_width="match_parent"
+    <Button
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="30dp"
-        android:layout_marginTop="5dp"
-        android:text="Sản phẩm bán chạy"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        android:textColor="@color/black" />
-
-    <ListView
-        android:id="@+id/lv_thongke_danhsachmathangbanchay"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="10dp" />
-
+        style="@style/btn_Them"
+        android:id="@+id/btnBestSeller"
+        android:text="Sản phẩm bán chạy"/>
 </LinearLayout>
