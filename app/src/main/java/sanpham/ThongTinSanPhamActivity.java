@@ -37,7 +37,7 @@ public class ThongTinSanPhamActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_thong_tin_san_pham);
         getSupportActionBar().hide();
-        getWindow().setStatusBarColor(getResources().getColor(R.color.gray));
+        getWindow().setStatusBarColor(getResources().getColor(R.color.primary));
         sanPham = (SanPham) getIntent().getSerializableExtra("sanPham");
         mode = getIntent().getStringExtra("mode");
         setControl();

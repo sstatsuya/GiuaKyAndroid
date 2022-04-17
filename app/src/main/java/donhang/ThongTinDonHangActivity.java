@@ -23,6 +23,7 @@ import database.model.SanPham;
 import database.model.SanPhamDonHang;
 import donhang.model.AdapterSanPham;
 import donhang.model.AdapterThemDonHangDSSanPham;
+import others.Others;
 
 public class ThongTinDonHangActivity extends AppCompatActivity {
     TextView tvMaDonHang, tvTenKhachHang, tvNgayDatHang, tvTongTien;
@@ -36,12 +37,14 @@ public class ThongTinDonHangActivity extends AppCompatActivity {
     DonHang donHang;
     int maDH;
 
+    Others others = new Others();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_thong_tin_don_hang);
         getSupportActionBar().hide();
-        getWindow().setStatusBarColor(getResources().getColor(R.color.gray));
+        getWindow().setStatusBarColor(getResources().getColor(R.color.primary));
         //get MaDH send from preActivities
         maDH = getIntent().getIntExtra("madonhang", 0);
         //generate database connector
@@ -74,7 +77,7 @@ public class ThongTinDonHangActivity extends AppCompatActivity {
         this.tvTenKhachHang.setText("Tên khách hàng: " + String.valueOf(this.donHang.getTenKH()));
         SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         this.tvNgayDatHang.setText(df.format(this.donHang.getNgayDatHang()));
-        this.tvTongTien.setText(String.valueOf(calculatorTongTien()) + "vnd");
+        this.tvTongTien.setText(others.numberToVND(calculatorTongTien()));
         //Generate list of SanPhamDonHang
         this.adapterSanPham = new AdapterSanPham(this, R.layout.layout_ttdh_sanpham, this.sanPhamDonHangs);
         this.lvSanPhamDonHang.setAdapter(adapterSanPham);
@@ -91,14 +94,14 @@ public class ThongTinDonHangActivity extends AppCompatActivity {
             }
         });
 
-        this.btnSua.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), SuaDonHangActivity.class);
-                intent.putExtra("madonhang", donHang.getMaDH());
-                startActivity(intent);
-            }
-        });
+//        this.btnSua.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(view.getContext(), SuaDonHangActivity.class);
+//                intent.putExtra("madonhang", donHang.getMaDH());
+//                startActivity(intent);
+//            }
+//        });
     }
 
     private double calculatorTongTien() {
@@ -120,7 +123,7 @@ public class ThongTinDonHangActivity extends AppCompatActivity {
                 this.tvTenKhachHang.setText("Tên khách hàng: " + String.valueOf(this.donHang.getTenKH()));
                 SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
                 this.tvNgayDatHang.setText(df.format(this.donHang.getNgayDatHang()));
-                this.tvTongTien.setText(String.valueOf(calculatorTongTien()) + "vnd");
+                this.tvTongTien.setText(others.numberToVND(calculatorTongTien()));
                 adapterSanPham.notifyDataSetChanged();
             } else {
                 Toast.makeText(this, "data null", Toast.LENGTH_SHORT).show();

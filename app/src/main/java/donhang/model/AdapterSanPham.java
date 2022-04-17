@@ -19,11 +19,13 @@ import java.util.ArrayList;
 
 import database.model.SanPham;
 import database.model.SanPhamDonHang;
+import others.Others;
 
 public class AdapterSanPham extends ArrayAdapter<SanPhamDonHang> {
     Context context;
     int resource;
     ArrayList<SanPhamDonHang> data;
+    Others others = new Others();
 
     public AdapterSanPham(@NonNull Context context, int resource, @NonNull ArrayList<SanPhamDonHang> data) {
         super(context, resource, data);
@@ -53,7 +55,7 @@ public class AdapterSanPham extends ArrayAdapter<SanPhamDonHang> {
         tvTTSPMa.setText("Mã sản phẩm " + String.valueOf(sp.getMaSP()));
         tvTTSPTen.setText(sp.getTenSP());
         tvTTSPSoLuong.setText("Số lượng: " + String.valueOf(sp.getSoLuong()));
-        tvTTSPGiaTien.setText("Giá " + String.valueOf(sp.getDonGia()) + "vnd");
+        tvTTSPGiaTien.setText("Giá " + others.numberToVND(sp.getDonGia()));
 
         return convertView;
     }

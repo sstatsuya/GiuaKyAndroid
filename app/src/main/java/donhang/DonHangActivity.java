@@ -110,8 +110,8 @@ public class DonHangActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 1) { //click Huy button
-            if (resultCode == 0) {
+        if (requestCode == 1) { //tu trang them don hang tro ve
+            if (resultCode == 0) { // Click huy hoac back
                 Toast.makeText(this, "bam nut huy", Toast.LENGTH_SHORT).show();
             } else if (resultCode == 1) { //click Luu button
                 generate();

@@ -6,7 +6,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -60,7 +59,7 @@ public class KhachHangActivity extends AppCompatActivity {
 
     private void setEvent() {
         //
-        adapterKhachHang = new AdapterKhachHang(this, R.layout.activity_items_khachhang, DS_khachHang);
+        adapterKhachHang = new AdapterKhachHang(this, R.layout.layout_items_khachhang, DS_khachHang);
         lv_DSKhachHang.setAdapter(adapterKhachHang);
 
         //

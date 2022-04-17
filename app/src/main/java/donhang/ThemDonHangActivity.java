@@ -3,6 +3,7 @@ package donhang;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.database.DataSetObserver;
 import android.os.Bundle;
@@ -18,7 +19,6 @@ import android.widget.Toast;
 
 import com.example.giuakyandroid.R;
 
-import chucnang.Dialog;
 import database.DBDonHang;
 import database.DBKhachHang;
 import database.model.DonHang;
@@ -30,6 +30,8 @@ import java.util.Date;
 
 import database.model.SanPhamDonHang;
 import donhang.model.AdapterThemDonHangDSSanPham;
+import others.Others;
+import sanpham.SuaThongTinSanPhamActivity;
 
 public class ThemDonHangActivity extends AppCompatActivity {
     ListView lsSanPham;
@@ -43,6 +45,7 @@ public class ThemDonHangActivity extends AppCompatActivity {
     DBDonHang dbDonHang;
     TextWatcher datePattern;
     int maKhachHang;
+    Others others = new Others();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -237,18 +240,30 @@ public class ThemDonHangActivity extends AppCompatActivity {
         }
 
         int n = dbDonHang.insert(new DonHang(1,maKhachHang, ngayDatHang, sanPhamDonHangs));
-
-        android.app.Dialog dialog = Dialog.openSuccessDialog(ThemDonHangActivity.this, "Đơn hàng vừa thêm có mã đơn hàng là " + String.valueOf(n));
-        dialog.show();
-        TextView btnSuccessDongY = dialog.findViewById(R.id.btn_success_dong_y);
+//        Success Dialog
+        Dialog successDialog = others.openSuccessDialog(ThemDonHangActivity.this, "Bạn đã tạo thành công đơn hàng "+String.valueOf(n));
+        successDialog.show();
+        TextView btnSuccessDongY = successDialog.findViewById(R.id.btn_success_dong_y);
         btnSuccessDongY.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                successDialog.dismiss();
                 Intent intent = new Intent();
                 setResult(1);
                 finish();
             }
         });
+//        android.app.Dialog dialog = Dialog.openSuccessDialog(ThemDonHangActivity.this, "Đơn hàng vừa thêm có mã đơn hàng là " + String.valueOf(n));
+//        dialog.show();
+//        TextView btnSuccessDongY = dialog.findViewById(R.id.btn_success_dong_y);
+//        btnSuccessDongY.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent();
+//                setResult(1);
+//                finish();
+//            }
+//        });
     }
 
     @Override

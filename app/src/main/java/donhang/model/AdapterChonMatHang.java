@@ -21,6 +21,7 @@ import java.util.ArrayList;
 
 import database.model.SanPham;
 import donhang.ThongTinDonHangActivity;
+import others.Others;
 import sanpham.SanPhamActivity;
 import sanpham.ThongTinSanPhamActivity;
 
@@ -33,6 +34,8 @@ public class AdapterChonMatHang extends ArrayAdapter {
     ImageView hinhAnhSanPham;
     TextView tenSanPham, maSanPham, giaTienSanPham;
     Button btnXemSanPham;
+
+    Others others = new Others();
 
     public AdapterChonMatHang(@NonNull Context context, int resource, @NonNull ArrayList<SanPham> matHangs) {
         super(context, resource, matHangs);
@@ -61,7 +64,7 @@ public class AdapterChonMatHang extends ArrayAdapter {
 
         tenSanPham.setText(sp.getTenSP());
         maSanPham.setText("Mã sản phẩm " + String.valueOf(sp.getMaSP()));
-        giaTienSanPham.setText(sp.getDonGia().toString() + "vnd");
+        giaTienSanPham.setText(others.numberToVND(sp.getDonGia()));
 
         Bitmap bitmap = BitmapFactory.decodeByteArray(sp.getHinh(), 0, sp.getHinh().length);
         hinhAnhSanPham.setImageBitmap(bitmap);
@@ -72,7 +75,7 @@ public class AdapterChonMatHang extends ArrayAdapter {
 //                 Intent intent = new Intent(view.getContext(), ThongTinSanPhamActivity.class);
 //                 intent.putExtra("sanPham", sanPham);
 //                 context.startActivity(intent);
-        this.btnChonSanPham.setOnClickListener(new View.OnClickListener() {
+        this.btnXemSanPham.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intentTTSP = new Intent(context, ThongTinSanPhamActivity.class);
