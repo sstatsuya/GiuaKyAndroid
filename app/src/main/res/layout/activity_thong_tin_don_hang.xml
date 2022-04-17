@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="donhang.ThongTinDonHangActivity">
+    tools:context="donhang.ThongTinDonHangActivity"
+    android:background="@color/gray">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -75,7 +76,8 @@
             android:layout_weight="5"
             android:text="@string/danh_sach_mat_hang"
             android:textColor="@color/primary"
-            android:textSize="25dp" />
+            android:layout_marginLeft="12dp"
+            android:textSize="20dp" />
 
         <View
             android:layout_width="match_parent"
@@ -114,16 +116,16 @@
             android:text="3000000"
             android:textColor="#005A04" />
 
-        <Button
-            android:id="@+id/btn_thongtindonhang_sua"
-            android:layout_width="70dp"
-            android:layout_height="match_parent"
-            android:layout_alignParentLeft="true"
-            android:layout_gravity="right"
-            android:layout_weight="0.5"
-            android:background="@color/primary"
-            android:text="Sửa"
-            android:textColor="@color/white" />
+<!--        <Button-->
+<!--            android:id="@+id/btn_thongtindonhang_sua"-->
+<!--            android:layout_width="70dp"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_alignParentLeft="true"-->
+<!--            android:layout_gravity="right"-->
+<!--            android:layout_weight="0.5"-->
+<!--            android:background="@color/primary"-->
+<!--            android:text="Sửa"-->
+<!--            android:textColor="@color/white" />-->
 
         <Button
             android:id="@+id/btn_thongtindonhang_thoat"
@@ -132,7 +134,7 @@
             android:layout_alignParentLeft="true"
             android:layout_gravity="right"
             android:layout_weight="0.5"
-            android:background="@color/hint"
+            android:background="@color/primary"
             android:text="Thoát"
             android:textColor="@color/white" />
     </LinearLayout>

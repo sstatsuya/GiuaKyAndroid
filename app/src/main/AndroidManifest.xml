@@ -60,9 +60,6 @@
             android:name="sanpham.SanPhamActivity"
             android:exported="false" />
         <activity
-            android:name="batdau.MenuActivity"
-            android:exported="false" />
-        <activity
             android:name="batdau.BatDauActivity"
             android:exported="true" >
             <intent-filter>
