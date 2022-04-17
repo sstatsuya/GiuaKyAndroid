@@ -1,5 +1,6 @@
 package donhang;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -51,9 +52,8 @@ public class ThongTinDonHangActivity extends AppCompatActivity {
         //get DonHang detail from database
         this.donHang = dbDonHang.get(maDH);
         //Set list of SanPhamMatHang
+        this.sanPhamDonHangs = new ArrayList<>();
         this.sanPhamDonHangs = this.donHang.getSanPhamDonHangs();
-//        this.sanPhamDonHangs.clear();
-//        this.sanPhamDonHangs.addAll(this.donHang.getSanPhamDonHangs());
     }
 
     //link from java variable to Layout
@@ -86,11 +86,13 @@ public class ThongTinDonHangActivity extends AppCompatActivity {
                 finish();
             }
         });
-        
+
         this.btnSua.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(ThongTinDonHangActivity.this, "Tính năng này chưa phát triển", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(view.getContext(), SuaDonHangActivity.class);
+                intent.putExtra("madonhang", donHang.getMaDH());
+                startActivity(intent);
             }
         });
     }
@@ -103,6 +105,22 @@ public class ThongTinDonHangActivity extends AppCompatActivity {
         return temp;
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
-
+        if (resultCode == 1) {
+            if (data != null) {
+                this.donHang = dbDonHang.get(maDH);
+                this.tvMaDonHang.setText("Mã đơn hàng: " + String.valueOf(this.donHang.getMaDH()));
+                this.tvTenKhachHang.setText("Tên khách hàng: " + String.valueOf(this.donHang.getTenKH()));
+                SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+                this.tvNgayDatHang.setText(df.format(this.donHang.getNgayDatHang()));
+                this.tvTongTien.setText(String.valueOf(calculatorTongTien()) + "vnd");
+                adapterSanPham.notifyDataSetChanged();
+            } else {
+                Toast.makeText(this, "data null", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
 }

@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_2"
+    android:orientation="vertical"
+    tools:context="donhang.SuaDonHangActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="143dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <ImageView
+            style="@style/style_logo"
+            android:src="@drawable/icon" />
+
+        <TextView
+            style="@style/style_title"
+            android:text="@string/tao_don_hang"
+            android:textColor="@color/primary" />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginHorizontal="30dp"
+        android:background="@color/primary" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingTop="10dp">
+
+        <LinearLayout
+            android:layout_width="330dp"
+            android:layout_height="53dp"
+            android:background="@drawable/blackboder_whitebackground"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/et_suadonhang_MaKhachHang"
+                android:layout_marginTop="0dp"
+                android:layout_weight="10"
+                style="@style/ed_Text"
+                android:background="@android:color/transparent"
+                android:hint="@string/ma_khach_hang" />
+
+            <!--            <EditText-->
+            <!--                android:id="@+id/tv_themdonhang_MaKhachHang"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_weight="10"-->
+            <!--                android:gravity="center_vertical"-->
+            <!--                android:hint="Mã khách hàng"-->
+            <!--                android:paddingLeft="20dp"-->
+            <!--                android:textColor="@color/black"-->
+            <!--                android:textColorHint="#AFA7A7"-->
+            <!--                android:textSize="16dp" />-->
+
+            <Button
+                android:id="@+id/btn_suadonhang_ChonKhachHang"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="right|center"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/primary_orange_borders"
+                android:text="&#x1f50d;"
+                android:textSize="20dp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_suadonhang_TenKhachHang"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical"
+            android:hint="@string/ten_khachhang"
+            style="@style/ed_Text" />
+
+        <EditText
+            android:id="@+id/et_suadonhang_NgayDatHang"
+            android:layout_marginTop="10dp"
+            style="@style/ed_Text"
+            android:hint="Ngày đặt hàng" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:gravity="center_vertical"
+            android:text="@string/danh_sach_mat_hang"
+            android:textColor="@color/primary"
+            android:textSize="25dp" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="4"
+        android:layout_marginHorizontal="20dp">
+
+        <ListView
+            android:id="@+id/lv_suadonhang_danhsachmathang"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Tổng giá trị"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/tv_suadonhang_TongTien"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:gravity="center"
+            android:text="0.0vnd"
+            android:textColor="#005A04" />
+
+        <Button
+            android:id="@+id/btn_suadonhang_huy"
+            android:layout_width="70dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_gravity="right"
+            android:layout_weight="0.5"
+            android:background="@color/hint"
+            android:text="hủy"
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/btn_suadonhang_Luu"
+            android:layout_width="70dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_gravity="right"
+            android:layout_weight="0.5"
+            android:background="@color/primary"
+            android:text="lưu"
+            android:textColor="@color/white" />
+
+    </LinearLayout>
+
+</LinearLayout>

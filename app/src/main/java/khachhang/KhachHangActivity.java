@@ -208,7 +208,7 @@ public class KhachHangActivity extends AppCompatActivity {
             btnConfirmDongY.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    dbKhachHang.DeleteData(khachhang.getMAKH());
+                    dbKhachHang.deleteData(khachhang.getMAKH());
                     confirmDialog.dismiss();
                     openSuccessDialog("Đã Xóa Khách hàng thành công!");
                 }

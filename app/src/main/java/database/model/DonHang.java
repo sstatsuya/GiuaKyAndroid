@@ -32,6 +32,10 @@ public class DonHang implements Serializable {
         return string.toString();
     }
 
+    public String searchValue() {
+        return this.maDH + " " + this.maKH + " " + this.tenKH;
+    }
+
     public DonHang(int maDH, int maKH, Date ngayDatHang) {
         this.maDH = maDH;
         this.maKH = maKH;

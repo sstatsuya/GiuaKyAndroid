@@ -20,6 +20,9 @@ import com.example.giuakyandroid.R;
 import java.util.ArrayList;
 
 import database.model.SanPham;
+import donhang.ThongTinDonHangActivity;
+import sanpham.SanPhamActivity;
+import sanpham.ThongTinSanPhamActivity;
 
 public class AdapterChonMatHang extends ArrayAdapter {
     ///Chọn 1 sản phẩm sẽ phải hỏi số lượng bằng dialog
@@ -29,7 +32,7 @@ public class AdapterChonMatHang extends ArrayAdapter {
 
     ImageView hinhAnhSanPham;
     TextView tenSanPham, maSanPham, giaTienSanPham;
-    Button btnChonSanPham;
+    Button btnXemSanPham;
 
     public AdapterChonMatHang(@NonNull Context context, int resource, @NonNull ArrayList<SanPham> matHangs) {
         super(context, resource, matHangs);
@@ -54,7 +57,7 @@ public class AdapterChonMatHang extends ArrayAdapter {
         this.tenSanPham = convertView.findViewById(R.id.tv_itemchonmathang_tensanpham);
         this.maSanPham = convertView.findViewById(R.id.tv_itemchonmathang_masanpham);
         this.giaTienSanPham = convertView.findViewById(R.id.tv_itemchonmathang_giatiensanpham);
-        this.btnChonSanPham = convertView.findViewById(R.id.btn_itemchonmathang_chon);
+        this.btnXemSanPham = convertView.findViewById(R.id.btn_itemchonmathang_chon);
 
         tenSanPham.setText(sp.getTenSP());
         maSanPham.setText("Mã sản phẩm " + String.valueOf(sp.getMaSP()));
@@ -62,6 +65,16 @@ public class AdapterChonMatHang extends ArrayAdapter {
 
         Bitmap bitmap = BitmapFactory.decodeByteArray(sp.getHinh(), 0, sp.getHinh().length);
         hinhAnhSanPham.setImageBitmap(bitmap);
+
+        this.btnXemSanPham.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SanPham sanPham = matHangs.get(position);
+                Intent intent = new Intent(view.getContext(), ThongTinSanPhamActivity.class);
+                intent.putExtra("sanPham", sanPham);
+                context.startActivity(intent);
+            }
+        });
 
         return convertView;
     }
