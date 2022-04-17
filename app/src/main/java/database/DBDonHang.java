@@ -149,29 +149,4 @@ public class DBDonHang {
 
         return donHang;
     }
-
-
-
-    public void updateData(KhachHang khachHang) { //Hàm Update
-//        String sql = "update " + TABLE_NAME +
-//                " set " + COLUMN_AVATAR + "=?, " + COLUMN_NAME+ "=?, " +COLUMN_ADDRESS + "=?, " + COLUMN_PHONE+ "=? " +
-//                "where " +COLUMN_ID + "="  + khachHang.getMAKH() ;
-//
-//        SQLiteDatabase database = getWritableDatabase();
-//        SQLiteStatement statement = database.compileStatement(sql);
-//        statement.bindBlob(1, khachHang.getHINHANH());
-//        statement.bindString(2, khachHang.getTENKH());
-//        statement.bindString(3, khachHang.getDIACHI());
-//        statement.bindString(4, khachHang.getDIENTHOAI());
-//        statement.executeUpdateDelete();
-//        database.close();
-    }
-
-    public void DeleteData(int MAKH) { //Hàm Delete
-//        String sql = "delete from " + TABLE_NAME + " where " +COLUMN_ID + "="  + MAKH ;
-//        SQLiteDatabase database = getWritableDatabase();
-//        SQLiteStatement statement = database.compileStatement(sql);
-//        statement.executeUpdateDelete();
-//        database.close();
-    }
 }

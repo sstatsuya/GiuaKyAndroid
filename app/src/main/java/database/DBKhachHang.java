@@ -51,9 +51,9 @@ public class DBKhachHang {
         }
         return data;
     }
-
-    public void InsertData(KhachHang khachHang) {
-        Log.i("Database", "DBKhachHang.InsertData " + khachHang.getMAKH() + " - " + khachHang.getTENKH());
+  
+    public void insertData(KhachHang khachHang) {
+        Log.i("Database", "DBKhachHang.insertData " + khachHang.getMAKH() + " - " + khachHang.getTENKH());
 
         String sql = "insert into " + TABLE_NAME +"(" + COLUMN_AVATAR + ", " + COLUMN_NAME + ", " + COLUMN_ADDRESS
                 + ", " + COLUMN_PHONE + ") values(?,?,?,?)";
@@ -69,7 +69,7 @@ public class DBKhachHang {
 
 
     public void updateData(KhachHang khachHang) { //Hàm Update
-        Log.i("Database", "DBKhachHang.UpdateData " + khachHang.getMAKH() + " - " + khachHang.getTENKH() + " - " + khachHang.getDIACHI() + " - " + khachHang.getDIENTHOAI());
+        Log.i("Database", "DBKhachHang.updateData " + khachHang.getMAKH() + " - " + khachHang.getTENKH() + " - " + khachHang.getDIENTHOAI() + " - " + khachHang.getDIACHI());
 
         String sql = "update " + TABLE_NAME +
                 " set " + COLUMN_AVATAR + "=?, " + COLUMN_NAME+ "=?, " +COLUMN_ADDRESS + "=?, " + COLUMN_PHONE+ "=? " +
@@ -85,8 +85,8 @@ public class DBKhachHang {
         database.close();
     }
 
-    public void DeleteData(int MAKH) { //Hàm Delete
-        Log.i("Database", "DBKhachHang.Deletedata " + MAKH);
+    public void deleteData(int MAKH) { //Hàm Delete
+        Log.i("Database", "DBKhachHang.deleteData " + MAKH);
 
         String sql = "delete from " + TABLE_NAME + " where " +COLUMN_ID + "="  + MAKH ;
         SQLiteDatabase database = this.dbHelper.getWritableDatabase();
@@ -96,7 +96,6 @@ public class DBKhachHang {
     }
 
     public String getTenKhachHangByID(int id) {
-        Log.i("DATABASE", "DBKhachHang.getTenKhachHangByID " + String.valueOf(id));
         DonHang donHang;
 
         SQLiteDatabase db = this.dbHelper.getReadableDatabase();

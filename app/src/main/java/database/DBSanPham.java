@@ -14,9 +14,6 @@ import java.util.ArrayList;
 import database.model.SanPham;
 
 public class DBSanPham {
-    private static final String DATABASE_NAME = "GIUAKYANDROID";
-    private static final int DATABASE_VERSION = 1;
-
     private Context context;
     DBSQLiteOpenHelper dbHelper;
 
