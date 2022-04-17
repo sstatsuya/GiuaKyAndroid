@@ -24,13 +24,48 @@
             />
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/btn_them_don_hang"
-        style="@style/style_pill_button"
-        android:background="@drawable/nut_them_don_hang"
-        android:layout_gravity="center"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:text="@string/tao_don_hang"></TextView>
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="5dp"
+        android:layout_marginHorizontal="20dp"
+        android:background="@drawable/primary_orange_borders">
+
+        <LinearLayout
+            android:layout_width="120dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:background="@drawable/white_border_background"
+            android:paddingHorizontal="8dp"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/search_icon"
+                android:layout_gravity="center"/>
+            <AutoCompleteTextView
+                android:id="@+id/actv_donhang_timkiem"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:completionThreshold="1"
+                android:paddingRight="8dp"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_them_don_hang"
+            style="@style/style_pill_button"
+            android:background="@drawable/white_border"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="5dp"
+            android:text="Tạo"></TextView>
+
+    </LinearLayout>
+
+
 
     <ListView
         android:layout_width="match_parent"

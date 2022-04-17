@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.giuakyandroid" >
+    package="com.example.giuakyandroid">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -13,7 +13,10 @@
         android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.GiuaKyAndroid" >
+        android:theme="@style/Theme.GiuaKyAndroid">
+        <activity
+            android:name="donhang.SuaDonHangActivity"
+            android:exported="false" />
         <activity
             android:name="thongke.BanChayActivity"
             android:exported="false" />
@@ -61,7 +64,7 @@
             android:exported="false" />
         <activity
             android:name="batdau.BatDauActivity"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

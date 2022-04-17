@@ -3,37 +3,33 @@ package donhang;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Dialog;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.view.Gravity;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
+import android.widget.AutoCompleteTextView;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.giuakyandroid.R;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 
 import database.DBDonHang;
 import database.model.DonHang;
 import donhang.model.AdapterDonHang;
-import others.Others;
 
 public class DonHangActivity extends AppCompatActivity {
     ListView lvDSDonHang;
     TextView tvThemDonHang;
+    AutoCompleteTextView actvSearchDonHang;
     //database
     DBDonHang dbDonHang;
     AdapterDonHang adapterDonHang;
-    ArrayList<DonHang> donHangs = new ArrayList<>();
+    ArrayList<DonHang> donHangs, donHangsBackup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,14 +47,19 @@ public class DonHangActivity extends AppCompatActivity {
 
     private void generate() {
         //get list DonHang
+        this.donHangs = new ArrayList<>();
         this.donHangs.clear();
         this.donHangs.addAll(this.dbDonHang.getAll());
+        this.donHangsBackup = new ArrayList<>();
+        this.donHangsBackup.clear();
+        this.donHangsBackup.addAll(this.donHangs);
     }
 
     private void setControl() {
         //link to layout element
-        this.tvThemDonHang = findViewById(R.id.btn_them_don_hang);
+        this.tvThemDonHang = findViewById(R.id.tv_them_don_hang);
         this.lvDSDonHang = findViewById(R.id.lvDSDonHang);
+        this.actvSearchDonHang = findViewById(R.id.actv_donhang_timkiem);
         //Set data to layout element
         adapterDonHang = new AdapterDonHang(this, R.layout.layout_item_donhang, donHangs);
         lvDSDonHang.setAdapter(adapterDonHang);
@@ -72,6 +73,37 @@ public class DonHangActivity extends AppCompatActivity {
                 startActivityForResult(intent, 1);
             }
         });
+
+        this.actvSearchDonHang.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                searchFunction(charSequence.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+    }
+
+    private void searchFunction(String text) {
+        donHangs.clear();
+        text = text.toLowerCase();
+        if (text.length() == 0) donHangs.addAll(donHangsBackup);
+        else {
+            for (DonHang temp : donHangsBackup) {
+                if (temp.searchValue().toLowerCase().contains(text)) {
+                    donHangs.add(temp);
+                }
+            }
+        }
+        adapterDonHang.notifyDataSetChanged();
     }
 
 
@@ -85,7 +117,10 @@ public class DonHangActivity extends AppCompatActivity {
                 generate();
                 adapterDonHang.notifyDataSetChanged();
             }
+            return;
         }
+        generate();
+        adapterDonHang.notifyDataSetChanged();
     }
 
     //Khi xóa khách hàng hay sản phẩm rồi bấm qua đơn hàng nó khỏi bị lỗi
