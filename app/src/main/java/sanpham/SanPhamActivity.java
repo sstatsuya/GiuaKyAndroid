@@ -64,6 +64,7 @@ public class SanPhamActivity extends AppCompatActivity {
                 Intent intent = new Intent(SanPhamActivity.this, ThongTinSanPhamActivity.class);
                 SanPham sanPham = sanPhams.get(position);
                 intent.putExtra("sanPham", sanPham);
+                intent.putExtra("mode", "full");
                 startActivityForResult(intent, 1);
             }
         });

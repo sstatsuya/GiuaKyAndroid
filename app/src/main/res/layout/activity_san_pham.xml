@@ -57,6 +57,7 @@
                 android:layout_height="match_parent"
                 android:completionThreshold="1"
                 android:hint="@string/timkiem"
+                android:singleLine="true"
                 android:paddingRight="8dp"/>
         </LinearLayout>
 

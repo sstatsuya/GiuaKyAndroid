@@ -82,11 +82,9 @@ public class ThongTinSanPhamActivity extends AppCompatActivity {
         btnSPSua = findViewById(R.id.btn_sua_sp);
         btnSPXoa = findViewById(R.id.btn_xoa_sp);
         if(mode.equals("xem")){
-            btnSPSua.setVisibility(View.GONE);
-            btnSPXoa.setVisibility(View.GONE);
+            btnSPSua.setVisibility(View.INVISIBLE);
+            btnSPXoa.setVisibility(View.INVISIBLE);
         }
-//
-//
     }
 
     private void ganDuLieuVao() {
@@ -95,7 +93,7 @@ public class ThongTinSanPhamActivity extends AppCompatActivity {
         txtTTSPMa.setText(sanPham.getMaSP().toString());
         txtTTSPTen.setText(sanPham.getTenSP());
         txtTTSPXuatXu.setText(sanPham.getXuatXu());
-        txtTTSPGia.setText(sanPham.getDonGia().toString());
+        txtTTSPGia.setText(others.numberToVND(sanPham.getDonGia()));
         imgTTSPHinh.setImageBitmap(bitmap);
     }
 

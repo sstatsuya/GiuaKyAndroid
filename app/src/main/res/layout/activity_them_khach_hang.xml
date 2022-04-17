@@ -65,7 +65,8 @@
                 android:paddingLeft="20dp"
                 android:textColor="@color/black"
                 android:textColorHint="#AFA7A7"
-                android:textSize="16dp" />
+                android:textSize="16dp"
+                android:singleLine="true"/>
 
 
             <LinearLayout

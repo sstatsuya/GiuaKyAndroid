@@ -21,6 +21,7 @@ import com.example.giuakyandroid.R;
 
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.text.DecimalFormat;
 
 import others.Others;
 import database.model.SanPham;
@@ -109,7 +110,8 @@ public class SuaThongTinSanPhamActivity extends AppCompatActivity {
         txtSTTSPMa.setText(sanPham.getMaSP().toString());
         etSTTSPTen.setText(sanPham.getTenSP().toString());
         etSTTSPXuatXu.setText(sanPham.getXuatXu().toString());
-        etSTTPGia.setText(sanPham.getDonGia().toString());
+        DecimalFormat df = new DecimalFormat("###");
+        etSTTPGia.setText(df.format(sanPham.getDonGia()));
         Bitmap bitmap = BitmapFactory.decodeByteArray(sanPham.getHinh(), 0, sanPham.getHinh().length);
         ivSTTSPHinh.setImageBitmap(bitmap);
     }
