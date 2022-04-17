@@ -5,9 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
+import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.SearchView;
@@ -26,9 +30,12 @@ public class SanPhamActivity extends AppCompatActivity {
     GridView gvSanPham;
     ArrayList<SanPham> sanPhams = new ArrayList<>();
     AdapterSanPham adapterSanPham;
+    ArrayAdapter sanPhamPhoBienAA;
+    String[] sanPhamPhoBien;
     LinearLayout btnThemSanPham;
     Spinner sn_loc_sp;
     SearchView svLocSP;
+    AutoCompleteTextView actvSearchSanPham;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,9 +48,14 @@ public class SanPhamActivity extends AppCompatActivity {
     }
 
     private void setEvent() {
+//        Adapter
         layDuLieuDatabase();
         adapterSanPham = new AdapterSanPham(this, R.layout.layout_san_pham, sanPhams);
         gvSanPham.setAdapter(adapterSanPham);
+
+//        Search
+        goiY();
+
 
 //        Khi sản phẩm được click vào
         gvSanPham.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -65,19 +77,38 @@ public class SanPhamActivity extends AppCompatActivity {
             }
         });
 
-//        Khi tìm kiếm
-        svLocSP.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+//        Khi tìm kiếm trên autocompletetextview
+        actvSearchSanPham.addTextChangedListener(new TextWatcher() {
             @Override
-            public boolean onQueryTextSubmit(String s) {
-                return false;
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
             }
 
             @Override
-            public boolean onQueryTextChange(String s) {
-                adapterSanPham.locBangInput(s);
-                return false;
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                adapterSanPham.locBangInput(charSequence.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
             }
         });
+
+
+//        Khi tìm kiếm
+//        svLocSP.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+//            @Override
+//            public boolean onQueryTextSubmit(String s) {
+//                return false;
+//            }
+//
+//            @Override
+//            public boolean onQueryTextChange(String s) {
+//                adapterSanPham.locBangInput(s);
+//                return false;
+//            }
+//        });
 
         //Khi bấm vào loc trên spinner
         sn_loc_sp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -95,6 +126,12 @@ public class SanPhamActivity extends AppCompatActivity {
         });
     }
 
+    private void goiY() {
+        sanPhamPhoBien = getResources().getStringArray(R.array.san_pham_pho_bien);
+        sanPhamPhoBienAA = new ArrayAdapter(this, android.R.layout.simple_list_item_1, sanPhamPhoBien);
+        actvSearchSanPham.setAdapter(sanPhamPhoBienAA);
+    }
+
     private void layDuLieuDatabase() {
         DBSanPham dbSanPham = new DBSanPham(getApplicationContext());
         sanPhams.clear();
@@ -105,7 +142,8 @@ public class SanPhamActivity extends AppCompatActivity {
         gvSanPham = findViewById(R.id.gvSanPham);
         btnThemSanPham = findViewById(R.id.btnThemSanPham);
         sn_loc_sp = findViewById(R.id.sn_loc_sp);
-        svLocSP = findViewById(R.id.sv_sp_loc);
+//        svLocSP = findViewById(R.id.sv_sp_loc);
+        actvSearchSanPham = findViewById(R.id.actvSearchSanPham);
         khoiTaoSpinnerLoc();
     }
 
