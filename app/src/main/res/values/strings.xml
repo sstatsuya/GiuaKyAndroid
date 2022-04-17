@@ -65,4 +65,5 @@
     <string name="tv_diachi">Địa chỉ:</string>
     <string name="btn_dongy">Đồng ý</string>
     <string name="btn_xoa">Xóa</string>
+    <string name="btn_huyEditKH">Hủy</string>
 </resources>

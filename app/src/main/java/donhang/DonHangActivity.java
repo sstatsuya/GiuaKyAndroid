@@ -123,5 +123,10 @@ public class DonHangActivity extends AppCompatActivity {
         adapterDonHang.notifyDataSetChanged();
     }
 
-
+    //Khi xóa khách hàng hay sản phẩm rồi bấm qua đơn hàng nó khỏi bị lỗi
+    @Override
+    protected void onResume() {
+        super.onResume();
+        generate();
+    }
 }

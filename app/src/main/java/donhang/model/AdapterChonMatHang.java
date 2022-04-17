@@ -65,14 +65,20 @@ public class AdapterChonMatHang extends ArrayAdapter {
 
         Bitmap bitmap = BitmapFactory.decodeByteArray(sp.getHinh(), 0, sp.getHinh().length);
         hinhAnhSanPham.setImageBitmap(bitmap);
-
-        this.btnXemSanPham.setOnClickListener(new View.OnClickListener() {
+//         this.btnXemSanPham.setOnClickListener(new View.OnClickListener() {
+//             @Override
+//             public void onClick(View view) {
+//                 SanPham sanPham = matHangs.get(position);
+//                 Intent intent = new Intent(view.getContext(), ThongTinSanPhamActivity.class);
+//                 intent.putExtra("sanPham", sanPham);
+//                 context.startActivity(intent);
+        this.btnChonSanPham.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SanPham sanPham = matHangs.get(position);
-                Intent intent = new Intent(view.getContext(), ThongTinSanPhamActivity.class);
-                intent.putExtra("sanPham", sanPham);
-                context.startActivity(intent);
+                Intent intentTTSP = new Intent(context, ThongTinSanPhamActivity.class);
+                intentTTSP.putExtra("mode", "xem");
+                intentTTSP.putExtra("sanPham", sp);
+                context.startActivity(intentTTSP);
             }
         });
 
