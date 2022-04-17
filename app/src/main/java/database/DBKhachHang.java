@@ -15,7 +15,7 @@ import java.util.Date;
 import database.model.DonHang;
 import database.model.KhachHang;
 
-public class DBKhachHang{
+public class DBKhachHang {
     public static final String TABLE_NAME = "KHACHHANG";
     public static final String COLUMN_ID = "MAKH";
     public static final String COLUMN_AVATAR = "HINHANH";

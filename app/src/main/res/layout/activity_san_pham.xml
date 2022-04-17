@@ -32,12 +32,33 @@
 
 
 
-        <SearchView
+        <!--        <SearchView-->
+        <!--            android:layout_width="120dp"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_weight="1"-->
+        <!--            android:id="@+id/sv_sp_loc"-->
+        <!--            android:background="@drawable/white_border_background"/>-->
+
+        <LinearLayout
             android:layout_width="120dp"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_weight="1"
-            android:id="@+id/sv_sp_loc"
-            android:background="@drawable/white_border_background"/>
+            android:background="@drawable/white_border_background"
+            android:paddingHorizontal="8dp"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/search_icon"
+                android:layout_gravity="center"/>
+            <AutoCompleteTextView
+                android:id="@+id/actvSearchSanPham"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:completionThreshold="1"
+                android:paddingRight="8dp"/>
+        </LinearLayout>
+
 
         <LinearLayout
             android:layout_width="wrap_content"
