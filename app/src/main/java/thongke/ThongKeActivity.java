@@ -16,7 +16,7 @@ import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
 
-import database.dbSanPham;
+import database.DBSanPham;
 import database.model.SanPham;
 import thongke.model.AdapterThongKe;
 
@@ -52,7 +52,7 @@ public class ThongKeActivity extends AppCompatActivity {
     }
 
     public void init(){
-        dbSanPham dbSanPham = new dbSanPham(getApplicationContext());
+        DBSanPham dbSanPham = new DBSanPham(getApplicationContext());
         this.matHangs.clear();
         this.matHangs.addAll(dbSanPham.docDL());
     }

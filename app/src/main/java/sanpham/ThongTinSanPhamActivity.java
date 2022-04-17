@@ -17,7 +17,7 @@ import com.example.giuakyandroid.R;
 
 import others.Others;
 import database.model.SanPham;
-import database.dbSanPham;
+import database.DBSanPham;
 
 public class ThongTinSanPhamActivity extends AppCompatActivity {
     SanPham sanPham;
@@ -43,7 +43,7 @@ public class ThongTinSanPhamActivity extends AppCompatActivity {
     }
 
     private void setEvent() {
-        dbSanPham dbSanPham = new dbSanPham(getApplicationContext());
+        DBSanPham dbSanPham = new DBSanPham(getApplicationContext());
         btnSPXoa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -141,7 +141,7 @@ public class ThongTinSanPhamActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //Xoa san pham
-                dbSanPham dbSanPham = new dbSanPham(getApplicationContext());
+                DBSanPham dbSanPham = new DBSanPham(getApplicationContext());
                 dbSanPham.xoaDL(sanPham);
                 confirmDialog.dismiss();
                 Dialog successDialog = others.openSuccessDialog(ThongTinSanPhamActivity.this, "Xóa sản phẩm thành công");

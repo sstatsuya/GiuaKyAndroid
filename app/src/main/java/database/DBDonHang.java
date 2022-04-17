@@ -31,8 +31,6 @@ public class DBDonHang {
     private static final String COLUMN_CUSTOMER = "MAKH";
 
     private Context context;
-
-
     DBSQLiteOpenHelper dbHelper;
 
     public DBDonHang(@Nullable Context contex) {

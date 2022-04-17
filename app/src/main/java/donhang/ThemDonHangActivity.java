@@ -10,7 +10,6 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -18,13 +17,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.giuakyandroid.R;
-import com.google.android.material.snackbar.Snackbar;
 
 import chucnang.Dialog;
 import database.DBDonHang;
 import database.DBKhachHang;
 import database.model.DonHang;
-import database.model.SanPham;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -33,7 +30,6 @@ import java.util.Date;
 
 import database.model.SanPhamDonHang;
 import donhang.model.AdapterThemDonHangDSSanPham;
-import database.dbSanPham;
 
 public class ThemDonHangActivity extends AppCompatActivity {
     ListView lsSanPham;
