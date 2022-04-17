@@ -30,8 +30,6 @@
         android:orientation="horizontal"
         android:padding="16dp">
 
-
-
 <!--        <SearchView-->
 <!--            android:layout_width="120dp"-->
 <!--            android:layout_height="wrap_content"-->

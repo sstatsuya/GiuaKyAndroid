@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteStatement;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 
@@ -22,6 +23,7 @@ public class DBSanPham {
     }
 
     public void themDL(SanPham sanPham) { //Hàm Create
+        Log.i("Database", "DBSanPham.themDL " + sanPham.getMaSP() + " - " + sanPham.getTenSP());
         String sql = "insert into SANPHAM values(null,?,?,?,?)";
         SQLiteDatabase database = this.dbHelper.getWritableDatabase();
         SQLiteStatement statement = database.compileStatement(sql);
@@ -55,6 +57,7 @@ public class DBSanPham {
     }
 
     public void suaDL(SanPham sanPham) { //Hàm Update
+        Log.i("Database", "DBSanPham.suaDL " + sanPham.getMaSP() + " - " + sanPham.getTenSP() + " - " + sanPham.getXuatXu() + " - " + sanPham.getDonGia());
         String sql = "update SANPHAM set TENSP=?, XUATXU=?, DONGIA=?, HINHANH=? where MASP="+sanPham.getMaSP();
         SQLiteDatabase database = this.dbHelper.getWritableDatabase();
         SQLiteStatement statement = database.compileStatement(sql);
@@ -67,6 +70,7 @@ public class DBSanPham {
     }
 
     public void xoaDL(SanPham sanPham) { //Hàm Delete
+        Log.i("Database", "DBSanPham.delete " + sanPham.getMaSP());
         String sql = "delete from SANPHAM where MASP="+sanPham.getMaSP();
         SQLiteDatabase database = this.dbHelper.getWritableDatabase();
         SQLiteStatement statement = database.compileStatement(sql);
@@ -76,6 +80,7 @@ public class DBSanPham {
 
     //Get all SanPham base on maSP
     public SanPham getSanPhamByMaSP(int maSP) { //Hàm Read
+        Log.i("Database", "DBSanPham.getSanphamByMaSP " + maSP);
         String sql = "select * from SANPHAM" +
         " WHERE MASP = " + String.valueOf(maSP);
         SQLiteDatabase database = this.dbHelper.getReadableDatabase();

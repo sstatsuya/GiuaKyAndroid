@@ -51,7 +51,7 @@ public class DBKhachHang {
         }
         return data;
     }
-
+  
     public void insertData(KhachHang khachHang) {
         Log.i("Database", "DBKhachHang.insertData " + khachHang.getMAKH() + " - " + khachHang.getTENKH());
 
