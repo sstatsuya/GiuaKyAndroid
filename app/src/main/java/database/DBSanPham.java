@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 import database.model.SanPham;
 
-public class dbSanPham extends SQLiteOpenHelper {
+public class DBSanPham extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "GIUAKYANDROID";
     private static final int DATABASE_VERSION = 1;
 
@@ -51,7 +51,7 @@ public class dbSanPham extends SQLiteOpenHelper {
             "    PRIMARY KEY (MADH, MASP)" +
             ");";
 
-    public dbSanPham(@Nullable Context context) {
+    public DBSanPham(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
@@ -124,4 +124,25 @@ public class dbSanPham extends SQLiteOpenHelper {
         database.close();
     }
 
+    //Get all SanPham base on maSP
+    public SanPham getSanPhamByMaSP(int maSP) { //Hàm Read
+        String sql = "select * from SANPHAM" +
+        " WHERE MASP = " + String.valueOf(maSP);
+        SQLiteDatabase database = getReadableDatabase();
+        Cursor cursor = database.rawQuery(sql, null);
+        if (cursor.moveToFirst()) {
+            do {
+                SanPham sanPham = new SanPham();
+                sanPham.setMaSP(cursor.getInt(0));
+                sanPham.setTenSP(cursor.getString(1));
+                sanPham.setXuatXu(cursor.getString(2));
+                sanPham.setDonGia(cursor.getDouble(3));
+                sanPham.setHinh(cursor.getBlob(4));
+                return sanPham;
+            }
+            while (cursor.moveToNext());
+        }
+        cursor.close();
+        return null;
+    }
 }
