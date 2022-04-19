@@ -4,9 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.AutoCompleteTextView;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.SearchView;
 
 import com.example.giuakyandroid.R;
 
@@ -19,8 +24,10 @@ import donhang.model.AdapterChonMatHang;
 
 public class ChonMatHangActivity extends AppCompatActivity {
     ArrayList<SanPham> matHangs = new ArrayList<>();
+    AdapterChonMatHang adapterChonMatHang;
 
     ListView lvMatHang;
+    AutoCompleteTextView actvTimKiem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,12 +50,29 @@ public class ChonMatHangActivity extends AppCompatActivity {
     private void setControl() {
         //link java variable to layout id
         this.lvMatHang = findViewById(R.id.lv_chonmathang_danhsachmathang);
+        this.actvTimKiem = findViewById(R.id.actv_chonmathang_timkiem);
         //setValue for layout element
-        AdapterChonMatHang adapterChonMatHang = new AdapterChonMatHang(this, R.layout.layout_item_chon_mat_hang, this.matHangs);
+        adapterChonMatHang = new AdapterChonMatHang(this, R.layout.layout_item_chon_mat_hang, this.matHangs);
         this.lvMatHang.setAdapter(adapterChonMatHang);
     }
 
     private void setEvent() {
+        this.actvTimKiem.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                adapterChonMatHang.searchFunction(charSequence.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
         this.lvMatHang.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {

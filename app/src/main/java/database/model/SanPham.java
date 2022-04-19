@@ -39,7 +39,9 @@ public class SanPham implements Serializable {
 //            return 1;
 //        else return 0;
 //    }
-
+    public String searchValue() {
+        return this.maSP + " " + this.tenSP + " " + this.xuatXu;
+    }
     //get set
 
     public Integer getMaSP() {
