@@ -11,8 +11,6 @@ import android.widget.ListView;
 
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.giuakyandroid.R;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.XAxis;
@@ -26,7 +24,10 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 
+import database.DBDonHang;
 import database.DBSanPham;
+import database.DBThongTinDatHang;
+import database.model.DonHang;
 import database.model.SanPham;
 import database.model.ThongTinDonHang;
 import others.Others;
@@ -74,6 +75,7 @@ public class ThongKeActivity extends AppCompatActivity {
                 inputYear = Integer.parseInt(txtNam.getText().toString());
                 xuLyBieuDo(Integer.parseInt(txtNam.getText().toString()));
                 getTopSellerProduct(inputYear);
+
             }
         });
     }

@@ -14,6 +14,7 @@ import android.os.Environment;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -78,8 +79,6 @@ public class XuatPDFActivity extends AppCompatActivity {
                 Manifest.permission.WRITE_EXTERNAL_STORAGE}, PackageManager.PERMISSION_GRANTED);
         init();
         setControl();
-//        layDuLieuDatabase();
-//        createPDF();
         setEvent();
     }
 
@@ -112,6 +111,7 @@ public class XuatPDFActivity extends AppCompatActivity {
                 tvPDFNgayXuat.setText("Ngày xuất: " + df.format(donHang.getNgayDatHang()));
                 tvPDFTenKhachHang.setText("Tên khách hàng: " + String.valueOf(donHang.getTenKH()));
                 tvPDFTongTien.setText("Tổng tiền: " + String.valueOf(tongTien));
+                btnXuatPDF.setVisibility(View.VISIBLE);
             }
         });
         btnXuatPDF.setOnClickListener(new View.OnClickListener() {

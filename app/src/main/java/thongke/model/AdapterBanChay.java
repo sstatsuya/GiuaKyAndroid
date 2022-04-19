@@ -45,11 +45,13 @@ public class AdapterBanChay extends ArrayAdapter {
         TextView tenSanPham = convertView.findViewById(R.id.tv_itemsanphambanchay_tensanpham);
         TextView maSanPham = convertView.findViewById(R.id.tv_itemsanphambanchay_masanpham);
         TextView soLuong = convertView.findViewById(R.id.tv_itemsanphambanchay_soluong);
+        TextView rank = convertView.findViewById(R.id.tv_itemsanphambanchay_rank);
 
         BanChay banChay = this.banChays.get(position);
         tenSanPham.setText("Tên sản phẩm: " + banChay.getTenSP());
         maSanPham.setText("Mã sản phẩm: " + String.valueOf(banChay.getMaSP()));
         soLuong.setText("Số lượng: " + String.valueOf(banChay.getSoLuong()));
+        rank.setText("Top: " + (position + 1));
         Bitmap bitmap = BitmapFactory.decodeByteArray(banChay.getHinh(), 0, banChay.getHinh().length);
         hinhAnhSanPham.setImageBitmap(bitmap);
 
