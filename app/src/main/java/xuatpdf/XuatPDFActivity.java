@@ -1,7 +1,6 @@
 package xuatpdf;
 
 import android.Manifest;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -37,6 +36,7 @@ import database.DBThongTinDatHang;
 import database.model.DonHang;
 import database.model.SanPham;
 import database.model.ThongTinDonHang;
+import thongke.model.AdapterBanChay;
 import xuatpdf.model.ChiTietHoaDon;
 import xuatpdf.model.ChiTietHoaDonAdapter;
 
@@ -52,6 +52,7 @@ public class XuatPDFActivity extends AppCompatActivity {
     EditText txt_pdf_mahoadon;
     TextView tvPDFMaHD, tvPDFNgayXuat, tvPDFTenKhachHang, tvPDFTongTien;
     LinearLayout llTTDH;
+
 
     //Variable
 
@@ -81,8 +82,6 @@ public class XuatPDFActivity extends AppCompatActivity {
                 Manifest.permission.WRITE_EXTERNAL_STORAGE}, PackageManager.PERMISSION_GRANTED);
         init();
         setControl();
-//        layDuLieuDatabase();
-//        createPDF();
         setEvent();
     }
 
@@ -93,7 +92,6 @@ public class XuatPDFActivity extends AppCompatActivity {
     }
 
     private void setControl() {
-        btnXuatPDF = findViewById(R.id.btn_xuat_pdf);
         btnTimHoaDon = findViewById(R.id.btn_pdf_timkiem);
         txt_pdf_mahoadon = findViewById(R.id.txt_pdf_mahoadon);
         tvPDFMaHD = findViewById(R.id.tv_pdf_maHD);
@@ -117,6 +115,7 @@ public class XuatPDFActivity extends AppCompatActivity {
                 tvPDFNgayXuat.setText("Ngày xuất: " + df.format(donHang.getNgayDatHang()));
                 tvPDFTenKhachHang.setText("Tên khách hàng: " + String.valueOf(donHang.getTenKH()));
                 tvPDFTongTien.setText("Tổng tiền: " + String.valueOf(tongTien));
+                btnXuatPDF.setVisibility(View.VISIBLE);
             }
         });
         btnXuatPDF.setOnClickListener(new View.OnClickListener() {
@@ -233,11 +232,5 @@ public class XuatPDFActivity extends AppCompatActivity {
             Toast.makeText(XuatPDFActivity.this, "Đã có lỗi xảy ra!", Toast.LENGTH_SHORT).show();
         }
         myPdfDocument.close();
-    }
-
-//    Cap nhat khi qua lai giua cac tab activity
-    @Override
-    protected void onResume() {
-        super.onResume();
     }
 }

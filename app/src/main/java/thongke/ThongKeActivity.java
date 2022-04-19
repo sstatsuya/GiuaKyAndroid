@@ -7,12 +7,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import android.widget.Toast;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.giuakyandroid.R;
 import com.github.mikephil.charting.charts.BarChart;
@@ -49,7 +46,6 @@ public class ThongKeActivity extends AppCompatActivity {
     DBDonHang dbDonHang;
     DBSanPham dbSanPham;
     DBThongTinDatHang dbThongTinDatHang;
-    LinearLayout llTTDH;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +75,7 @@ public class ThongKeActivity extends AppCompatActivity {
                 inputYear = Integer.parseInt(txtNam.getText().toString());
                 xuLyBieuDo(Integer.parseInt(txtNam.getText().toString()));
                 getTopSellerProduct(inputYear);
+
             }
         });
     }
@@ -207,12 +204,6 @@ public class ThongKeActivity extends AppCompatActivity {
         //Set value for ListView
         AdapterBanChay adapterBanChay = new AdapterBanChay(this, R.layout.layout_item_san_pham_ban_chay, banChays);
         lvBanChay.setAdapter(adapterBanChay);
-    }
 
-//    Qua lai giua cac tabactivity no se cap nhat
-    @Override
-    protected void onResume() {
-        super.onResume();
-        setEvent();
     }
 }

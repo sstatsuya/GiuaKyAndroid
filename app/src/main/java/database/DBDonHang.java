@@ -45,7 +45,7 @@ public class DBDonHang {
 
         String sql = "SELECT DH.MADH, DH.MAKH, KH.TENKH, DH.NGAYDH\n" +
                 "FROM DONHANG DH, KHACHHANG KH\n" +
-                "WHERE DH.MAKH = KH.MAKH ORDER BY DH.MADH DESC";
+                "WHERE DH.MAKH = KH.MAKH";
         SQLiteDatabase database = dbHelper.getReadableDatabase();
         Cursor cursor = database.rawQuery(sql, null);
         if(cursor.moveToFirst())
