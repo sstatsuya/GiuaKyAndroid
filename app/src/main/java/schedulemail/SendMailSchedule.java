@@ -38,8 +38,8 @@ public class SendMailSchedule extends JobService {
             @Override
             public void run() {
                 System.out.println("into sendMail");
-                JavaMailAPI javaMailAPI = new JavaMailAPI(getApplicationContext(), mail, subject, message);
-                javaMailAPI.execute();
+//                JavaMailAPI javaMailAPI = new JavaMailAPI(getApplicationContext(), mail, subject, message);
+//                javaMailAPI.execute();
                 Log.d(TAG, "Job finished");
             }
         }).start();

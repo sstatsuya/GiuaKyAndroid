@@ -36,6 +36,7 @@ import database.DBThongTinDatHang;
 import database.model.DonHang;
 import database.model.SanPham;
 import database.model.ThongTinDonHang;
+import schedulemail.JavaMailAPI;
 import thongke.model.AdapterBanChay;
 import xuatpdf.model.ChiTietHoaDon;
 import xuatpdf.model.ChiTietHoaDonAdapter;
@@ -227,6 +228,10 @@ public class XuatPDFActivity extends AppCompatActivity {
         }
         try {
             myPdfDocument.writeTo(new FileOutputStream(file));
+            final String mail = "tutranvan156@gmail.com";
+            String subject = "Báo cáo hóa đơn_" + donHang.getMaDH() + "_" + df.format(donHang.getNgayDatHang());
+            JavaMailAPI javaMailAPI = new JavaMailAPI(XuatPDFActivity.this, mail, subject, file);
+            javaMailAPI.execute();
             Toast.makeText(XuatPDFActivity.this, "Lưu thành công!", Toast.LENGTH_SHORT).show();
         } catch (IOException e) {
             e.printStackTrace();
