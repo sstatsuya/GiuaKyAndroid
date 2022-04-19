@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
@@ -175,5 +176,43 @@ public class DBDonHang {
 //        SQLiteStatement statement = database.compileStatement(sql);
 //        statement.executeUpdateDelete();
 //        database.close();
+    }
+    public ArrayList<DonHang> getAllByYear(int year) {
+        ArrayList<DonHang> donHangs = new ArrayList<>();
+        DonHang donHangTemp;
+        ArrayList<SanPhamDonHang> danhSachSanPham;
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+        String sql = "SELECT DH.MADH, DH.MAKH, KH.TENKH, DH.NGAYDH\n" +
+                "FROM DONHANG DH, KHACHHANG KH\n" +
+                "WHERE DH.MAKH = KH.MAKH AND substr(DH.NGAYDH, 1, 4) = '" + String.valueOf(year) + "';";
+        SQLiteDatabase database = dbHelper.getReadableDatabase();
+        Cursor cursor = database.rawQuery(sql, null);
+        if(cursor.moveToFirst())
+        {
+            do {
+                donHangTemp = new DonHang();
+                donHangTemp.setMaDH(cursor.getInt(0));
+                donHangTemp.setMaKH(cursor.getInt(1));
+                donHangTemp.setTenKH(cursor.getString(2));
+                try {
+                    donHangTemp.setNgayDatHang(dateFormat.parse(cursor.getString(3)));
+                } catch (ParseException e) {
+                    Log.i(TAG, "DBDonHang.getAll format date errors " + donHangTemp.getMaDH() + " - " + e.toString());
+                    e.printStackTrace();
+                }
+
+                try {
+                    donHangTemp.setSanPhamDonHangs(new DBThongTinDatHang(this.context).getAllByMaDH(donHangTemp.getMaDH()));
+                } catch (Exception e) {
+                    Log.i(TAG, "DBDonHang.getAll get all product list by orderID " + donHangTemp.getMaDH() + " - " + e.toString());
+                    e.printStackTrace();
+                }
+
+                donHangs.add(donHangTemp);
+            }
+            while (cursor.moveToNext());
+        }
+        return donHangs;
     }
 }

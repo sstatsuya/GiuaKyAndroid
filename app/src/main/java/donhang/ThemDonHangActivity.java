@@ -29,7 +29,7 @@ import java.util.Date;
 
 import database.model.SanPhamDonHang;
 import donhang.model.AdapterThemDonHangDSSanPham;
-import database.dbSanPham;
+import database.DBSanPham;
 
 public class ThemDonHangActivity extends AppCompatActivity {
     //Variable match with layout
