@@ -9,10 +9,7 @@
     tools:context="thongke.ThongKeActivity">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="143dp"
-        android:gravity="center"
-        android:orientation="horizontal">
+        style="@style/style_header_layout">
 
         <ImageView
             style="@style/style_logo"
@@ -23,29 +20,36 @@
             android:text="@string/thong_ke"
             android:textColor="@color/primary" />
     </LinearLayout>
-    <TextView
+
+    <View
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:layout_marginHorizontal="30dp"
         android:background="@color/primary" />
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:orientation="horizontal"
         android:layout_gravity="center"
-        android:layout_height="wrap_content">
+        android:layout_marginTop="12dp"
+        android:layout_height="wrap_content"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/txt_ThongKe_Nam"
             android:inputType="number"
             android:paddingHorizontal="40dp"
+            android:layout_marginRight="12dp"
             android:hint="Nhập vào năm"/>
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/btn_Them"
             android:id="@+id/btn_ThongKe_ThongKe"
-            android:text="Thống kê"/>
+            android:text="Thống kê"
+            android:textSize="12dp"/>
     </LinearLayout>
 
     <LinearLayout
@@ -65,7 +69,7 @@
         android:orientation="vertical"
         android:layout_height="wrap_content">
 
-        <TextView
+        <View
             android:layout_width="match_parent"
             android:layout_height="2dp"
             android:layout_marginHorizontal="30dp"
@@ -75,7 +79,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="12dp"
             android:text="Sản phẩm bán chạy"
             android:textSize="20dp"
             android:textStyle="bold"
@@ -85,6 +89,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="10dp" />
+            android:paddingVertical="12dp"/>
     </LinearLayout>
 </LinearLayout>

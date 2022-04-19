@@ -7,14 +7,11 @@
     android:background="@color/primary"
     android:orientation="vertical"
     android:weightSum="6.5"
-    tools:context="khachhang.ActivityThemKhachHang">
+    tools:context="khachhang.ActivityThemKhachHang"
+    android:paddingHorizontal="24dp">
 
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="horizontal">
+    <LinearLayout style="@style/style_header_layout">
 
         <ImageView
             style="@style/style_logo"
@@ -29,7 +26,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1.5">
+        android:layout_weight="1.5"
+        android:layout_marginTop="48dp">
 
         <ImageView
             android:id="@+id/iv_avatarKH"
@@ -63,10 +61,10 @@
                 android:gravity="center_vertical"
                 android:hint="@string/source_img"
                 android:paddingLeft="20dp"
+                android:singleLine="true"
                 android:textColor="@color/black"
                 android:textColorHint="#AFA7A7"
-                android:textSize="16dp"
-                android:singleLine="true"/>
+                android:textSize="16dp" />
 
 
             <LinearLayout
@@ -81,6 +79,7 @@
                     android:layout_height="wrap_content"
                     android:src="@drawable/folder_icon" />
             </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/btn_Camera"
                 android:layout_width="50dp"
@@ -98,15 +97,15 @@
 
         <EditText
             android:id="@+id/ed_tenKH"
-            android:hint="@string/ten_khachhang"
-            style="@style/ed_Text" />
+            style="@style/ed_Text"
+            android:hint="@string/ten_khachhang" />
 
         <EditText
             android:id="@+id/ed_soDT_KH"
+            style="@style/ed_Text"
             android:hint="@string/soDT"
             android:inputType="phone"
-            android:maxLength="10"
-            style="@style/ed_Text" />
+            android:maxLength="10" />
 
         <EditText
             android:id="@+id/ed_diaChiKH"
@@ -122,13 +121,13 @@
 
             <Button
                 android:id="@+id/btn_themKH"
-                android:text="@string/btn_them"
-                style="@style/btn_Them" />
+                style="@style/btn_Them"
+                android:text="@string/btn_them" />
 
             <Button
                 android:id="@+id/btn_huyThemKH"
-                android:text="@string/btn_huy"
-                style="@style/btn_Huy" />
+                style="@style/btn_Huy"
+                android:text="@string/btn_huy" />
         </LinearLayout>
 
     </LinearLayout>

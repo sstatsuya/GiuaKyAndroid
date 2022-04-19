@@ -12,10 +12,7 @@
     tools:context="sanpham.SanPhamActivity">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="143dp"
-        android:gravity="center"
-        android:orientation="horizontal">
+        style="@style/style_header_layout">
 
         <ImageView
             style="@style/style_logo"

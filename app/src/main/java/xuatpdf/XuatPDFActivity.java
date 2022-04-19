@@ -1,6 +1,7 @@
 package xuatpdf;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -14,6 +15,7 @@ import android.os.Environment;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,7 +37,6 @@ import database.DBThongTinDatHang;
 import database.model.DonHang;
 import database.model.SanPham;
 import database.model.ThongTinDonHang;
-import thongke.model.AdapterBanChay;
 import xuatpdf.model.ChiTietHoaDon;
 import xuatpdf.model.ChiTietHoaDonAdapter;
 
@@ -50,7 +51,7 @@ public class XuatPDFActivity extends AppCompatActivity {
     ListView lv_pdf_sanPhams;
     EditText txt_pdf_mahoadon;
     TextView tvPDFMaHD, tvPDFNgayXuat, tvPDFTenKhachHang, tvPDFTongTien;
-
+    LinearLayout llTTDH;
 
     //Variable
 
@@ -72,7 +73,9 @@ public class XuatPDFActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_xuat_pdfactivity);
+        setContentView(R.layout.activity_xuat_pdf);
+        getSupportActionBar().hide();
+        getWindow().setStatusBarColor(getResources().getColor(R.color.primary));
         btnXuatPDF = findViewById(R.id.btn_xuat_pdf);
         ActivityCompat.requestPermissions(this, new String[]{
                 Manifest.permission.WRITE_EXTERNAL_STORAGE}, PackageManager.PERMISSION_GRANTED);
@@ -90,6 +93,7 @@ public class XuatPDFActivity extends AppCompatActivity {
     }
 
     private void setControl() {
+        btnXuatPDF = findViewById(R.id.btn_xuat_pdf);
         btnTimHoaDon = findViewById(R.id.btn_pdf_timkiem);
         txt_pdf_mahoadon = findViewById(R.id.txt_pdf_mahoadon);
         tvPDFMaHD = findViewById(R.id.tv_pdf_maHD);
@@ -99,13 +103,14 @@ public class XuatPDFActivity extends AppCompatActivity {
         tvPDFTongTien = findViewById(R.id.tv_pdf_tongTien);
         chiTietHoaDonAdapter = new ChiTietHoaDonAdapter(this, R.layout.activity_items_pdf_chi_tiet_hoa_don, listChiTietHoaDons);
         lv_pdf_sanPhams.setAdapter(chiTietHoaDonAdapter);
-
+        llTTDH = findViewById(R.id.ll_xuatpdf_ttdh);
     }
 
     private void setEvent() {
         btnTimHoaDon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                llTTDH.setVisibility(View.VISIBLE);
                 maHoaDon = Integer.parseInt(txt_pdf_mahoadon.getText().toString());
                 getThongTinDonHang(maHoaDon);
                 tvPDFMaHD.setText("Mã đơn hàng: " + String.valueOf(donHang.getMaDH()));
@@ -228,5 +233,11 @@ public class XuatPDFActivity extends AppCompatActivity {
             Toast.makeText(XuatPDFActivity.this, "Đã có lỗi xảy ra!", Toast.LENGTH_SHORT).show();
         }
         myPdfDocument.close();
+    }
+
+//    Cap nhat khi qua lai giua cac tab activity
+    @Override
+    protected void onResume() {
+        super.onResume();
     }
 }

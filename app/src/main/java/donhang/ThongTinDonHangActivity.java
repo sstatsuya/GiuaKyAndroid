@@ -24,6 +24,7 @@ import database.model.SanPhamDonHang;
 import donhang.model.AdapterSanPham;
 import donhang.model.AdapterThemDonHangDSSanPham;
 import others.Others;
+import sanpham.ThongTinSanPhamActivity;
 
 public class ThongTinDonHangActivity extends AppCompatActivity {
     TextView tvMaDonHang, tvTenKhachHang, tvNgayDatHang, tvTongTien;
@@ -91,6 +92,18 @@ public class ThongTinDonHangActivity extends AppCompatActivity {
                 Intent intent = new Intent();
                 setResult(0);
                 finish();
+            }
+        });
+
+        this.lvSanPhamDonHang.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intentTTSP = new Intent(ThongTinDonHangActivity.this, ThongTinSanPhamActivity.class);
+                intentTTSP.putExtra("mode", "xem");
+                SanPhamDonHang spdh = sanPhamDonHangs.get(i);
+                SanPham sp = new SanPham(spdh.getMaSP(), spdh.getTenSP(), spdh.getXuatXu(), spdh.getDonGia(), spdh.getHinh());
+                intentTTSP.putExtra("sanPham", sp);
+                startActivity(intentTTSP);
             }
         });
 
