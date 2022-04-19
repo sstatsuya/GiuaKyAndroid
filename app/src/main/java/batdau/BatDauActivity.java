@@ -1,21 +1,19 @@
 package batdau;
 
-import static android.content.ContentValues.TAG;
-
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.app.job.JobInfo;
-import android.app.job.JobScheduler;
-import android.content.ComponentName;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.work.PeriodicWorkRequest;
+import androidx.work.WorkManager;
+
 import com.example.giuakyandroid.R;
 
-import schedulemail.SendMailSchedule;
+import java.util.concurrent.TimeUnit;
+
+import schedulemail.ScheduleWorker;
 
 public class BatDauActivity extends AppCompatActivity {
     Button btnStart;
@@ -24,6 +22,7 @@ public class BatDauActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bat_dau);
         scheduleJob();
+        System.out.println("sau scedu");
         getSupportActionBar().hide();
         getWindow().setStatusBarColor(getResources().getColor(R.color.primary));
         setControl();
@@ -43,18 +42,10 @@ public class BatDauActivity extends AppCompatActivity {
         btnStart = findViewById(R.id.btnStart);
     }
     public void scheduleJob() {
-        ComponentName componentName = new ComponentName(this, SendMailSchedule.class);
-        JobInfo info = new JobInfo.Builder(123, componentName)
-                .setPersisted(true)
-                .setPeriodic(3 * 1000)
-                .build();
-        JobScheduler scheduler = (JobScheduler) getSystemService(JOB_SCHEDULER_SERVICE);
-        int resultCode = scheduler.schedule(info);
-        if (resultCode == JobScheduler.RESULT_SUCCESS) {
-            Log.d(TAG, "Job scheduled");
-            System.out.println("run this shit");
-        } else {
-            Log.d(TAG, "Job scheduling failed");
-        }
+        System.out.println("Go to this");
+        PeriodicWorkRequest periodicWorkRequest = new PeriodicWorkRequest.Builder(
+                ScheduleWorker.class, 1, TimeUnit.MINUTES
+        ).build();
+        WorkManager.getInstance().enqueue(periodicWorkRequest);
     }
 }

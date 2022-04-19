@@ -167,10 +167,10 @@ public class ThongKeActivity extends AppCompatActivity {
     private void getTopSellerProduct(int year) {
         HashMap<Integer, Integer> bestSeller = new HashMap<>();
         donHangs.clear();
+        thongTinDonHangs.clear();
         donHangs.addAll(dbDonHang.getAllByYear(year));
         //get all product in year
         for (DonHang item : donHangs) {
-            thongTinDonHangs.clear();
             thongTinDonHangs.addAll(dbThongTinDatHang.getAllThongTinDonHangByMaDH(item.getMaDH()));
             for (ThongTinDonHang thongTinDonHang : thongTinDonHangs) {
                 int maSP = thongTinDonHang.getMaSP();
