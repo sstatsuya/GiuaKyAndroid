@@ -111,9 +111,16 @@ public class SanPhamActivity extends AppCompatActivity {
         });
     }
 
+    private String[] getTenSanPhams(){
+        String[] res = new String[sanPhams.size()];
+        for(int i = 0; i<sanPhams.size(); i++){
+            res[i] = sanPhams.get(i).getTenSP();
+        }
+        return res;
+    }
+
     private void goiY() {
-        sanPhamPhoBien = getResources().getStringArray(R.array.san_pham_pho_bien);
-        sanPhamPhoBienAA = new ArrayAdapter(this, android.R.layout.simple_list_item_1, sanPhamPhoBien);
+        sanPhamPhoBienAA = new ArrayAdapter(this, android.R.layout.simple_list_item_1, getTenSanPhams());
         actvSearchSanPham.setAdapter(sanPhamPhoBienAA);
     }
 
@@ -121,13 +128,15 @@ public class SanPhamActivity extends AppCompatActivity {
         DBSanPham dbSanPham = new DBSanPham(getApplicationContext());
         sanPhams.clear();
         sanPhams.addAll(dbSanPham.docDL());
+        SanPham tam = new SanPham();
+        tam.setMaSP(16);
+        dbSanPham.xoaDL(tam);
     }
 
     private void setControl() {
         gvSanPham = findViewById(R.id.gvSanPham);
         btnThemSanPham = findViewById(R.id.btnThemSanPham);
         sn_loc_sp = findViewById(R.id.sn_loc_sp);
-//        svLocSP = findViewById(R.id.sv_sp_loc);
         actvSearchSanPham = findViewById(R.id.actvSearchSanPham);
         khoiTaoSpinnerLoc();
     }
@@ -157,6 +166,5 @@ public class SanPhamActivity extends AppCompatActivity {
         layDuLieuDatabase();
         adapterSanPham.notifyDataSetChanged();
     }
-
 
 }
