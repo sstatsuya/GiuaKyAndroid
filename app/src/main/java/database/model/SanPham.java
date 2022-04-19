@@ -23,22 +23,6 @@ public class SanPham implements Serializable {
         this.hinh = hinh;
     }
 
-    @Override
-    public int hashCode() {
-        return this.maSP;
-    }
-//
-//    @Override
-//    public boolean equals(@Nullable Object obj) {
-//        return this.getMaSP() == ((SanPham) obj).getMaSP() ;
-//    }
-//
-//    @Override
-//    public int compareTo(SanPham sanPham) {
-//        if(this.getMaSP()==sanPham.getMaSP())
-//            return 1;
-//        else return 0;
-//    }
     public String searchValue() {
         return this.maSP + " " + this.tenSP + " " + this.xuatXu;
     }

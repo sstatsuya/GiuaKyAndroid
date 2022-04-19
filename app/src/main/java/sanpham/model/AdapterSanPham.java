@@ -45,7 +45,7 @@ public class AdapterSanPham extends ArrayAdapter<SanPham> {
         if(text.length() == 0)data.addAll(dataBackup);
         else{
             for (SanPham sanPham: dataBackup){
-                if(sanPham.getTenSP().toLowerCase().contains(text)){
+                if(sanPham.searchValue().toLowerCase().contains(text)){
                     data.add(sanPham);
                 }
             }
