@@ -176,9 +176,9 @@ public class ThongKeActivity extends AppCompatActivity {
                 int maSP = thongTinDonHang.getMaSP();
                 if (bestSeller.containsKey(maSP)) {
                     int temp = bestSeller.get(maSP);
-                    bestSeller.put(maSP, temp + 1);
+                    bestSeller.put(maSP, temp + thongTinDonHang.getSoLuongDat());
                 } else {
-                    bestSeller.put(maSP, 1);
+                    bestSeller.put(maSP, thongTinDonHang.getSoLuongDat());
                 }
             }
         }
