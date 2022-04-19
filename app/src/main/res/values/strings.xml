@@ -24,6 +24,14 @@
     <string name="thong_tin">Thông tin</string>
     <string name="sua_thong_tin_san_pham">Sửa thông tin sản phẩm</string>
     <string name="them_san_pham">Thêm sản phẩm</string>
+    <string-array name="san_pham_pho_bien">
+        <item>Thịt</item>
+        <item>Rau, củ</item>
+        <item>Bia</item>
+        <item>Sữa tươi</item>
+        <item>Nước</item>
+        <item>Trái cây</item>
+    </string-array>
     //KhachHang
     <string name="ma_khach_hang">Mã khách hàng</string>
     <string name="them_khachhang">Thêm khách hàng</string>
@@ -57,4 +65,5 @@
     <string name="tv_diachi">Địa chỉ:</string>
     <string name="btn_dongy">Đồng ý</string>
     <string name="btn_xoa">Xóa</string>
+    <string name="btn_huyEditKH">Hủy</string>
 </resources>

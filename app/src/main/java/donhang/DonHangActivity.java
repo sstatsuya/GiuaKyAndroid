@@ -3,91 +3,142 @@ package donhang;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Dialog;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.view.Gravity;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
+import android.widget.AutoCompleteTextView;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.giuakyandroid.R;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 
 import database.DBDonHang;
 import database.model.DonHang;
 import donhang.model.AdapterDonHang;
-import others.Others;
 
 public class DonHangActivity extends AppCompatActivity {
+    ListView lvDSDonHang;
+    TextView tvThemDonHang;
+    AutoCompleteTextView actvSearchDonHang;
     //database
     DBDonHang dbDonHang;
-
-    ListView lvDSDonHang;
-    TextView btnThemDonHang;
     AdapterDonHang adapterDonHang;
-    ArrayList<DonHang> donHangs = new ArrayList<>();
-    Others others;
+    ArrayList<DonHang> donHangs, donHangsBackup;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_don_hang);
         getSupportActionBar().hide();
         getWindow().setStatusBarColor(getResources().getColor(R.color.gray));
-
+        //generate database connector
         this.dbDonHang = new DBDonHang(this.getApplicationContext());
 
+//        generate();
         setControl();
         setEvent();
     }
 
-    private void setEvent() {
-        init();
-        adapterDonHang = new AdapterDonHang(this, R.layout.layout_item_donhang, donHangs);
-        lvDSDonHang.setAdapter(adapterDonHang);
+    private void generate() {
+        //get list DonHang
+        this.donHangs = new ArrayList<>();
+        this.donHangs.clear();
+        this.donHangs.addAll(this.dbDonHang.getAll());
+        this.donHangsBackup = new ArrayList<>();
+        this.donHangsBackup.clear();
+        this.donHangsBackup.addAll(this.donHangs);
+    }
 
-        this.btnThemDonHang.setOnClickListener(new View.OnClickListener() {
+    private void setControl() {
+        //link to layout element
+        this.tvThemDonHang = findViewById(R.id.tv_them_don_hang);
+        this.lvDSDonHang = findViewById(R.id.lvDSDonHang);
+        this.actvSearchDonHang = findViewById(R.id.actv_donhang_timkiem);
+        //generate data
+        generate();
+        //Set data to layout element
+        this.adapterDonHang = new AdapterDonHang(this, R.layout.layout_item_donhang, this.donHangs);
+        this.lvDSDonHang.setAdapter(this.adapterDonHang);
+    }
+
+    private void setEvent() {
+        this.tvThemDonHang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(DonHangActivity.this, ThemDonHangActivity.class);
-//                startActivity(intent);
                 startActivityForResult(intent, 1);
             }
         });
 
+        this.actvSearchDonHang.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+//                searchFunction(charSequence.toString());
+                adapterDonHang.searchFunction(charSequence.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
     }
 
-    private void init() {
-        donHangs = dbDonHang.getAll();
-    }
+//    private void searchFunction(String text) {
+//        this.donHangs.clear();
+//        System.out.println("-----------------------" + text);
+//        text = text.toLowerCase();
+//        if (text.length() == 0) this.donHangs.addAll(donHangsBackup);
+//        else {
+//            for (DonHang temp : donHangsBackup) {
+//                if (temp.searchValue().toLowerCase().contains(text)) {
+//                    donHangs.add(temp);
+//                }
+//
+//            }
+//        }
+//        this.donHangs.forEach(System.out::println);
+//        this.adapterDonHang.notifyDataSetChanged();
+//    }
 
-    private void setControl() {
-        btnThemDonHang = findViewById(R.id.btn_them_don_hang);
-        lvDSDonHang = findViewById(R.id.lvDSDonHang);
-    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == 1){
-            if(resultCode == 0) {
-//                Toast.makeText(this, "bam nut huy", Toast.LENGTH_SHORT).show();
-            } else if(resultCode == 1) {
-                donHangs.clear();
-                donHangs.addAll(dbDonHang.getAll());
-                adapterDonHang.notifyDataSetChanged();
-//                Toast.makeText(this, "bam nut luu", Toast.LENGTH_SHORT).show();
+        if (requestCode == 1) { //tu trang them don hang tro ve
+            if (resultCode == 0) { // Click huy hoac back
+                Toast.makeText(this, "bam nut huy", Toast.LENGTH_SHORT).show();
+            } else if (resultCode == 1) { //click Luu button
+//                Toast.makeText(this, "lick luu button", Toast.LENGTH_SHORT).show();
+//                this.donHangs.clear();
+//                this.donHangs.addAll(this.dbDonHang.getAll());
+//                this.adapterDonHang.notifyDataSetChanged();
+                this.adapterDonHang.refresh();
             }
+            return;
+        } else {
+//            this.donHangs.clear();
+//            this.donHangs.addAll(this.dbDonHang.getAll());
+//            this.adapterDonHang.notifyDataSetChanged();
+            this.adapterDonHang.refresh();
         }
     }
 
-
+    //Khi xóa khách hàng hay sản phẩm rồi bấm qua đơn hàng nó khỏi bị lỗi
+    @Override
+    protected void onResume() {
+        super.onResume();
+        generate();
+    }
 }

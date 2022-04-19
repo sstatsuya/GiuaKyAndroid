@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.giuakyandroid.R;
 
@@ -25,6 +26,7 @@ public class ThongTinSanPhamActivity extends AppCompatActivity {
     ImageView imgTTSPHinh;
     TextView btnSPSua, btnSPXoa;
     LinearLayout llSuaTTSP;
+    String mode = "full";
 
     Others others = new Others();
 
@@ -35,8 +37,9 @@ public class ThongTinSanPhamActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_thong_tin_san_pham);
         getSupportActionBar().hide();
-        getWindow().setStatusBarColor(getResources().getColor(R.color.gray));
+        getWindow().setStatusBarColor(getResources().getColor(R.color.primary));
         sanPham = (SanPham) getIntent().getSerializableExtra("sanPham");
+        mode = getIntent().getStringExtra("mode");
         setControl();
         ganDuLieuVao();
         setEvent();
@@ -78,8 +81,10 @@ public class ThongTinSanPhamActivity extends AppCompatActivity {
         llSuaTTSP = findViewById(R.id.ll_suattsp);
         btnSPSua = findViewById(R.id.btn_sua_sp);
         btnSPXoa = findViewById(R.id.btn_xoa_sp);
-//
-//
+        if(mode.equals("xem")){
+            btnSPSua.setVisibility(View.INVISIBLE);
+            btnSPXoa.setVisibility(View.INVISIBLE);
+        }
     }
 
     private void ganDuLieuVao() {
@@ -88,7 +93,7 @@ public class ThongTinSanPhamActivity extends AppCompatActivity {
         txtTTSPMa.setText(sanPham.getMaSP().toString());
         txtTTSPTen.setText(sanPham.getTenSP());
         txtTTSPXuatXu.setText(sanPham.getXuatXu());
-        txtTTSPGia.setText(sanPham.getDonGia().toString());
+        txtTTSPGia.setText(others.numberToVND(sanPham.getDonGia()));
         imgTTSPHinh.setImageBitmap(bitmap);
     }
 

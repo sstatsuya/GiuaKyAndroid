@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -11,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Spinner;
@@ -23,6 +25,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.giuakyandroid.R;
 
+import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.ArrayList;
 
 import database.DBKhachHang;
@@ -38,9 +43,10 @@ public class KhachHangActivity extends AppCompatActivity {
     AdapterKhachHang adapterKhachHang;
     DBKhachHang dbKhachHang;
     Others others = new Others();
+    KhachHang khachHangTemp ;
     public static final int REQUEST_TO_THEMKH = 1;
+    public static final int REQUEST_TO_FOLDER = 2;
 
-    //    private static final int REQUEST_TO_FOLDER = 2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,7 +59,7 @@ public class KhachHangActivity extends AppCompatActivity {
 
     private void setEvent() {
         //
-        adapterKhachHang = new AdapterKhachHang(this, R.layout.activity_items_khachhang, DS_khachHang);
+        adapterKhachHang = new AdapterKhachHang(this, R.layout.layout_items_khachhang, DS_khachHang);
         lv_DSKhachHang.setAdapter(adapterKhachHang);
 
         //
@@ -95,9 +101,14 @@ public class KhachHangActivity extends AppCompatActivity {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
                 ViewSwitcher sw_layoutItemKH = view.findViewById(R.id.sw_layoutItemKH);
+                LinearLayout ll_itemXemThongTin = sw_layoutItemKH.findViewById(R.id.ll_itemXemThongTin);
+                LinearLayout ll_itemEditThongTin = sw_layoutItemKH.findViewById(R.id.ll_itemEditThongTin);
                 KhachHang khachhang = DS_khachHang.get(i);
                 try {
-                    sw_layoutItemKH.showNext();
+                    if(sw_layoutItemKH.getCurrentView() != ll_itemEditThongTin){
+                        sw_layoutItemKH.showNext();
+                    }
+
                 } catch (Exception ex) {
                     RefreshData();
                     return false;
@@ -111,6 +122,7 @@ public class KhachHangActivity extends AppCompatActivity {
                 EditText et_editAddress = view.findViewById(R.id.et_editAddress);
                 Button btn_LuuThongTinKH = view.findViewById(R.id.btn_LuuThongTinKH);
                 Button btn_XoaThongTinKH = view.findViewById(R.id.btn_XoaThongTinKH);
+                Button btn_HuyEditKH = view.findViewById(R.id.btn_HuyEditKH);
                 // set data
                 Bitmap bitmap = BitmapFactory.decodeByteArray(khachhang.getHINHANH(), 0, khachhang.getHINHANH().length);
                 iv_avatarKH.setImageBitmap(bitmap);
@@ -119,7 +131,26 @@ public class KhachHangActivity extends AppCompatActivity {
                 et_editPhone.setText(khachhang.getDIENTHOAI());
                 et_editAddress.setText(khachhang.getDIACHI());
 
+
+
                 //set event
+                btn_HuyEditKH.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if(sw_layoutItemKH.getCurrentView() != ll_itemEditThongTin)
+                            sw_layoutItemKH.showNext();
+                    }
+                });
+
+                iv_avatarKH.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        khachHangTemp = khachhang;
+                        Intent intent = new Intent(Intent.ACTION_PICK);
+                        intent.setType("image/*");
+                        startActivityForResult(intent, REQUEST_TO_FOLDER);
+                    }
+                });
                 btn_XoaThongTinKH.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -208,7 +239,7 @@ public class KhachHangActivity extends AppCompatActivity {
             btnConfirmDongY.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    dbKhachHang.DeleteData(khachhang.getMAKH());
+                    dbKhachHang.deleteData(khachhang.getMAKH());
                     confirmDialog.dismiss();
                     openSuccessDialog("Đã Xóa Khách hàng thành công!");
                 }
@@ -246,19 +277,21 @@ public class KhachHangActivity extends AppCompatActivity {
             RefreshData();
         }
 
-        // TH lay anh tu folder cap nhat anh khach hang
-//        if(requestCode == REQUEST_TO_FOLDER && resultCode == RESULT_OK && data != null){
-//
-//            Uri uri = data.getData();
-//            try {
-//                tv_avatarKH.setText(getPath(uri));
-//                InputStream inputStream = getContentResolver().openInputStream(uri);
-//                Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
-//                iv_avatarKH.setImageBitmap(bitmap);
-//            } catch (FileNotFoundException e) {
-//                e.printStackTrace();
-//            }
-//        }
+//         TH lay anh tu folder cap nhat anh khach hang
+        if(requestCode == REQUEST_TO_FOLDER && resultCode == RESULT_OK && data != null){
+            Uri uri = data.getData();
+            try {
+                ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                InputStream inputStream = getContentResolver().openInputStream(uri);
+                Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+                bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
+                khachHangTemp.setHINHANH(byteArrayOutputStream.toByteArray());
+                dbKhachHang.updateData(khachHangTemp);
+                RefreshData();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
 
     }
 }

@@ -33,12 +33,14 @@ import others.Others;
 public class ActivityThemKhachHang extends AppCompatActivity {
     private ImageView iv_avatarKH;
     private  Button btn_themKH, btn_huyThemKH;
-    private LinearLayout btn_ChonAnh;
+    private LinearLayout btn_ChonAnh, btn_Camera;
     private  EditText ed_tenKH, ed_soDT_KH, ed_diaChiKH;
     private  TextView tv_avatarKH;
     private String name="", phone="", address= "";
     private byte[] avatar = null;
     public static final int REQUEST_TO_FOLDER = 3;
+    public static final int REQUEST_TO_CAMERA = 4;
+
     Others others = new Others();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +48,6 @@ public class ActivityThemKhachHang extends AppCompatActivity {
         setContentView(R.layout.activity_them_khach_hang);
         getSupportActionBar().hide();
         getWindow().setStatusBarColor(getResources().getColor(R.color.primary));
-
         setControl();
         setEvent();
 
@@ -57,6 +58,7 @@ public class ActivityThemKhachHang extends AppCompatActivity {
         btn_themKH = findViewById(R.id.btn_themKH);
         btn_huyThemKH = findViewById(R.id.btn_huyThemKH);
         btn_ChonAnh = findViewById(R.id.btn_ChonAnh);
+        btn_Camera = findViewById(R.id.btn_Camera);
         tv_avatarKH = findViewById(R.id.tv_avatarKH);
         ed_tenKH = findViewById(R.id.ed_tenKH);
         ed_diaChiKH = findViewById(R.id.ed_diaChiKH);
@@ -94,6 +96,13 @@ public class ActivityThemKhachHang extends AppCompatActivity {
 
             }
         });
+        btn_Camera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivityForResult(intent, REQUEST_TO_CAMERA);
+            }
+        });
 
         btn_themKH.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -114,7 +123,7 @@ public class ActivityThemKhachHang extends AppCompatActivity {
                     if (checkInput()){
                         Intent intent = new Intent();
                         KhachHang khachHang = new KhachHang ( avatar, name, phone, address);
-                        new DBKhachHang(ActivityThemKhachHang.this).InsertData(khachHang);
+                        new DBKhachHang(ActivityThemKhachHang.this).insertData(khachHang);
                         openSuccessDialog();
                     }
 
@@ -134,6 +143,12 @@ public class ActivityThemKhachHang extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
+        if(requestCode == REQUEST_TO_CAMERA && resultCode == RESULT_OK && data != null){
+            tv_avatarKH.setText("Take a photo from camera");
+            Bitmap bitmap = (Bitmap) data.getExtras().get("data");
+            iv_avatarKH.setImageBitmap(bitmap);
+
+        }
         if(requestCode == REQUEST_TO_FOLDER && resultCode == RESULT_OK && data != null){
             Uri uri = data.getData();
             try {
@@ -144,7 +159,6 @@ public class ActivityThemKhachHang extends AppCompatActivity {
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
-
         }
     }
 

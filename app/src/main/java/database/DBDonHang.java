@@ -27,8 +27,6 @@ public class DBDonHang {
     private static final String COLUMN_CUSTOMER = "MAKH";
 
     private Context context;
-
-
     DBSQLiteOpenHelper dbHelper;
 
     public DBDonHang(@Nullable Context contex) {
@@ -45,7 +43,7 @@ public class DBDonHang {
 
         String sql = "SELECT DH.MADH, DH.MAKH, KH.TENKH, DH.NGAYDH\n" +
                 "FROM DONHANG DH, KHACHHANG KH\n" +
-                "WHERE DH.MAKH = KH.MAKH";
+                "WHERE DH.MAKH = KH.MAKH ORDER BY DH.MADH DESC";
         SQLiteDatabase database = dbHelper.getReadableDatabase();
         Cursor cursor = database.rawQuery(sql, null);
         if(cursor.moveToFirst())
@@ -152,67 +150,7 @@ public class DBDonHang {
 
         return donHang;
     }
+  
+  
 
-
-
-    public void updateData(KhachHang khachHang) { //Hàm Update
-//        String sql = "update " + TABLE_NAME +
-//                " set " + COLUMN_AVATAR + "=?, " + COLUMN_NAME+ "=?, " +COLUMN_ADDRESS + "=?, " + COLUMN_PHONE+ "=? " +
-//                "where " +COLUMN_ID + "="  + khachHang.getMAKH() ;
-//
-//        SQLiteDatabase database = getWritableDatabase();
-//        SQLiteStatement statement = database.compileStatement(sql);
-//        statement.bindBlob(1, khachHang.getHINHANH());
-//        statement.bindString(2, khachHang.getTENKH());
-//        statement.bindString(3, khachHang.getDIACHI());
-//        statement.bindString(4, khachHang.getDIENTHOAI());
-//        statement.executeUpdateDelete();
-//        database.close();
-    }
-
-    public void DeleteData(int MAKH) { //Hàm Delete
-//        String sql = "delete from " + TABLE_NAME + " where " +COLUMN_ID + "="  + MAKH ;
-//        SQLiteDatabase database = getWritableDatabase();
-//        SQLiteStatement statement = database.compileStatement(sql);
-//        statement.executeUpdateDelete();
-//        database.close();
-    }
-    public ArrayList<DonHang> getAllByYear(int year) {
-        ArrayList<DonHang> donHangs = new ArrayList<>();
-        DonHang donHangTemp;
-        ArrayList<SanPhamDonHang> danhSachSanPham;
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-
-        String sql = "SELECT DH.MADH, DH.MAKH, KH.TENKH, DH.NGAYDH\n" +
-                "FROM DONHANG DH, KHACHHANG KH\n" +
-                "WHERE DH.MAKH = KH.MAKH AND substr(DH.NGAYDH, 1, 4) = '" + String.valueOf(year) + "';";
-        SQLiteDatabase database = dbHelper.getReadableDatabase();
-        Cursor cursor = database.rawQuery(sql, null);
-        if(cursor.moveToFirst())
-        {
-            do {
-                donHangTemp = new DonHang();
-                donHangTemp.setMaDH(cursor.getInt(0));
-                donHangTemp.setMaKH(cursor.getInt(1));
-                donHangTemp.setTenKH(cursor.getString(2));
-                try {
-                    donHangTemp.setNgayDatHang(dateFormat.parse(cursor.getString(3)));
-                } catch (ParseException e) {
-                    Log.i(TAG, "DBDonHang.getAll format date errors " + donHangTemp.getMaDH() + " - " + e.toString());
-                    e.printStackTrace();
-                }
-
-                try {
-                    donHangTemp.setSanPhamDonHangs(new DBThongTinDatHang(this.context).getAllByMaDH(donHangTemp.getMaDH()));
-                } catch (Exception e) {
-                    Log.i(TAG, "DBDonHang.getAll get all product list by orderID " + donHangTemp.getMaDH() + " - " + e.toString());
-                    e.printStackTrace();
-                }
-
-                donHangs.add(donHangTemp);
-            }
-            while (cursor.moveToNext());
-        }
-        return donHangs;
-    }
 }

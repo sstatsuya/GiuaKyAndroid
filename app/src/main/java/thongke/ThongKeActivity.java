@@ -1,10 +1,14 @@
 package thongke;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,13 +22,11 @@ import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 
 import java.util.ArrayList;
+
 import java.util.Calendar;
 import java.util.HashMap;
 
-import database.DBDonHang;
 import database.DBSanPham;
-import database.DBThongTinDatHang;
-import database.model.DonHang;
 import database.model.SanPham;
 import database.model.ThongTinDonHang;
 import others.Others;
@@ -200,5 +202,6 @@ public class ThongKeActivity extends AppCompatActivity {
         //Set value for ListView
         AdapterBanChay adapterBanChay = new AdapterBanChay(this, R.layout.layout_item_san_pham_ban_chay, banChays);
         lvBanChay.setAdapter(adapterBanChay);
+    
     }
 }

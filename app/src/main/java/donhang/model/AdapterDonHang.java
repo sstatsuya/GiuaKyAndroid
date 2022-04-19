@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import database.DBDonHang;
 import database.DBThongTinDatHang;
 import database.model.DonHang;
+import database.model.SanPham;
 import donhang.DonHangActivity;
 import donhang.ThongTinDonHangActivity;
 import others.Others;
@@ -27,7 +28,8 @@ import others.Others;
 public class AdapterDonHang extends ArrayAdapter<DonHang> {
     Context context;
     int resource;
-    ArrayList<DonHang> data;
+    ArrayList<DonHang> data, databackup = new ArrayList<>();
+
 
     SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 
@@ -36,6 +38,7 @@ public class AdapterDonHang extends ArrayAdapter<DonHang> {
         this.context = context;
         this.resource = resource;
         this.data = data;
+        this.databackup.addAll(data);
     }
 
     @Override
@@ -71,9 +74,9 @@ public class AdapterDonHang extends ArrayAdapter<DonHang> {
         btnXemDonHang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int value=data.get(position).getMaDH();
+                int value = data.get(position).getMaDH();
                 Intent intent = new Intent(view.getContext(), ThongTinDonHangActivity.class);
-                intent.putExtra("madonhang",value);
+                intent.putExtra("madonhang", value);
                 context.startActivity(intent);
             }
         });
@@ -81,9 +84,9 @@ public class AdapterDonHang extends ArrayAdapter<DonHang> {
         return convertView;
     }
 
-//    Xoa don hang
-    public void xoaDonHang(DonHang donHang){
-        Dialog confirmDialog = chucnang.Dialog.openConfirmDialog(context, "Bạn có muốn xóa đơn hàng "+donHang.getMaDH());
+    //    Xoa don hang
+    public void xoaDonHang(DonHang donHang) {
+        Dialog confirmDialog = chucnang.Dialog.openConfirmDialog(context, "Bạn có muốn xóa đơn hàng " + donHang.getMaDH());
         confirmDialog.show();
         TextView btnConfirmHuyBo = confirmDialog.findViewById(R.id.btn_confirm_huy_bo);
         TextView btnConfirmDongY = confirmDialog.findViewById(R.id.btn_confirm_dong_y);
@@ -118,4 +121,40 @@ public class AdapterDonHang extends ArrayAdapter<DonHang> {
             }
         });
     }
+
+    public void searchFunction(String text) {
+        this.data.clear();
+        text = text.toLowerCase();
+        if (text.length() == 0) this.data.addAll(databackup);
+        else {
+            for (DonHang temp : databackup) {
+                if (temp.searchValue().toLowerCase().contains(text)) {
+                    data.add(temp);
+                }
+
+            }
+        }
+        notifyDataSetChanged();
+    }
+
+    public void refresh(){
+        this.data.clear();
+        this.data.addAll(new DBDonHang(this.context).getAll());
+        this.databackup.clear();
+        this.databackup.addAll(this.data);
+        notifyDataSetChanged();
+
+    }
+
+//    public void search(String text) {
+//        if (text.length() == 0) return;
+//        data.clear();
+//        text = text.toLowerCase();
+//        for (DonHang i : data) {
+//            if (i.searchValue().toLowerCase().contains(text)) {
+//                data.add(i);
+//            }
+//        }
+//        notifyDataSetChanged();
+//    }
 }
