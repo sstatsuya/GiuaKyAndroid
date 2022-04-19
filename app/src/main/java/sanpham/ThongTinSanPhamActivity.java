@@ -97,40 +97,6 @@ public class ThongTinSanPhamActivity extends AppCompatActivity {
         imgTTSPHinh.setImageBitmap(bitmap);
     }
 
-//    private void suaSanPham() {
-//        Dialog confirmDialog = others.openConfirmDialog(ThongTinSanPhamActivity.this, "Bạn có muốn sửa sản phẩm này?");
-//        confirmDialog.show();
-//        TextView btnConfirmHuyBo = confirmDialog.findViewById(R.id.btn_confirm_huy_bo);
-//        TextView btnConfirmDongY = confirmDialog.findViewById(R.id.btn_confirm_dong_y);
-//        btnConfirmHuyBo.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                confirmDialog.dismiss();
-//            }
-//        });
-//        btnConfirmDongY.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                //Sua san pham
-//                dbSanPham dbSanPham = new dbSanPham(getApplicationContext());
-//                dbSanPham.suaDL(layDuLieuInput());
-//                sanPham = layDuLieuInput();
-//                ganDuLieuVao();
-//                confirmDialog.dismiss();
-//                Dialog successDialog = others.openSuccessDialog(ThongTinSanPhamActivity.this, "Sửa sản phẩm thành công");
-//                successDialog.show();
-//                TextView btnSuccessDongY = successDialog.findViewById(R.id.btn_success_dong_y);
-//                btnSuccessDongY.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View view) {
-//                        successDialog.dismiss();
-//                        btnSTTSPHuy.callOnClick();
-//                    }
-//                });
-//            }
-//        });
-//    }
-
     private void xoaSanPham() {
         Dialog confirmDialog = others.openConfirmDialog(ThongTinSanPhamActivity.this, "Bạn có muốn xóa sản phẩm này?");
         confirmDialog.show();

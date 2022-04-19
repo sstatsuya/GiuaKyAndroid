@@ -33,4 +33,13 @@
         android:textAlignment="center"
         android:text="@string/ten_san_pham"/>
 
+    <TextView
+        android:id="@+id/txtGiaSanPham"
+        android:textColor="@color/green"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textAlignment="center"
+        android:text="@string/don_gia"/>
+
 </LinearLayout>

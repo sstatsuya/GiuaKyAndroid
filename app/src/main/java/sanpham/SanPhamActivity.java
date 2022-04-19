@@ -17,6 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.SearchView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.giuakyandroid.R;
 
@@ -96,29 +97,12 @@ public class SanPhamActivity extends AppCompatActivity {
             }
         });
 
-
-//        Khi tìm kiếm
-//        svLocSP.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-//            @Override
-//            public boolean onQueryTextSubmit(String s) {
-//                return false;
-//            }
-//
-//            @Override
-//            public boolean onQueryTextChange(String s) {
-//                adapterSanPham.locBangInput(s);
-//                return false;
-//            }
-//        });
-
         //Khi bấm vào loc trên spinner
         sn_loc_sp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 ((TextView)view).setText(null);
-                Object item = adapterView.getItemAtPosition(i);
-                int option = item.toString().equals("Lọc theo mã tăng dần")?1:2;
-                adapterSanPham.locBangSpinner(option);
+                adapterSanPham.locBangSpinner(i+1);
             }
 
             @Override
@@ -152,6 +136,8 @@ public class SanPhamActivity extends AppCompatActivity {
         ArrayList<String> kieuLoc = new ArrayList<>();
         kieuLoc.add("Lọc theo mã tăng dần");
         kieuLoc.add("Lọc theo mã giảm dần");
+        kieuLoc.add("Lọc theo giá tăng dần");
+        kieuLoc.add("Lọc theo giá giảm dần");
         ArrayAdapter arrayAdapter = new ArrayAdapter(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, kieuLoc);
         sn_loc_sp.setAdapter(arrayAdapter);
         sn_loc_sp.setSelection(0);

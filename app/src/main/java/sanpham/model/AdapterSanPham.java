@@ -19,12 +19,14 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import database.model.SanPham;
+import others.Others;
 
 public class AdapterSanPham extends ArrayAdapter<SanPham> {
     Context context;
     int resource;
     ArrayList<SanPham> data;
     ArrayList<SanPham> dataBackup = new ArrayList<>();
+    Others others = new Others();
 
     public AdapterSanPham(@NonNull Context context, int resource, @NonNull ArrayList<SanPham> data) {
         super(context, resource, data);
@@ -55,16 +57,32 @@ public class AdapterSanPham extends ArrayAdapter<SanPham> {
 
     //option : 1 ma tang dan
     //option : 2 ma giam dan
+    //option : 3 gia tang dan
+    //option : 4 gia giam dan
     public void locBangSpinner(int option) {
-        for(int i = 0; i<data.size()-1; i++){
-            if(data.get(i).getMaSP() > data.get(i+1).getMaSP()){
-                SanPham sanPhamTam = data.get(i);
-                data.set(i, data.get(i+1));
-                data.set(i+1, sanPhamTam);
+        if(option < 3){
+            for(int i = 0; i<data.size()-1; i++){
+                if(data.get(i).getMaSP() > data.get(i+1).getMaSP()){
+                    SanPham sanPhamTam = data.get(i);
+                    data.set(i, data.get(i+1));
+                    data.set(i+1, sanPhamTam);
+                }
+            }
+            if(option == 2){
+                Collections.reverse(data);
             }
         }
-        if(option == 2){
-            Collections.reverse(data);
+        else{
+            for(int i = 0; i<data.size()-1; i++){
+                if(data.get(i).getDonGia() > data.get(i+1).getDonGia()){
+                    SanPham sanPhamTam = data.get(i);
+                    data.set(i, data.get(i+1));
+                    data.set(i+1, sanPhamTam);
+                }
+            }
+            if(option == 4){
+                Collections.reverse(data);
+            }
         }
         notifyDataSetChanged();
     }
@@ -76,10 +94,12 @@ public class AdapterSanPham extends ArrayAdapter<SanPham> {
         ImageView imgSanPham = convertView.findViewById(R.id.imgSanPham);
         TextView tenSanPham = convertView.findViewById(R.id.txtTenSanPham);
         TextView maSanPham = convertView.findViewById(R.id.txtMaSanPham);
+        TextView giaSanPham = convertView.findViewById(R.id.txtGiaSanPham);
         SanPham sanPham = data.get(position);
 
         tenSanPham.setText(sanPham.getTenSP());
         maSanPham.setText("Mã SP: "+ sanPham.getMaSP().toString());
+        giaSanPham.setText(others.numberToVND(sanPham.getDonGia()));
 
         Bitmap bitmap = BitmapFactory.decodeByteArray(sanPham.getHinh(), 0, sanPham.getHinh().length);
         imgSanPham.setImageBitmap(bitmap);

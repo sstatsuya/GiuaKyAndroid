@@ -28,7 +28,7 @@ import java.io.InputStream;
 
 public class ThemSanPhamActivity extends AppCompatActivity {
     EditText txtTSPTen, txtTSPGia, txtTSPXuatXu;
-    TextView btnTSPDongY, btnTSPHuy;
+    TextView btnTSPDongY, btnTSPHuy, txtTSPHinh;
     ImageView imgTSPHinh;
     LinearLayout btnFolder, btnCamera;
     boolean chonHinh = false;
@@ -125,41 +125,10 @@ public class ThemSanPhamActivity extends AppCompatActivity {
         btnTSPDongY = findViewById(R.id.btn_them_sp_dong_y);
         btnTSPHuy = findViewById(R.id.btn_them_sp_huy);
         imgTSPHinh = findViewById(R.id.imgTSPHinh);
+        txtTSPHinh = findViewById(R.id.txtTSPHinh);
         btnFolder = findViewById(R.id.btn_them_sp_folder);
         btnCamera = findViewById(R.id.btn_them_sp_camera);
     }
-
-//    private void openSuccessDialog(int gravity, String noiDung) {
-//        Dialog dialog = new Dialog(this);
-//        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-//        dialog.setContentView(R.layout.layout_success);
-//        Window window = dialog.getWindow();
-//        if (window == null) {
-//            return;
-//        }
-//        window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
-//        window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-//        WindowManager.LayoutParams windowAttributes = window.getAttributes();
-//        windowAttributes.gravity = gravity;
-//        window.setAttributes(windowAttributes);
-//
-//        TextView txtSuccessNoiDung = dialog.findViewById(R.id.txt_success_noi_dung);
-//        TextView txtSucessDongY = dialog.findViewById(R.id.btn_success_dong_y);
-//
-//        txtSuccessNoiDung.setText(noiDung);
-//        txtSucessDongY.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent();
-//                intent.putExtra("sanPham", getDuLieu());
-//                setResult(1, intent);
-//                finish();
-//            }
-//        });
-//
-//        dialog.setCanceledOnTouchOutside(false);
-//        dialog.show();
-//    }
 
     //    Check input trước khi thêm sản phẩm
     private boolean checkInput() {
@@ -178,9 +147,11 @@ public class ThemSanPhamActivity extends AppCompatActivity {
         if (requestCode == REQUEST_CODE_CAMERA) {
             if (resultCode == RESULT_OK && data != null) {
                 chonHinh = true;
+                txtTSPHinh.setText("Đã có hình");
+                txtTSPHinh.setTextColor(getResources().getColor(R.color.green));
                 Bitmap bitmap = (Bitmap) data.getExtras().get("data");
                 imgTSPHinh.setImageBitmap(bitmap);
-            } else Toast.makeText(this, "Chua co hinh", Toast.LENGTH_SHORT).show();
+            } else Toast.makeText(this, "Chưa có hình", Toast.LENGTH_SHORT).show();
         }
 
         //Trường hợp lấy hình từ folder
@@ -189,6 +160,8 @@ public class ThemSanPhamActivity extends AppCompatActivity {
                 Uri uri = data.getData();
                 try {
                     chonHinh = true;
+                    txtTSPHinh.setText("Đã có hình");
+                    txtTSPHinh.setTextColor(getResources().getColor(R.color.green));
                     InputStream inputStream = getContentResolver().openInputStream(uri);
                     Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
                     imgTSPHinh.setImageBitmap(bitmap);
