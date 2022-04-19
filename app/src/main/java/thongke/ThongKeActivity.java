@@ -167,18 +167,19 @@ public class ThongKeActivity extends AppCompatActivity {
     private void getTopSellerProduct(int year) {
         HashMap<Integer, Integer> bestSeller = new HashMap<>();
         donHangs.clear();
-        thongTinDonHangs.clear();
+        //save all donHangs in one year
         donHangs.addAll(dbDonHang.getAllByYear(year));
         //get all product in year
         for (DonHang item : donHangs) {
+            thongTinDonHangs.clear();
             thongTinDonHangs.addAll(dbThongTinDatHang.getAllThongTinDonHangByMaDH(item.getMaDH()));
             for (ThongTinDonHang thongTinDonHang : thongTinDonHangs) {
                 int maSP = thongTinDonHang.getMaSP();
                 if (bestSeller.containsKey(maSP)) {
                     int temp = bestSeller.get(maSP);
-                    bestSeller.put(maSP, temp + 1);
+                    bestSeller.put(maSP, temp + thongTinDonHang.getSoLuongDat());
                 } else {
-                    bestSeller.put(maSP, 1);
+                    bestSeller.put(maSP, thongTinDonHang.getSoLuongDat());
                 }
             }
         }
