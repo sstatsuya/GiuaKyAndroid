@@ -100,15 +100,15 @@ public class KhachHangActivity extends AppCompatActivity {
         lv_DSKhachHang.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
-                ViewSwitcher sw_layoutItemKH = view.findViewById(R.id.sw_layoutItemKH);
-                LinearLayout ll_itemXemThongTin = sw_layoutItemKH.findViewById(R.id.ll_itemXemThongTin);
-                LinearLayout ll_itemEditThongTin = sw_layoutItemKH.findViewById(R.id.ll_itemEditThongTin);
+                ViewSwitcher sw_layoutItemKH ;
+                LinearLayout ll_itemEditThongTin ;
                 KhachHang khachhang = DS_khachHang.get(i);
                 try {
+                    sw_layoutItemKH = view.findViewById(R.id.sw_layoutItemKH);
+                    ll_itemEditThongTin = sw_layoutItemKH.findViewById(R.id.ll_itemEditThongTin);
                     if(sw_layoutItemKH.getCurrentView() != ll_itemEditThongTin){
                         sw_layoutItemKH.showNext();
                     }
-
                 } catch (Exception ex) {
                     RefreshData();
                     return false;
