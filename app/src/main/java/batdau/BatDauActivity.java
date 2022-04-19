@@ -39,11 +39,11 @@ public class BatDauActivity extends AppCompatActivity {
         btnStart = findViewById(R.id.btnStart);
     }
     public void scheduleJob() {
-        ComponentName componentName = new ComponentName(this, SendMailSchedule.class);
-        JobInfo info = new JobInfo.Builder(123, componentName)
-                //just run this job when have wifi connection
-                .setRequiredNetworkType(JobInfo.NETWORK_TYPE_UNMETERED)
-                .setPeriodic()
+//        ComponentName componentName = new ComponentName(this, SendMailSchedule.class);
+//        JobInfo info = new JobInfo.Builder(123, componentName)
+//                //just run this job when have wifi connection
+//                .setRequiredNetworkType(JobInfo.NETWORK_TYPE_UNMETERED)
+//                .setPeriodic()
 
     }
 }
