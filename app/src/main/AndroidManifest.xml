@@ -5,7 +5,6 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -16,9 +15,6 @@
         android:theme="@style/Theme.GiuaKyAndroid">
         <activity
             android:name="donhang.SuaDonHangActivity"
-            android:exported="false" />
-        <activity
-            android:name="thongke.BanChayActivity"
             android:exported="false" />
         <activity
             android:name="xuatpdf.XuatPDFActivity"
@@ -71,6 +67,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <service android:name="sendmail.SendMailSchedule"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
     </application>
 
 </manifest>

@@ -46,6 +46,16 @@
                 android:text="@string/ma_san_pham"
                 android:textColor="#7A000000"
                 android:textSize="15dp" />
+            <TextView
+                android:id="@+id/tv_itemsanphambanchay_soluong"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="Số lượng"
+                android:textColor="#7A000000"
+                android:textSize="15dp" />
+
         </LinearLayout>
 
     </LinearLayout>

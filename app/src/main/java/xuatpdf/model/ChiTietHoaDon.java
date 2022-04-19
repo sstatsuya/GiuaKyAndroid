@@ -1,31 +1,33 @@
-package database.model;
+package xuatpdf.model;
 
 import java.io.Serializable;
-import java.util.Arrays;
 
-public class SanPhamDonHang implements Serializable {
+/**
+ * Project: GiuaKyAndroid
+ * Author: Tran Van Tu
+ * Date: 4/17/2022 3:17 PM
+ * Desc:
+ */
+public class ChiTietHoaDon implements Serializable {
     Integer maSP;
     String tenSP;
     int soLuong;
     Double donGia;
     byte[] hinh;
     String xuatXu;
+    double thanhTien;
 
-
-    public SanPhamDonHang() {}
-
-    public SanPhamDonHang(Integer maSP, int soLuong) {
-        this.maSP = maSP;
-        this.soLuong = soLuong;
+    public ChiTietHoaDon() {
     }
 
-    public SanPhamDonHang(Integer maSP, String tenSP, int soLuong, Double donGia, byte[] hinh, String xuatXu) {
+    public ChiTietHoaDon(Integer maSP, String tenSP, int soLuong, Double donGia, byte[] hinh, String xuatXu, double thanhTien) {
         this.maSP = maSP;
         this.tenSP = tenSP;
         this.soLuong = soLuong;
         this.donGia = donGia;
         this.hinh = hinh;
         this.xuatXu = xuatXu;
+        this.thanhTien = thanhTien;
     }
 
     public Integer getMaSP() {
@@ -44,7 +46,15 @@ public class SanPhamDonHang implements Serializable {
         this.tenSP = tenSP;
     }
 
-    public int getSoLuong() {
+    public double getThanhTien() {
+        return thanhTien;
+    }
+
+    public void setThanhTien(double thanhTien) {
+        this.thanhTien = thanhTien;
+    }
+
+    public double getSoLuong() {
         return soLuong;
     }
 
@@ -76,14 +86,4 @@ public class SanPhamDonHang implements Serializable {
         this.xuatXu = xuatXu;
     }
 
-    @Override
-    public String toString() {
-        return "SanPhamDonHang{" +
-                "maSP=" + maSP +
-                ", tenSP='" + tenSP + '\'' +
-                ", soLuong=" + soLuong +
-                ", donGia=" + donGia +
-                ", xuatXu='" + xuatXu + '\'' +
-                '}';
-    }
 }

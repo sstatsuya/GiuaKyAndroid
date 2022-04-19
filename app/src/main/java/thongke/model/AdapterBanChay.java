@@ -19,21 +19,21 @@ import java.util.ArrayList;
 
 import database.model.SanPham;
 
-public class AdapterThongKe extends ArrayAdapter {
+public class AdapterBanChay extends ArrayAdapter {
     Context context;
     int resource;
-    ArrayList<SanPham> matHangs;
+    ArrayList<BanChay> banChays;
 
-    public AdapterThongKe(@NonNull Context context, int resource, @NonNull ArrayList<SanPham> matHangs) {
-        super(context, resource, matHangs);
+    public AdapterBanChay(@NonNull Context context, int resource, @NonNull ArrayList<BanChay> banChays) {
+        super(context, resource, banChays);
         this.context = context;
         this.resource = resource;
-        this.matHangs = matHangs;
+        this.banChays = banChays;
     }
 
     @Override
     public int getCount() {
-        return this.matHangs.size();
+        return this.banChays.size();
     }
 
     @NonNull
@@ -42,15 +42,15 @@ public class AdapterThongKe extends ArrayAdapter {
         convertView = LayoutInflater.from(context).inflate(resource, null);
 
         ImageView hinhAnhSanPham = convertView.findViewById(R.id.iv_itemsanphambanchay_hinhanhsanpham);
-        TextView tenSanPham = convertView.findViewById(R.id.tv_itemsanphambanchay_tensanpham),
-                maSanPham = convertView.findViewById(R.id.tv_itemsanphambanchay_masanpham);
+        TextView tenSanPham = convertView.findViewById(R.id.tv_itemsanphambanchay_tensanpham);
+        TextView maSanPham = convertView.findViewById(R.id.tv_itemsanphambanchay_masanpham);
+        TextView soLuong = convertView.findViewById(R.id.tv_itemsanphambanchay_soluong);
 
-        SanPham sp = this.matHangs.get(position);
-
-        tenSanPham.setText(sp.getTenSP());
-        maSanPham.setText(String.valueOf(sp.getMaSP()));
-
-        Bitmap bitmap = BitmapFactory.decodeByteArray(sp.getHinh(), 0, sp.getHinh().length);
+        BanChay banChay = this.banChays.get(position);
+        tenSanPham.setText("Tên sản phẩm: " + banChay.getTenSP());
+        maSanPham.setText("Mã sản phẩm: " + String.valueOf(banChay.getMaSP()));
+        soLuong.setText("Số lượng: " + String.valueOf(banChay.getSoLuong()));
+        Bitmap bitmap = BitmapFactory.decodeByteArray(banChay.getHinh(), 0, banChay.getHinh().length);
         hinhAnhSanPham.setImageBitmap(bitmap);
 
         return convertView;

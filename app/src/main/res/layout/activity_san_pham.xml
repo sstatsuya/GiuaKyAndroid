@@ -96,14 +96,7 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/them_sanpham_icon" />
         </LinearLayout>
-
-
-
     </LinearLayout>
-
-
-
-
     <GridView
         android:id="@+id/gvSanPham"
         android:layout_width="match_parent"

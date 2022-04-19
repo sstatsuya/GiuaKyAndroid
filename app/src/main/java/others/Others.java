@@ -18,7 +18,16 @@ import android.widget.Toast;
 import com.example.giuakyandroid.R;
 
 import java.io.ByteArrayOutputStream;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.List;
+
 import java.text.DecimalFormat;
+
 
 public class Others {
     public Others() {
@@ -83,6 +92,34 @@ public class Others {
         if (!hoTen.matches("^[A-Za-z0-9 ///|/,/.ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ]+"))
             return false;
         else return true;
+    }
+
+    public static LinkedHashMap<Integer, Integer> sortHashMapByValues(
+            HashMap<Integer, Integer> passedMap) {
+        List<Integer> mapKeys = new ArrayList<>(passedMap.keySet());
+        List<Integer> mapValues = new ArrayList<>(passedMap.values());
+        Collections.sort(mapValues, Collections.reverseOrder());
+        Collections.sort(mapKeys, Collections.reverseOrder());
+
+        LinkedHashMap<Integer, Integer> sortedMap = new LinkedHashMap<>();
+        Iterator<Integer> valueIt = mapValues.iterator();
+        while (valueIt.hasNext()) {
+            int val = valueIt.next();
+            Iterator<Integer> keyIt = mapKeys.iterator();
+
+            while (keyIt.hasNext()) {
+                Integer key = keyIt.next();
+                int comp1 = passedMap.get(key);
+                int comp2 = val;
+
+                if (comp1 == comp2) {
+                    keyIt.remove();
+                    sortedMap.put(key, val);
+                    break;
+                }
+            }
+        }
+        return sortedMap;
     }
 
     public String numberToVND(Double number) {
