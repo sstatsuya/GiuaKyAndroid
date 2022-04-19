@@ -28,7 +28,8 @@ import others.Others;
 public class AdapterDonHang extends ArrayAdapter<DonHang> {
     Context context;
     int resource;
-    ArrayList<DonHang> data;
+    ArrayList<DonHang> data, databackup = new ArrayList<>();
+
 
     SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 
@@ -37,6 +38,7 @@ public class AdapterDonHang extends ArrayAdapter<DonHang> {
         this.context = context;
         this.resource = resource;
         this.data = data;
+        this.databackup.addAll(data);
     }
 
     @Override
@@ -118,6 +120,30 @@ public class AdapterDonHang extends ArrayAdapter<DonHang> {
                 });
             }
         });
+    }
+
+    public void searchFunction(String text) {
+        this.data.clear();
+        text = text.toLowerCase();
+        if (text.length() == 0) this.data.addAll(databackup);
+        else {
+            for (DonHang temp : databackup) {
+                if (temp.searchValue().toLowerCase().contains(text)) {
+                    data.add(temp);
+                }
+
+            }
+        }
+        notifyDataSetChanged();
+    }
+
+    public void refresh(){
+        this.data.clear();
+        this.data.addAll(new DBDonHang(this.context).getAll());
+        this.databackup.clear();
+        this.databackup.addAll(this.data);
+        notifyDataSetChanged();
+
     }
 
 //    public void search(String text) {

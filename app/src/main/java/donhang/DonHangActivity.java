@@ -40,7 +40,7 @@ public class DonHangActivity extends AppCompatActivity {
         //generate database connector
         this.dbDonHang = new DBDonHang(this.getApplicationContext());
 
-        generate();
+//        generate();
         setControl();
         setEvent();
     }
@@ -60,9 +60,11 @@ public class DonHangActivity extends AppCompatActivity {
         this.tvThemDonHang = findViewById(R.id.tv_them_don_hang);
         this.lvDSDonHang = findViewById(R.id.lvDSDonHang);
         this.actvSearchDonHang = findViewById(R.id.actv_donhang_timkiem);
+        //generate data
+        generate();
         //Set data to layout element
-        adapterDonHang = new AdapterDonHang(this, R.layout.layout_item_donhang, donHangs);
-        lvDSDonHang.setAdapter(adapterDonHang);
+        this.adapterDonHang = new AdapterDonHang(this, R.layout.layout_item_donhang, this.donHangs);
+        this.lvDSDonHang.setAdapter(this.adapterDonHang);
     }
 
     private void setEvent() {
@@ -82,7 +84,8 @@ public class DonHangActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                searchFunction(charSequence.toString());
+//                searchFunction(charSequence.toString());
+                adapterDonHang.searchFunction(charSequence.toString());
             }
 
             @Override
@@ -92,19 +95,22 @@ public class DonHangActivity extends AppCompatActivity {
         });
     }
 
-    private void searchFunction(String text) {
-        donHangs.clear();
-        text = text.toLowerCase();
-        if (text.length() == 0) donHangs.addAll(donHangsBackup);
-        else {
-            for (DonHang temp : donHangsBackup) {
-                if (temp.searchValue().toLowerCase().contains(text)) {
-                    donHangs.add(temp);
-                }
-            }
-        }
-        adapterDonHang.notifyDataSetChanged();
-    }
+//    private void searchFunction(String text) {
+//        this.donHangs.clear();
+//        System.out.println("-----------------------" + text);
+//        text = text.toLowerCase();
+//        if (text.length() == 0) this.donHangs.addAll(donHangsBackup);
+//        else {
+//            for (DonHang temp : donHangsBackup) {
+//                if (temp.searchValue().toLowerCase().contains(text)) {
+//                    donHangs.add(temp);
+//                }
+//
+//            }
+//        }
+//        this.donHangs.forEach(System.out::println);
+//        this.adapterDonHang.notifyDataSetChanged();
+//    }
 
 
     @Override
@@ -114,13 +120,19 @@ public class DonHangActivity extends AppCompatActivity {
             if (resultCode == 0) { // Click huy hoac back
                 Toast.makeText(this, "bam nut huy", Toast.LENGTH_SHORT).show();
             } else if (resultCode == 1) { //click Luu button
-                generate();
-                adapterDonHang.notifyDataSetChanged();
+//                Toast.makeText(this, "lick luu button", Toast.LENGTH_SHORT).show();
+//                this.donHangs.clear();
+//                this.donHangs.addAll(this.dbDonHang.getAll());
+//                this.adapterDonHang.notifyDataSetChanged();
+                this.adapterDonHang.refresh();
             }
             return;
+        } else {
+//            this.donHangs.clear();
+//            this.donHangs.addAll(this.dbDonHang.getAll());
+//            this.adapterDonHang.notifyDataSetChanged();
+            this.adapterDonHang.refresh();
         }
-        generate();
-        adapterDonHang.notifyDataSetChanged();
     }
 
     //Khi xóa khách hàng hay sản phẩm rồi bấm qua đơn hàng nó khỏi bị lỗi
