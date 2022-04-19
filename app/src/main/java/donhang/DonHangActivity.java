@@ -117,20 +117,11 @@ public class DonHangActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1) { //tu trang them don hang tro ve
-            if (resultCode == 0) { // Click huy hoac back
-                Toast.makeText(this, "bam nut huy", Toast.LENGTH_SHORT).show();
-            } else if (resultCode == 1) { //click Luu button
-//                Toast.makeText(this, "lick luu button", Toast.LENGTH_SHORT).show();
-//                this.donHangs.clear();
-//                this.donHangs.addAll(this.dbDonHang.getAll());
-//                this.adapterDonHang.notifyDataSetChanged();
+            if (resultCode == 1) { //click Luu button
                 this.adapterDonHang.refresh();
             }
             return;
         } else {
-//            this.donHangs.clear();
-//            this.donHangs.addAll(this.dbDonHang.getAll());
-//            this.adapterDonHang.notifyDataSetChanged();
             this.adapterDonHang.refresh();
         }
     }

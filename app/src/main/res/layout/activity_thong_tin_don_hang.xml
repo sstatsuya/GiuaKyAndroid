@@ -9,10 +9,7 @@
     android:background="@color/gray">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="143dp"
-        android:gravity="center"
-        android:orientation="horizontal">
+        style="@style/style_header_layout">
 
         <ImageView
             style="@style/style_logo"
@@ -27,9 +24,10 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:orientation="vertical"
-        android:padding="24dp"
-        android:paddingVertical="8dp">
+        android:paddingVertical="8dp"
+        android:paddingHorizontal="24dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -73,7 +71,6 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="5"
             android:text="@string/danh_sach_mat_hang"
             android:textColor="@color/primary"
             android:layout_marginLeft="12dp"

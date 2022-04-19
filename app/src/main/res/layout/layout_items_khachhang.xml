@@ -37,7 +37,7 @@
                 <TextView
                     android:id="@+id/tv_MaKH"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="20dp"
                     android:layout_marginTop="12dp"
                     android:gravity="center"
                     android:text="@string/tv_makh"
@@ -48,8 +48,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="center_vertical"
+                android:layout_height="120dp"
                 android:orientation="vertical"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp">
@@ -68,7 +67,7 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="@color/black" />
+                    android:background="#B5B5B5" />
 
                 <TextView
                     android:id="@+id/tv_Phone"
@@ -83,7 +82,7 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="@color/black" />
+                    android:background="#B5B5B5" />
 
                 <TextView
                     android:id="@+id/tv_Address"
@@ -110,26 +109,35 @@
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
-                <ImageView
-                    android:id="@+id/iv_editAvatarKh"
-                    android:layout_width="96dp"
-                    android:layout_height="96dp"
-                    android:src="@drawable/avatar" />
+                <LinearLayout
+                    android:layout_width="100dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/iv_editAvatarKh"
+                        android:layout_width="96dp"
+                        android:layout_height="96dp"
+                        android:src="@drawable/avatar" />
+
+                    <TextView
+                        android:id="@+id/tv_editMaKH"
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp"
+                        android:layout_marginTop="12dp"
+                        android:gravity="center"
+                        android:text="@string/tv_makh"
+                        android:textColor="@color/black"
+                        android:textSize="14dp" />
+
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/tv_editMaKH"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1.5"
-                        android:gravity="center_vertical"
-                        android:text="@string/tv_makh"
-                        android:textColor="@color/black"
-                        android:textSize="14dp" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -139,7 +147,6 @@
 
                         <TextView
                             android:layout_width="50dp"
-
                             android:layout_height="wrap_content"
                             android:gravity="center_vertical"
                             android:text="@string/tv_hoten"
@@ -210,21 +217,22 @@
                 android:layout_height="wrap_content"
                 android:gravity="center|center_horizontal"
                 android:orientation="horizontal"
+                android:layout_marginTop="8dp"
                 android:paddingTop="5dp">
 
                 <Button
                     android:id="@+id/btn_LuuThongTinKH"
-                    android:text="@string/btn_dongy"
                     style="@style/style_khachhang_nut"
                     android:background="@drawable/blackbackground"
-                    android:drawableRight="@drawable/icon_ok"/>
+                    android:drawableRight="@drawable/icon_ok"
+                    android:text="@string/btn_dongy" />
 
                 <Button
                     android:id="@+id/btn_XoaThongTinKH"
-                    android:text="@string/btn_xoa"
                     style="@style/style_khachhang_nut"
                     android:background="@drawable/orange_border_button"
-                    android:drawableRight="@drawable/icon_xoa"/>
+                    android:drawableRight="@drawable/icon_xoa"
+                    android:text="@string/btn_xoa" />
 
                 <Button
                     android:id="@+id/btn_HuyEditKH"

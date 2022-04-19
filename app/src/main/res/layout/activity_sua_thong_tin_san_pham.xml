@@ -16,11 +16,7 @@
         android:orientation="vertical"
         tools:context="sanpham.ThongTinSanPhamActivity">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="143dp"
-            android:gravity="center"
-            android:orientation="horizontal">
+        <LinearLayout style="@style/style_header_layout">
 
             <ImageView
                 style="@style/style_logo"
@@ -34,14 +30,16 @@
         </LinearLayout>
 
         <LinearLayout style="@style/style_sua_ttsp_input_layout">
+
             <TextView
                 style="@style/style_sua_ttsp_tieu_de"
                 android:text="@string/ma_san_pham" />
+
             <TextView
-                style="@style/style_sua_ttsp_edit_text"
                 android:id="@+id/txtSTTSPMa"
+                style="@style/style_sua_ttsp_edit_text"
                 android:text="@string/ma_san_pham"
-                android:textColor="@color/primary"/>
+                android:textColor="@color/primary" />
         </LinearLayout>
 
         <LinearLayout style="@style/style_sua_ttsp_input_layout">
@@ -90,12 +88,13 @@
                 android:id="@+id/btn_sttsp_thu_muc"
                 android:layout_width="80dp"
                 android:layout_height="40dp"
-                android:orientation="horizontal"
-                android:background="@drawable/folder_btn_background">
+                android:background="@drawable/folder_btn_background"
+                android:orientation="horizontal">
+
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/folder_icon"/>
+                    android:src="@drawable/folder_icon" />
             </LinearLayout>
 
 
@@ -103,13 +102,14 @@
                 android:id="@+id/btn_sttsp_camera"
                 android:layout_width="80dp"
                 android:layout_height="40dp"
-                android:orientation="horizontal"
                 android:layout_marginLeft="8dp"
-                android:background="@drawable/camera_btn_background">
+                android:background="@drawable/camera_btn_background"
+                android:orientation="horizontal">
+
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/camera_icon"/>
+                    android:src="@drawable/camera_icon" />
             </LinearLayout>
         </LinearLayout>
 
@@ -121,8 +121,7 @@
             android:layout_marginTop="24dp"
             android:src="@drawable/empty" />
 
-        <LinearLayout
-            style="@style/style_pill_button_layout">
+        <LinearLayout style="@style/style_pill_button_layout">
 
             <TextView
                 android:id="@+id/btn_sua_ttsp_dong_y"

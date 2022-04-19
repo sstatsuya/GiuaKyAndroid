@@ -14,6 +14,14 @@
         <item name="android:textSize">18dp</item>
     </style>
 
+    <style name="style_header_layout">
+        <item name="android:layout_marginTop">18dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">100dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+
     <style name="style_logo">
         <item name="android:layout_marginLeft">12dp</item>
         <item name="android:layout_marginRight">12dp</item>
@@ -119,4 +127,6 @@
         <item name="android:layout_marginLeft">8dp</item>
         <item name="android:layout_marginRight">8dp</item>
     </style>
+
+
 </resources>

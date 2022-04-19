@@ -6,13 +6,11 @@
     android:layout_height="match_parent"
     android:background="@color/gray"
     android:orientation="vertical"
-    tools:context="sanpham.ThongTinSanPhamActivity">
+    tools:context="sanpham.ThongTinSanPhamActivity"
+    android:paddingHorizontal="24dp">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="143dp"
-        android:gravity="center"
-        android:orientation="horizontal">
+        style="@style/style_header_layout">
 
         <ImageView
             style="@style/style_logo"
@@ -27,6 +25,7 @@
 
     <ImageView
         android:id="@+id/imgTTSPHinh"
+        android:layout_marginTop="64dp"
         android:layout_width="320dp"
         android:layout_height="240dp"
         android:layout_gravity="center"

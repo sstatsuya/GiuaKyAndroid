@@ -8,11 +8,7 @@
     android:orientation="vertical"
     tools:context="donhang.SuaDonHangActivity">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="143dp"
-        android:gravity="center"
-        android:orientation="horizontal">
+    <LinearLayout style="@style/style_header_layout">
 
         <ImageView
             style="@style/style_logo"
@@ -48,9 +44,9 @@
 
             <EditText
                 android:id="@+id/et_suadonhang_MaKhachHang"
+                style="@style/ed_Text"
                 android:layout_marginTop="0dp"
                 android:layout_weight="10"
-                style="@style/ed_Text"
                 android:background="@android:color/transparent"
                 android:hint="@string/ma_khach_hang" />
 
@@ -79,15 +75,15 @@
 
         <TextView
             android:id="@+id/tv_suadonhang_TenKhachHang"
+            style="@style/ed_Text"
             android:layout_marginTop="10dp"
             android:gravity="center_vertical"
-            android:hint="@string/ten_khachhang"
-            style="@style/ed_Text" />
+            android:hint="@string/ten_khachhang" />
 
         <EditText
             android:id="@+id/et_suadonhang_NgayDatHang"
-            android:layout_marginTop="10dp"
             style="@style/ed_Text"
+            android:layout_marginTop="10dp"
             android:hint="Ngày đặt hàng" />
 
     </LinearLayout>
@@ -114,8 +110,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="4"
-        android:layout_marginHorizontal="20dp">
+        android:layout_marginHorizontal="20dp"
+        android:layout_weight="4">
 
         <ListView
             android:id="@+id/lv_suadonhang_danhsachmathang"

@@ -53,7 +53,7 @@ public class ChiTietHoaDonAdapter extends ArrayAdapter {
         TextView thanhTien = convertView.findViewById(R.id.tv_item_pdf_thanhTien);
 
         ChiTietHoaDon chiTietHoaDon = this.chiTietHoaDons.get(position);
-        tenSanPham.setText("Tên sản phẩm: " + chiTietHoaDon.getTenSP());
+        tenSanPham.setText(chiTietHoaDon.getTenSP());
         maSanPham.setText("Mã sản phẩm: " + chiTietHoaDon.getMaSP());
         soLuong.setText("Số lượng: " + Math.round(chiTietHoaDon.getSoLuong()));
         Bitmap bitmap = BitmapFactory.decodeByteArray(chiTietHoaDon.getHinh(), 0, chiTietHoaDon.getHinh().length);

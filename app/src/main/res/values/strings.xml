@@ -53,6 +53,7 @@
     <string name="link_hinh_anh">Link hình ảnh</string>
     <string name="camera">Camera</string>
     <string name="timkiem">Tìm kiếm</string>
+    <string name="nhap_ma_hoa_don">Nhập mã hóa đơn</string>
     <string name="source_img">Source ảnh</string>
     <string name="ten_khachhang">Tên Khách hàng</string>
     <string name="soDT">Số điện thoại</string>

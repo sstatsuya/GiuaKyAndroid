@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import android.widget.Toast;
@@ -26,7 +27,10 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 
+import database.DBDonHang;
 import database.DBSanPham;
+import database.DBThongTinDatHang;
+import database.model.DonHang;
 import database.model.SanPham;
 import database.model.ThongTinDonHang;
 import others.Others;
@@ -45,6 +49,7 @@ public class ThongKeActivity extends AppCompatActivity {
     DBDonHang dbDonHang;
     DBSanPham dbSanPham;
     DBThongTinDatHang dbThongTinDatHang;
+    LinearLayout llTTDH;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -202,6 +207,12 @@ public class ThongKeActivity extends AppCompatActivity {
         //Set value for ListView
         AdapterBanChay adapterBanChay = new AdapterBanChay(this, R.layout.layout_item_san_pham_ban_chay, banChays);
         lvBanChay.setAdapter(adapterBanChay);
-    
+    }
+
+//    Qua lai giua cac tabactivity no se cap nhat
+    @Override
+    protected void onResume() {
+        super.onResume();
+        setEvent();
     }
 }

@@ -8,11 +8,7 @@
     android:orientation="vertical"
     tools:context="donhang.DonHangActivity">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="143dp"
-        android:gravity="center"
-        android:orientation="horizontal">
+    <LinearLayout style="@style/style_header_layout">
 
         <ImageView
             style="@style/style_logo"
@@ -27,8 +23,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingHorizontal="24dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingHorizontal="24dp">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="60dp"
@@ -47,10 +44,10 @@
                 android:id="@+id/actv_donhang_timkiem"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:textSize="13dp"
                 android:completionThreshold="1"
                 android:hint="Tìm kiếm đơn hàng"
-                android:paddingRight="8dp" />
+                android:paddingRight="8dp"
+                android:textSize="13dp" />
         </LinearLayout>
 
 
@@ -58,16 +55,14 @@
             android:id="@+id/tv_them_don_hang"
             android:layout_width="match_parent"
             android:layout_height="40dp"
+            android:layout_gravity="center"
             android:layout_marginTop="12dp"
             android:background="@drawable/orange_border_button"
             android:text="@string/tao_don_hang"
             android:textAlignment="center"
-            android:layout_gravity="center"
-            android:textSize="13dp"
-            android:textColor="@color/white"></TextView>
+            android:textColor="@color/white"
+            android:textSize="13dp"></TextView>
     </LinearLayout>
-
-
 
 
     <ListView

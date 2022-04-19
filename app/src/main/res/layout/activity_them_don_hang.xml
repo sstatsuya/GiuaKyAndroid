@@ -8,11 +8,7 @@
     android:orientation="vertical"
     tools:context="donhang.ThemDonHangActivity">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="143dp"
-        android:gravity="center"
-        android:orientation="horizontal">
+    <LinearLayout style="@style/style_header_layout">
 
         <ImageView
             style="@style/style_logo"
@@ -48,23 +44,23 @@
 
             <EditText
                 android:id="@+id/et_themdonhang_MaKhachHang"
+                style="@style/ed_Text"
                 android:layout_marginTop="0dp"
                 android:layout_weight="10"
-                style="@style/ed_Text"
                 android:background="@android:color/transparent"
                 android:hint="@string/ma_khach_hang" />
 
-<!--            <EditText-->
-<!--                android:id="@+id/tv_themdonhang_MaKhachHang"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_weight="10"-->
-<!--                android:gravity="center_vertical"-->
-<!--                android:hint="Mã khách hàng"-->
-<!--                android:paddingLeft="20dp"-->
-<!--                android:textColor="@color/black"-->
-<!--                android:textColorHint="#AFA7A7"-->
-<!--                android:textSize="16dp" />-->
+            <!--            <EditText-->
+            <!--                android:id="@+id/tv_themdonhang_MaKhachHang"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_weight="10"-->
+            <!--                android:gravity="center_vertical"-->
+            <!--                android:hint="Mã khách hàng"-->
+            <!--                android:paddingLeft="20dp"-->
+            <!--                android:textColor="@color/black"-->
+            <!--                android:textColorHint="#AFA7A7"-->
+            <!--                android:textSize="16dp" />-->
 
             <Button
                 android:id="@+id/btn_themdonhang_ChonKhachHang"
@@ -79,15 +75,15 @@
 
         <TextView
             android:id="@+id/tv_themdonhang_TenKhachHang"
+            style="@style/ed_Text"
             android:layout_marginTop="10dp"
             android:gravity="center_vertical"
-            android:hint="@string/ten_khachhang"
-            style="@style/ed_Text" />
+            android:hint="@string/ten_khachhang" />
 
         <EditText
             android:id="@+id/et_themdonhang_NgayDatHang"
-            android:layout_marginTop="10dp"
             style="@style/ed_Text"
+            android:layout_marginTop="10dp"
             android:hint="Ngày đặt hàng" />
 
     </LinearLayout>
@@ -111,11 +107,10 @@
         <Button
             android:id="@+id/btn_themdonhang_ChonMatHang"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="40dp"
             android:layout_weight="1"
             android:background="@drawable/orange_border_button"
             android:gravity="center"
-            android:paddingLeft="20dp"
             android:text="@string/them"
             android:textColor="@color/white"
             android:textSize="15dp" />
@@ -125,8 +120,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="4"
-        android:layout_marginHorizontal="20dp">
+        android:layout_marginHorizontal="20dp"
+        android:layout_weight="4">
 
         <ListView
             android:id="@+id/lv_themdonhang_danhsachmathang"
