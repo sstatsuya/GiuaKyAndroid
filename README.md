@@ -1,3 +1,7 @@
+Link tải apk
+https://drive.google.com/drive/folders/1b_8zafDxuyFRh8QSSQmubEHiQuClI7SP?usp=sharing
+
+
 # Bài giữa kỳ lập trình android
 <em><strong>
 Trước khi code cần phải kéo từ Master về <br>
