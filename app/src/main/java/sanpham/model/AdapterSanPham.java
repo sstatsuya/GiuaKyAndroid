@@ -17,6 +17,7 @@ import com.example.giuakyandroid.R;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 
 import database.model.SanPham;
 import others.Others;
@@ -60,13 +61,16 @@ public class AdapterSanPham extends ArrayAdapter<SanPham> {
     //option : 3 gia tang dan
     //option : 4 gia giam dan
     public void locBangSpinner(int option) {
+        data.clear();
+        data.addAll(dataBackup);
         if(option < 3){
             for(int i = 0; i<data.size()-1; i++){
-                if(data.get(i).getMaSP() > data.get(i+1).getMaSP()){
-                    SanPham sanPhamTam = data.get(i);
-                    data.set(i, data.get(i+1));
-                    data.set(i+1, sanPhamTam);
-                }
+                Collections.sort(data, new Comparator<SanPham>() {
+                    @Override
+                    public int compare(SanPham sp1, SanPham sp2) {
+                        return sp1.getMaSP() > sp2.getMaSP() ? 1:-1;
+                    }
+                });
             }
             if(option == 2){
                 Collections.reverse(data);
@@ -74,11 +78,12 @@ public class AdapterSanPham extends ArrayAdapter<SanPham> {
         }
         else{
             for(int i = 0; i<data.size()-1; i++){
-                if(data.get(i).getDonGia() > data.get(i+1).getDonGia()){
-                    SanPham sanPhamTam = data.get(i);
-                    data.set(i, data.get(i+1));
-                    data.set(i+1, sanPhamTam);
-                }
+                Collections.sort(data, new Comparator<SanPham>() {
+                    @Override
+                    public int compare(SanPham sp1, SanPham sp2) {
+                        return sp1.getDonGia() > sp2.getDonGia() ? 1:-1;
+                    }
+                });
             }
             if(option == 4){
                 Collections.reverse(data);

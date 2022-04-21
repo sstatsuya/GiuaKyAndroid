@@ -45,7 +45,7 @@ public class DBDonHang {
 
         String sql = "SELECT DH.MADH, DH.MAKH, KH.TENKH, DH.NGAYDH\n" +
                 "FROM DONHANG DH, KHACHHANG KH\n" +
-                "WHERE DH.MAKH = KH.MAKH";
+                "WHERE DH.MAKH = KH.MAKH order by DH.MADH DESC";
         SQLiteDatabase database = dbHelper.getReadableDatabase();
         Cursor cursor = database.rawQuery(sql, null);
         if(cursor.moveToFirst())
@@ -134,21 +134,19 @@ public class DBDonHang {
                 "WHERE DH.MAKH = KH.MAKH AND DH.MADH=" + String.valueOf(id);
         SQLiteDatabase database = dbHelper.getReadableDatabase();
         Cursor cursor = database.rawQuery(sql, null);
-        if (cursor != null)
-            cursor.moveToFirst();
-
-        donHang.setMaDH(cursor.getInt(0));
-        donHang.setMaKH(cursor.getInt(1));
-        donHang.setTenKH(cursor.getString(2));
-        try {
-            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-            donHang.setNgayDatHang(df.parse(cursor.getString(3)));
-        } catch (ParseException e) {
-            Log.i(TAG, "DBDonHang.get format date errors " + donHang.getMaDH() + " - " + e.toString());
-            e.printStackTrace();
+        if (cursor.moveToFirst()) {
+            donHang.setMaDH(cursor.getInt(0));
+            donHang.setMaKH(cursor.getInt(1));
+            donHang.setTenKH(cursor.getString(2));
+            try {
+                SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+                donHang.setNgayDatHang(df.parse(cursor.getString(3)));
+            } catch (ParseException e) {
+                Log.i(TAG, "DBDonHang.get format date errors " + donHang.getMaDH() + " - " + e.toString());
+                e.printStackTrace();
+            }
+            donHang.setSanPhamDonHangs(new DBThongTinDatHang(context).getAllByMaDH(id));
         }
-
-        donHang.setSanPhamDonHangs(new DBThongTinDatHang(context).getAllByMaDH(id));
 
         return donHang;
     }
@@ -208,7 +206,6 @@ public class DBDonHang {
                     Log.i(TAG, "DBDonHang.getAll get all product list by orderID " + donHangTemp.getMaDH() + " - " + e.toString());
                     e.printStackTrace();
                 }
-
                 donHangs.add(donHangTemp);
             }
             while (cursor.moveToNext());

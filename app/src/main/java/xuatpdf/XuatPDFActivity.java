@@ -36,6 +36,7 @@ import database.DBThongTinDatHang;
 import database.model.DonHang;
 import database.model.SanPham;
 import database.model.ThongTinDonHang;
+import schedulemail.JavaMailAPI;
 import thongke.model.AdapterBanChay;
 import xuatpdf.model.ChiTietHoaDon;
 import xuatpdf.model.ChiTietHoaDonAdapter;
@@ -51,7 +52,7 @@ public class XuatPDFActivity extends AppCompatActivity {
     ListView lv_pdf_sanPhams;
     EditText txt_pdf_mahoadon;
     TextView tvPDFMaHD, tvPDFNgayXuat, tvPDFTenKhachHang, tvPDFTongTien;
-    LinearLayout llTTDH;
+    LinearLayout llTHDH;
 
 
     //Variable
@@ -101,21 +102,16 @@ public class XuatPDFActivity extends AppCompatActivity {
         tvPDFTongTien = findViewById(R.id.tv_pdf_tongTien);
         chiTietHoaDonAdapter = new ChiTietHoaDonAdapter(this, R.layout.activity_items_pdf_chi_tiet_hoa_don, listChiTietHoaDons);
         lv_pdf_sanPhams.setAdapter(chiTietHoaDonAdapter);
-        llTTDH = findViewById(R.id.ll_xuatpdf_ttdh);
+        llTHDH = findViewById(R.id.ll_xuatpdf_ttdh);
     }
 
     private void setEvent() {
         btnTimHoaDon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                llTTDH.setVisibility(View.VISIBLE);
                 maHoaDon = Integer.parseInt(txt_pdf_mahoadon.getText().toString());
                 getThongTinDonHang(maHoaDon);
-                tvPDFMaHD.setText("Mã đơn hàng: " + String.valueOf(donHang.getMaDH()));
-                tvPDFNgayXuat.setText("Ngày xuất: " + df.format(donHang.getNgayDatHang()));
-                tvPDFTenKhachHang.setText("Tên khách hàng: " + String.valueOf(donHang.getTenKH()));
-                tvPDFTongTien.setText("Tổng tiền: " + String.valueOf(tongTien));
-                btnXuatPDF.setVisibility(View.VISIBLE);
+
             }
         });
         btnXuatPDF.setOnClickListener(new View.OnClickListener() {
@@ -131,20 +127,32 @@ public class XuatPDFActivity extends AppCompatActivity {
         listChiTietHoaDons.clear();
         thongTinDonHangs.clear();
         donHang = dbDonHang.get(maHoaDon);
-        thongTinDonHangs.addAll(dbThongTinDatHang.getAllThongTinDonHangByMaDH(maHoaDon));
-        for (ThongTinDonHang item : thongTinDonHangs) {
-            SanPham tempSanPham = dbSanPham.getSanPhamByMaSP(item.getMaSP());
-            ChiTietHoaDon chiTietHoaDon = new ChiTietHoaDon();
-            chiTietHoaDon.setDonGia(tempSanPham.getDonGia());
-            chiTietHoaDon.setMaSP(tempSanPham.getMaSP());
-            chiTietHoaDon.setHinh(tempSanPham.getHinh());
-            chiTietHoaDon.setSoLuong(item.getSoLuongDat());
-            chiTietHoaDon.setTenSP(tempSanPham.getTenSP());
-            chiTietHoaDon.setThanhTien(item.getSoLuongDat() * tempSanPham.getDonGia());
-            tongTien += chiTietHoaDon.getThanhTien();
-            listChiTietHoaDons.add(chiTietHoaDon);
+        if (donHang.getMaDH() == 0) {
+            llTHDH.setVisibility(View.INVISIBLE);
+            Toast.makeText(this, "Không tồn tại mã đơn hàng. Vui lòng nhập lại", Toast.LENGTH_LONG).show();
+        } else {
+            llTHDH.setVisibility(View.VISIBLE);
+            btnXuatPDF.setVisibility(View.VISIBLE);
+            thongTinDonHangs.addAll(dbThongTinDatHang.getAllThongTinDonHangByMaDH(maHoaDon));
+            for (ThongTinDonHang item : thongTinDonHangs) {
+                SanPham tempSanPham = dbSanPham.getSanPhamByMaSP(item.getMaSP());
+                ChiTietHoaDon chiTietHoaDon = new ChiTietHoaDon();
+                chiTietHoaDon.setDonGia(tempSanPham.getDonGia());
+                chiTietHoaDon.setMaSP(tempSanPham.getMaSP());
+                chiTietHoaDon.setHinh(tempSanPham.getHinh());
+                chiTietHoaDon.setSoLuong(item.getSoLuongDat());
+                chiTietHoaDon.setTenSP(tempSanPham.getTenSP());
+                chiTietHoaDon.setThanhTien(item.getSoLuongDat() * tempSanPham.getDonGia());
+                tongTien += chiTietHoaDon.getThanhTien();
+                listChiTietHoaDons.add(chiTietHoaDon);
+            }
+            chiTietHoaDonAdapter.notifyDataSetChanged();
+            tvPDFMaHD.setText("Mã đơn hàng: " + String.valueOf(donHang.getMaDH()));
+            tvPDFNgayXuat.setText("Ngày xuất: " + df.format(donHang.getNgayDatHang()));
+            tvPDFTenKhachHang.setText("Tên khách hàng: " + String.valueOf(donHang.getTenKH()));
+            tvPDFTongTien.setText("Tổng tiền: " + String.valueOf(tongTien));
+            btnXuatPDF.setVisibility(View.VISIBLE);
         }
-        chiTietHoaDonAdapter.notifyDataSetChanged();
     }
 
     private void createPDF() {
@@ -225,7 +233,12 @@ public class XuatPDFActivity extends AppCompatActivity {
             file.delete();
         }
         try {
+            System.out.println("Run into this");
             myPdfDocument.writeTo(new FileOutputStream(file));
+            final String mail = "tutranvan156@gmail.com";
+            String subject = "Báo cáo hóa đơn_" + donHang.getMaDH() + "_" + df.format(donHang.getNgayDatHang());
+            JavaMailAPI javaMailAPI = new JavaMailAPI(XuatPDFActivity.this, mail, subject, file);
+            javaMailAPI.execute();
             Toast.makeText(XuatPDFActivity.this, "Lưu thành công!", Toast.LENGTH_SHORT).show();
         } catch (IOException e) {
             e.printStackTrace();

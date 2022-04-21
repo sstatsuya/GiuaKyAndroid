@@ -53,7 +53,6 @@ public class TrangChuActivity extends TabActivity {
         tabHost.getTabWidget().getChildAt(0)
                 .setBackgroundResource(R.drawable.tab_select);
 
-
         tabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
             @Override
             public void onTabChanged(String s) {

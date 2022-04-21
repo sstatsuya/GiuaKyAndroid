@@ -94,7 +94,6 @@ public class ThemSanPhamActivity extends AppCompatActivity {
                 startActivityForResult(intent, REQUEST_CODE_CAMERA);
             }
         });
-
 //        Nut chọn hình từ thư mục
         btnFolder.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -142,7 +141,6 @@ public class ThemSanPhamActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
         //Trường hợp lấy hình từ camera
         if (requestCode == REQUEST_CODE_CAMERA) {
             if (resultCode == RESULT_OK && data != null) {
@@ -153,7 +151,6 @@ public class ThemSanPhamActivity extends AppCompatActivity {
                 imgTSPHinh.setImageBitmap(bitmap);
             } else Toast.makeText(this, "Chưa có hình", Toast.LENGTH_SHORT).show();
         }
-
         //Trường hợp lấy hình từ folder
         if (requestCode == REQUEST_CODE_FOLDER) {
             if (resultCode == RESULT_OK && data != null) {

@@ -9,15 +9,12 @@
     tools:context="sanpham.SanPhamActivity">
 
     <LinearLayout style="@style/style_header_layout">
-
         <ImageView
             style="@style/style_logo"
             android:src="@drawable/icon" />
-
         <TextView
             style="@style/style_title"
             android:text="@string/san_pham" />
-
     </LinearLayout>
 
     <LinearLayout

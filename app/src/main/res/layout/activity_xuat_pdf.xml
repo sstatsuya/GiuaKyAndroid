@@ -124,6 +124,7 @@
 
     <Button
         android:id="@+id/btn_xuat_pdf"
+        android:visibility="invisible"
         style="@style/btn_Them"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

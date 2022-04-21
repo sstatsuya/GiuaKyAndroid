@@ -16,7 +16,6 @@ import android.widget.Toast;
 import java.io.File;
 import java.util.Properties;
 
-
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
 import javax.activation.FileDataSource;
@@ -40,34 +39,33 @@ public class JavaMailAPI extends AsyncTask<Void, Void, Void> {
 
     private String mEmail;
     private String mSubject;
-    private String mMessage;
+    private File fileSend;
 
     private ProgressDialog mProgressDialog;
 
     //Constructor
-    public JavaMailAPI(Context mContext, String mEmail, String mSubject, String mMessage) {
+    public JavaMailAPI(Context mContext, String mEmail, String mSubject, File fileSend) {
         this.mContext = mContext;
         this.mEmail = mEmail;
         this.mSubject = mSubject;
-        this.mMessage = mMessage;
-//        this.fileName = fileName;
+        this.fileSend = fileSend;
     }
 
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
         //Show progress dialog while sending email
-        mProgressDialog = ProgressDialog.show(mContext, "Sending message", "Please wait...", false, false);
+//        mProgressDialog = ProgressDialog.show(mContext, "Sending message", "Please wait...", false, false);
     }
 
     @Override
     protected void onPostExecute(Void aVoid) {
         super.onPostExecute(aVoid);
         //Dismiss progress dialog when message successfully send
-        mProgressDialog.dismiss();
+//        mProgressDialog.dismiss();
 
         //Show success toast
-        Toast.makeText(mContext, "Message Sent", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(mContext, "Message Sent", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -102,7 +100,7 @@ public class JavaMailAPI extends AsyncTask<Void, Void, Void> {
             message.setSubject(mSubject);
 
             BodyPart messageBodyPart = new MimeBodyPart();
-            messageBodyPart.setText("Hoa don _2");
+            messageBodyPart.setText("Báo cáo hóa đơn");
 
             Multipart multipart = new MimeMultipart();
 //
@@ -110,14 +108,14 @@ public class JavaMailAPI extends AsyncTask<Void, Void, Void> {
 //
             messageBodyPart = new MimeBodyPart();
 
-            File file = new File(mContext.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS), "hoadon_2.pdf");
+//            File file = new File(mContext.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS), "hoadon_2.pdf");
             //get Source file
-            DataSource source = new FileDataSource(file.getPath());
-            System.out.println(file.getPath());
+            DataSource source = new FileDataSource(fileSend.getPath());
+            System.out.println(fileSend.getPath());
 //
             messageBodyPart.setDataHandler(new DataHandler(source));
 //
-            messageBodyPart.setFileName(file.getName());
+            messageBodyPart.setFileName(fileSend.getName());
 //
             multipart.addBodyPart(messageBodyPart);
 

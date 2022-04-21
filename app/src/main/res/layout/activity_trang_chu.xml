@@ -21,5 +21,4 @@
             android:background="@drawable/white_border"
             android:id="@android:id/tabs"/>
     </LinearLayout>
-
 </TabHost>

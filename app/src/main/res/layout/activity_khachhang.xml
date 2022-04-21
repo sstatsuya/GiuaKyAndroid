@@ -40,7 +40,6 @@
             android:textColor="@color/black"
             android:textColorHint="#AFA7A7"
             android:textSize="14dp">
-
         </SearchView>
 
         <LinearLayout

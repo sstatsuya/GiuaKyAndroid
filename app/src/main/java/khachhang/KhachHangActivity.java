@@ -79,7 +79,6 @@ public class KhachHangActivity extends AppCompatActivity {
             public boolean onQueryTextSubmit(String s) {
                 return false;
             }
-
             @Override
             public boolean onQueryTextChange(String s) {
                 adapterKhachHang.FindKhachHang(s);
@@ -115,7 +114,6 @@ public class KhachHangActivity extends AppCompatActivity {
                     RefreshData();
                     return false;
                 }
-
                 // set control
                 ImageView iv_avatarKH = view.findViewById(R.id.iv_editAvatarKh);
                 TextView tv_editMaKH = view.findViewById(R.id.tv_editMaKH);
@@ -132,9 +130,6 @@ public class KhachHangActivity extends AppCompatActivity {
                 et_editName.setText(khachhang.getTENKH());
                 et_editPhone.setText(khachhang.getDIENTHOAI());
                 et_editAddress.setText(khachhang.getDIACHI());
-
-
-
                 //set event
                 btn_HuyEditKH.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -143,7 +138,6 @@ public class KhachHangActivity extends AppCompatActivity {
                             sw_layoutItemKH.showNext();
                     }
                 });
-
                 iv_avatarKH.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -159,7 +153,6 @@ public class KhachHangActivity extends AppCompatActivity {
                         openConfirmDialog(khachhang, "Bạn có chắc muốn xóa khách hàng này?", 1);
                     }
                 });
-
                 btn_LuuThongTinKH.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
